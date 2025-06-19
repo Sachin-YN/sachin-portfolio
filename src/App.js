@@ -2,35 +2,32 @@ import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
 import Typewriter from 'react-typewriter-effect';
 import * as THREE from 'three';
-import STARS from 'vanta/dist/vanta.stars.min';
+// Note the “.js” extension here:
+import STARS from 'vanta/dist/vanta.stars.min.js';
 
 export default function App() {
-  // Loader state
   const [loading, setLoading] = useState(true);
+  const vantaRef = useRef(null);
+  const [vantaEffect, setVantaEffect] = useState(null);
+
+  // Loader
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(t);
   }, []);
 
-  // Scroll-to-top helper
-  const scrollToTop = () =>
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Vanta.js setup
-  const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState(null);
+  // Initialize Vanta.js
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
         STARS({
           el: vantaRef.current,
-          THREE: THREE,
-          // you can tweak these:
-          color: 0xffffff,            // star color
-          backgroundColor: 0x000000,  // deep space
-          size: 1.2,                  // star size
-          count: 100,                 // number of stars
-          speed: 1.0,                 // animation speed
+          THREE,
+          color: 0xffffff,
+          backgroundColor: 0x000000,
+          size: 1.2,
+          count: 100,
+          speed: 1.0,
         })
       );
     }
@@ -38,6 +35,10 @@ export default function App() {
       if (vantaEffect) vantaEffect.destroy();
     };
   }, [vantaEffect]);
+
+  // Scroll helper
+  const scrollToTop = () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
   if (loading) {
     return (
@@ -48,11 +49,8 @@ export default function App() {
   }
 
   return (
-    <div
-      ref={vantaRef}
-      className="relative overflow-hidden bg-black text-white dark:bg-black dark:text-white"
-    >
-      {/* Overlay to darken background slightly */}
+    <div ref={vantaRef} className="relative overflow-hidden bg-black text-white">
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/60 z-0" />
 
       {/* Navbar */}
@@ -61,7 +59,7 @@ export default function App() {
           <span className="font-bold text-xl">Sachin</span>
           <div className="hidden md:flex space-x-6">
             <a href="#projects" className="hover:text-blue-400">Projects</a>
-            <a href="#contact" className="hover:text-blue-400">Contact</a>
+            <a href="#contact"  className="hover:text-blue-400">Contact</a>
           </div>
         </div>
       </nav>
@@ -114,10 +112,7 @@ export default function App() {
       </div>
 
       {/* Projects Section */}
-      <section
-        id="projects"
-        className="relative z-10 bg-gray-900 text-white py-20 px-4"
-      >
+      <section id="projects" className="relative z-10 bg-gray-900 text-white py-20 px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-blue-400">
           Projects
         </h2>
@@ -126,7 +121,7 @@ export default function App() {
             { title: 'Power BI – Sales Dashboard', desc: 'Interactive revenue insights (Coming Soon)' },
             { title: 'Python – Churn Prediction',  desc: 'Predictive model using Logistic Regression (Coming Soon)' },
             { title: 'SQL – Query Optimization',  desc: 'Speed tuning large-scale queries (Coming Soon)' },
-          ].map((p,i) => (
+          ].map((p, i) => (
             <div key={i} className="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition">
               <h3 className="text-xl font-semibold text-blue-300">{p.title}</h3>
               <p className="text-gray-300 mt-2">{p.desc}</p>
@@ -136,27 +131,12 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section
-        id="contact"
-        className="relative z-10 bg-black text-white py-20 px-4 text-center"
-      >
+      <section id="contact" className="relative z-10 bg-black text-white py-20 px-4 text-center">
         <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact</h2>
         <ul className="space-y-4">
-          <li>
-            <a href="https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117" className="text-blue-500 hover:underline" target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/Sachin-YN" className="text-blue-500 hover:underline" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a href="mailto:sachin@sachiny.me" className="text-blue-500 hover:underline">
-              sachin@sachiny.me
-            </a>
-          </li>
+          <li><a href="https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117" className="text-blue-500 hover:underline" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          <li><a href="https://github.com/Sachin-YN" className="text-blue-500 hover:underline" target="_blank" rel="noreferrer">GitHub</a></li>
+          <li><a href="mailto:sachin@sachiny.me" className="text-blue-500 hover:underline">sachin@sachiny.me</a></li>
         </ul>
       </section>
     </div>
