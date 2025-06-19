@@ -1,44 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import Typewriter from 'react-typewriter-effect';
-import * as THREE from 'three';
-// Note the “.js” extension here
-import STARS from 'vanta/dist/vanta.stars.min.js';
+import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState(null);
 
-  // Loader
+  // Loader timeout
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(t);
   }, []);
 
-  // Vanta.js starfield
-  useEffect(() => {
-    if (!vantaEffect) {
-      setVantaEffect(
-        STARS({
-          el: vantaRef.current,
-          THREE,
-          color: 0xffffff,
-          backgroundColor: 0x000000,
-          size: 1.2,
-          count: 100,
-          speed: 1.0,
-        })
-      );
-    }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
-
   // Scroll helper
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Particles init
+  const particlesInit = async (engine) => {
+    await loadFull(engine);
+  };
 
   if (loading) {
     return (
@@ -49,9 +31,36 @@ export default function App() {
   }
 
   return (
-    <div ref={vantaRef} className="relative overflow-hidden bg-black text-white">
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60 z-0" />
+    <div className="relative overflow-hidden bg-black text-white dark:bg-black dark:text-white">
+      {/* Particles Starfield */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: { enable: true, zIndex: -10 },
+          background: { color: { value: "#000000" } },
+          fpsLimit: 60,
+          particles: {
+            number: { value: 100, density: { enable: true, area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.8 },
+            size: { value: { min: 1, max: 3 } },
+            move: {
+              enable: true,
+              speed: 0.2,
+              direction: "none",
+              random: false,
+              straight: false,
+              outModes: { default: "out" },
+            },
+          },
+          detectRetina: true,
+        }}
+      />
+
+      {/* Dark overlay for contrast */}
+      <div className="fixed inset-0 bg-black/60 z-0" />
 
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/50 backdrop-blur-sm text-white">
@@ -59,12 +68,12 @@ export default function App() {
           <span className="font-bold text-xl">Sachin</span>
           <div className="hidden md:flex space-x-6">
             <a href="#projects" className="hover:text-blue-400">Projects</a>
-            <a href="#contact"  className="hover:text-blue-400">Contact</a>
+            <a href="#contact" className="hover:text-blue-400">Contact</a>
           </div>
         </div>
       </nav>
 
-      {/* Dark mode toggle */}
+      {/* Dark Mode Toggle */}
       <button
         onClick={() => document.documentElement.classList.toggle('dark')}
         className="fixed bottom-4 right-4 z-50 p-2 bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 transition"
@@ -73,7 +82,7 @@ export default function App() {
         🌙
       </button>
 
-      {/* Scroll to top */}
+      {/* Scroll to Top */}
       <button
         onClick={scrollToTop}
         className="fixed bottom-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow transition"
@@ -82,7 +91,7 @@ export default function App() {
         ⬆️
       </button>
 
-      {/* Hero */}
+      {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4 fade-in">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-blue-400 drop-shadow-lg">
           <Typewriter
@@ -111,17 +120,17 @@ export default function App() {
         </a>
       </div>
 
-      {/* Projects */}
+      {/* Projects Section */}
       <section id="projects" className="relative z-10 bg-gray-900 text-white py-20 px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-blue-400">
           Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
-            { title: 'Power BI – Sales Dashboard', desc: 'Interactive revenue insights (Coming Soon)' },
-            { title: 'Python – Churn Prediction',  desc: 'Predictive model using Logistic Regression (Coming Soon)' },
-            { title: 'SQL – Query Optimization',  desc: 'Speed tuning large-scale queries (Coming Soon)' },
-          ].map((p, i) => (
+            {title:'Power BI – Sales Dashboard', desc:'Interactive revenue insights (Coming Soon)'},
+            {title:'Python – Churn Prediction', desc:'Predictive model using Logistic Regression (Coming Soon)'},
+            {title:'SQL – Query Optimization', desc:'Speed tuning large-scale queries (Coming Soon)'}
+          ].map((p,i)=>(
             <div key={i} className="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition">
               <h3 className="text-xl font-semibold text-blue-300">{p.title}</h3>
               <p className="text-gray-300 mt-2">{p.desc}</p>
@@ -130,7 +139,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Contact Section */}
       <section id="contact" className="relative z-10 bg-black text-white py-20 px-4 text-center">
         <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact</h2>
         <ul className="space-y-4">
