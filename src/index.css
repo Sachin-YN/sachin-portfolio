@@ -2,39 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* General Styling */
+/* === Base Styles === */
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Roboto', 'Inter', system-ui, sans-serif;
   background-color: #000;
-  overflow-x: hidden; /* Good for preventing horizontal scroll if not needed */
-  color-scheme: dark light;
+  overflow-x: hidden;
+  color: white;
 }
 
-/* Background Video Styling */
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  /* Adjust these widths/heights for better full-screen coverage */
-  width: 100vw;   /* Use viewport width */
-  height: 100vh;  /* Use viewport height */
-  object-fit: cover;
-  z-index: -2;    /* Change to -2 to ensure it's behind your z-0 overlay and z-10 content */
+/* === Fade-in Animation === */
+.fade-in {
+  animation: fadeIn 1s ease-in-out both;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Smooth font rendering */
+/* === Smooth Font Rendering === */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fade-in loader animation */
-.fade-in {
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+/* === Background Video Utility (not strictly needed now) === */
+.background-video {
+  display: block;
 }
