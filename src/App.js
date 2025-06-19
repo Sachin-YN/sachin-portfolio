@@ -1,14 +1,13 @@
 import React from 'react';
 import './index.css';
 import Typewriter from 'react-typewriter-effect';
-import { motion } from 'framer-motion';
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative bg-black text-white">
       {/* Background Video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        className="fixed top-0 left-0 w-full h-full object-cover z-0"
         autoPlay
         muted
         loop
@@ -19,22 +18,12 @@ export default function App() {
         />
       </video>
 
-      {/* Overlay for contrast */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 backdrop-blur-sm z-0" />
-
-      {/* Content */}
-      <div className="z-10 relative flex flex-col items-center justify-center text-center px-4 h-screen">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-extrabold mb-6 text-blue-400 drop-shadow-lg"
-        >
+      {/* Main Content */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-4">
+        {/* Hero Section */}
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-blue-400">
           <Typewriter
-            textStyle={{
-              fontFamily: 'Roboto',
-              fontWeight: 700,
-            }}
+            textStyle={{ fontFamily: 'Roboto', fontWeight: 700 }}
             startDelay={100}
             cursorColor="#3B82F6"
             multiText={[
@@ -45,29 +34,87 @@ export default function App() {
             multiTextDelay={1500}
             typeSpeed={70}
             deleteSpeed={50}
-            loop
           />
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="text-lg md:text-xl text-gray-300 max-w-2xl drop-shadow-sm"
-        >
-          Transforming raw data into actionable insights, intelligent dashboards, and business value.
-        </motion.p>
-
-        <motion.a
+        </h1>
+        <p className="mt-4 text-lg text-gray-300 max-w-2xl">
+          Transforming raw data into actionable insights, intelligent dashboards,
+          and business value.
+        </p>
+        <a
           href="#projects"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transition duration-300 ease-in-out"
+          className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-full animate-bounce hover:bg-blue-700 transition"
         >
           View Projects
-        </motion.a>
+        </a>
       </div>
+
+      {/* Projects Section */}
+      <section
+        id="projects"
+        className="relative z-10 bg-gray-900 text-white py-20 px-4"
+      >
+        <h2 className="text-3xl font-bold text-center mb-12 text-blue-400">
+          Projects
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[
+            {
+              title: 'Power BI – Sales Dashboard',
+              desc: 'Interactive revenue insights (Coming Soon)',
+            },
+            {
+              title: 'Python – Churn Prediction',
+              desc: 'Predictive model using Logistic Regression (Coming Soon)',
+            },
+            {
+              title: 'SQL – Query Optimization',
+              desc: 'Speed tuning large-scale queries (Coming Soon)',
+            },
+          ].map((project, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition"
+            >
+              <h3 className="text-xl font-semibold text-blue-300">
+                {project.title}
+              </h3>
+              <p className="text-gray-300 mt-2">{project.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="relative z-10 bg-black text-white py-20 px-4 text-center">
+        <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact</h2>
+        <ul className="space-y-4">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117"
+              className="text-blue-500 hover:underline"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/Sachin-YN"
+              className="text-blue-500 hover:underline"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href="mailto:sachin@sachiny.me" className="text-blue-500 hover:underline">
+              sachin@sachiny.me
+            </a>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
