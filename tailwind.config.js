@@ -1,20 +1,39 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class', // Enables dark mode toggle via class
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-
-  darkMode: 'class', // Enable dark mode via a class (you toggle with JS if needed)
 
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'], // For a smooth typewriter style
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
       colors: {
-        primary: '#3B82F6', // Tailored primary blue (for text, cursor)
-        secondary: '#1E40AF', // A richer blue if needed
+        primary: '#3B82F6', // Tailwind blue-500
+        secondary: '#1E293B', // Tailwind slate-800
+      },
+      zIndex: {
+        '-1': '-1',
+        '60': '60',
+        '70': '70',
+      },
+      blur: {
+        xs: '2px',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        bounceSlow: {
+          '0%, 100%': { transform: 'translateY(-5%)' },
+          '50%': { transform: 'translateY(0)' },
+        },
       },
       animation: {
-        bounceSlow: 'bounce 3s infinite',
+        fadeIn: 'fadeIn 1.5s ease-in-out',
+        bounceSlow: 'bounceSlow 2s infinite',
       },
     },
   },
