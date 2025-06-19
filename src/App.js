@@ -82,8 +82,7 @@ export default function App() {
             cursorColor="#3B82F6"
             multiText={[
               "Hi, I'm Sachin Yoganandham",
-              'Data Analyst',
-              'Dashboard Enthusiast',
+              'Data Analyst'
             ]}
             multiTextDelay={1500}
             typeSpeed={70}
