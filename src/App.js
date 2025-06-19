@@ -5,13 +5,13 @@ import Typewriter from 'react-typewriter-effect';
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  // Simulate loading
+  // Loader for 2 seconds
   useEffect(() => {
-    const timeout = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timeout);
+    const t = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(t);
   }, []);
 
-  // Scroll to top button
+  // Scroll-to-top helper
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -25,46 +25,52 @@ export default function App() {
 
   return (
     <div className="relative bg-white text-black dark:bg-black dark:text-white">
-      {/* Background Video */}
+
+      {/* 1) BACKGROUND VIDEO (or fallback IMG) */}
       <video
-        className="background-video"
         autoPlay
         muted
         loop
         playsInline
+        onError={() => console.error('Video failed to load')}
+        className="fixed inset-0 w-full h-full object-cover z-[-10]"
       >
         <source
           src="https://cdn.coverr.co/videos/coverr-earth-from-space-4902/1080p.mp4"
           type="video/mp4"
         />
+        {/* Fallback image if video fails */}
+        <img
+          src="/fallback-bg.jpg"
+          alt="Background fallback"
+          className="fixed inset-0 w-full h-full object-cover z-[-10]"
+        />
       </video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      {/* 2) OVERLAY LAYER for readability */}
+      <div className="fixed inset-0 bg-black/60 z-[-5]" />
 
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-40 bg-black/60 backdrop-blur-md shadow">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center text-white">
+      {/* 3) NAVBAR */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-black/50 backdrop-blur-sm text-white">
+        <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
           <span className="font-bold text-xl">Sachin</span>
-          <div className="space-x-4 hidden md:flex">
+          <div className="hidden md:flex space-x-6">
             <a href="#projects" className="hover:text-blue-400">Projects</a>
             <a href="#contact" className="hover:text-blue-400">Contact</a>
           </div>
         </div>
       </nav>
 
-      {/* Dark Mode Toggle */}
+      {/* 4) DARK MODE TOGGLE */}
       <button
-        onClick={() =>
-          document.documentElement.classList.toggle('dark')
-        }
+        onClick={() => document.documentElement.classList.toggle('dark')}
         className="fixed bottom-4 right-4 z-50 p-2 bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 transition"
         title="Toggle Dark Mode"
       >
         🌙
       </button>
 
-      {/* Scroll to Top */}
+      {/* 5) SCROLL TO TOP */}
       <button
         onClick={scrollToTop}
         className="fixed bottom-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow transition"
@@ -73,20 +79,22 @@ export default function App() {
         ⬆️
       </button>
 
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-4">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-blue-400">
+      {/* 6) HERO CONTENT */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4 fade-in">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-blue-400 drop-shadow-lg">
           <Typewriter
             textStyle={{ fontFamily: 'Roboto', fontWeight: 700 }}
             startDelay={100}
             cursorColor="#3B82F6"
             multiText={[
               "Hi, I'm Sachin Yoganandham",
-              'Data Analyst'
+              'Data Analyst',
+              'Dashboard Enthusiast',
             ]}
             multiTextDelay={1500}
             typeSpeed={70}
             deleteSpeed={50}
+            loop
           />
         </h1>
         <p className="mt-4 text-lg text-gray-300 max-w-2xl">
@@ -95,13 +103,13 @@ export default function App() {
         </p>
         <a
           href="#projects"
-          className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-full animate-bounce hover:bg-blue-700 transition"
+          className="mt-8 inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:scale-105 hover:bg-blue-700 transition-transform duration-300"
         >
           View Projects
         </a>
       </div>
 
-      {/* Projects Section */}
+      {/* 7) PROJECTS SECTION */}
       <section
         id="projects"
         className="relative z-10 bg-gray-900 text-white py-20 px-4"
@@ -123,52 +131,34 @@ export default function App() {
               title: 'SQL – Query Optimization',
               desc: 'Speed tuning large-scale queries (Coming Soon)',
             },
-          ].map((project, idx) => (
+          ].map((p, i) => (
             <div
-              key={idx}
+              key={i}
               className="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition"
             >
-              <h3 className="text-xl font-semibold text-blue-300">
-                {project.title}
-              </h3>
-              <p className="text-gray-300 mt-2">{project.desc}</p>
+              <h3 className="text-xl font-semibold text-blue-300">{p.title}</h3>
+              <p className="text-gray-300 mt-2">{p.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section
-        id="contact"
-        className="relative z-10 bg-black text-white py-20 px-4 text-center"
-      >
+      {/* 8) CONTACT SECTION */}
+      <section id="contact" className="relative z-10 bg-black text-white py-20 px-4 text-center">
         <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact</h2>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117"
-              className="text-blue-500 hover:underline"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117" className="text-blue-500 hover:underline" target="_blank" rel="noreferrer">
               LinkedIn
             </a>
           </li>
           <li>
-            <a
-              href="https://github.com/Sachin-YN"
-              className="text-blue-500 hover:underline"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://github.com/Sachin-YN" className="text-blue-500 hover:underline" target="_blank" rel="noreferrer">
               GitHub
             </a>
           </li>
           <li>
-            <a
-              href="mailto:sachin@sachiny.me"
-              className="text-blue-500 hover:underline"
-            >
+            <a href="mailto:sachin@sachiny.me" className="text-blue-500 hover:underline">
               sachin@sachiny.me
             </a>
           </li>
