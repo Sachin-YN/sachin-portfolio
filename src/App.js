@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import Typewriter from 'react-typewriter-effect';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Scroll to top button
+  const scrollToTop = () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (loading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center bg-black text-white text-2xl animate-pulse">
+        Loading your experience...
+      </div>
+    );
+  }
+
   return (
-    <div className="relative bg-black text-white">
+    <div className="relative bg-white text-black dark:bg-black dark:text-white">
       {/* Background Video */}
       <video
-        className="fixed top-0 left-0 w-full h-full object-cover z-0"
+        className="background-video"
         autoPlay
         muted
         loop
+        playsInline
       >
         <source
           src="https://cdn.coverr.co/videos/coverr-earth-from-space-4902/1080p.mp4"
@@ -18,9 +39,42 @@ export default function App() {
         />
       </video>
 
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 z-0" />
+
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 w-full z-40 bg-black/60 backdrop-blur-md shadow">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center text-white">
+          <span className="font-bold text-xl">Sachin</span>
+          <div className="space-x-4 hidden md:flex">
+            <a href="#projects" className="hover:text-blue-400">Projects</a>
+            <a href="#contact" className="hover:text-blue-400">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Dark Mode Toggle */}
+      <button
+        onClick={() =>
+          document.documentElement.classList.toggle('dark')
+        }
+        className="fixed bottom-4 right-4 z-50 p-2 bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 transition"
+        title="Toggle Dark Mode"
+      >
+        🌙
+      </button>
+
+      {/* Scroll to Top */}
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow transition"
+        title="Back to Top"
+      >
+        ⬆️
+      </button>
+
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-4">
-        {/* Hero Section */}
         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-blue-400">
           <Typewriter
             textStyle={{ fontFamily: 'Roboto', fontWeight: 700 }}
@@ -85,7 +139,10 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative z-10 bg-black text-white py-20 px-4 text-center">
+      <section
+        id="contact"
+        className="relative z-10 bg-black text-white py-20 px-4 text-center"
+      >
         <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact</h2>
         <ul className="space-y-4">
           <li>
@@ -109,7 +166,10 @@ export default function App() {
             </a>
           </li>
           <li>
-            <a href="mailto:sachin@sachiny.me" className="text-blue-500 hover:underline">
+            <a
+              href="mailto:sachin@sachiny.me"
+              className="text-blue-500 hover:underline"
+            >
               sachin@sachiny.me
             </a>
           </li>
