@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const Home = () => (
   <div className="min-h-screen flex flex-col items-center justify-center text-center p-6">
     <h1 className="text-4xl font-bold mb-4">Sachin Yoganandham</h1>
-    <p className="text-xl">Aspiring Advanced Data Analyst</p>
+    <p className="text-xl">Aspiring Data Analyst</p>
     <p className="mt-2 text-gray-600">Transforming data into insights, stories, and strategy.</p>
     <nav className="mt-6 space-x-4">
       <Link to="/projects" className="text-blue-600 hover:underline">Projects</Link>
