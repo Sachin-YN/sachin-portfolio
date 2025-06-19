@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
 import Typewriter from 'react-typewriter-effect';
+import * as THREE from 'three';
+import STARS from 'vanta/dist/vanta.stars.min';
 
 export default function App() {
+  // Loader state
   const [loading, setLoading] = useState(true);
-
-  // Loader for 2 seconds
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(t);
@@ -14,6 +15,29 @@ export default function App() {
   // Scroll-to-top helper
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Vanta.js setup
+  const vantaRef = useRef(null);
+  const [vantaEffect, setVantaEffect] = useState(null);
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        STARS({
+          el: vantaRef.current,
+          THREE: THREE,
+          // you can tweak these:
+          color: 0xffffff,            // star color
+          backgroundColor: 0x000000,  // deep space
+          size: 1.2,                  // star size
+          count: 100,                 // number of stars
+          speed: 1.0,                 // animation speed
+        })
+      );
+    }
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
 
   if (loading) {
     return (
@@ -24,33 +48,14 @@ export default function App() {
   }
 
   return (
-    <div className="relative bg-white text-black dark:bg-black dark:text-white">
+    <div
+      ref={vantaRef}
+      className="relative overflow-hidden bg-black text-white dark:bg-black dark:text-white"
+    >
+      {/* Overlay to darken background slightly */}
+      <div className="absolute inset-0 bg-black/60 z-0" />
 
-      {/* 1) BACKGROUND VIDEO (or fallback IMG) */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        onError={() => console.error('Video failed to load')}
-        className="fixed inset-0 w-full h-full object-cover z-[-10]"
-      >
-        <source
-          src="https://cdn.coverr.co/videos/coverr-earth-from-space-4902/1080p.mp4"
-          type="video/mp4"
-        />
-        {/* Fallback image if video fails */}
-        <img
-          src="/fallback-bg.jpg"
-          alt="Background fallback"
-          className="fixed inset-0 w-full h-full object-cover z-[-10]"
-        />
-      </video>
-
-      {/* 2) OVERLAY LAYER for readability */}
-      <div className="fixed inset-0 bg-black/60 z-[-5]" />
-
-      {/* 3) NAVBAR */}
+      {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/50 backdrop-blur-sm text-white">
         <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
           <span className="font-bold text-xl">Sachin</span>
@@ -61,7 +66,7 @@ export default function App() {
         </div>
       </nav>
 
-      {/* 4) DARK MODE TOGGLE */}
+      {/* Dark Mode Toggle */}
       <button
         onClick={() => document.documentElement.classList.toggle('dark')}
         className="fixed bottom-4 right-4 z-50 p-2 bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 transition"
@@ -70,7 +75,7 @@ export default function App() {
         🌙
       </button>
 
-      {/* 5) SCROLL TO TOP */}
+      {/* Scroll to Top */}
       <button
         onClick={scrollToTop}
         className="fixed bottom-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow transition"
@@ -79,7 +84,7 @@ export default function App() {
         ⬆️
       </button>
 
-      {/* 6) HERO CONTENT */}
+      {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4 fade-in">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-blue-400 drop-shadow-lg">
           <Typewriter
@@ -98,8 +103,7 @@ export default function App() {
           />
         </h1>
         <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-          Transforming raw data into actionable insights, intelligent dashboards,
-          and business value.
+          Transforming raw data into actionable insights, intelligent dashboards, and business value.
         </p>
         <a
           href="#projects"
@@ -109,7 +113,7 @@ export default function App() {
         </a>
       </div>
 
-      {/* 7) PROJECTS SECTION */}
+      {/* Projects Section */}
       <section
         id="projects"
         className="relative z-10 bg-gray-900 text-white py-20 px-4"
@@ -119,23 +123,11 @@ export default function App() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
-            {
-              title: 'Power BI – Sales Dashboard',
-              desc: 'Interactive revenue insights (Coming Soon)',
-            },
-            {
-              title: 'Python – Churn Prediction',
-              desc: 'Predictive model using Logistic Regression (Coming Soon)',
-            },
-            {
-              title: 'SQL – Query Optimization',
-              desc: 'Speed tuning large-scale queries (Coming Soon)',
-            },
-          ].map((p, i) => (
-            <div
-              key={i}
-              className="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition"
-            >
+            { title: 'Power BI – Sales Dashboard', desc: 'Interactive revenue insights (Coming Soon)' },
+            { title: 'Python – Churn Prediction',  desc: 'Predictive model using Logistic Regression (Coming Soon)' },
+            { title: 'SQL – Query Optimization',  desc: 'Speed tuning large-scale queries (Coming Soon)' },
+          ].map((p,i) => (
+            <div key={i} className="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition">
               <h3 className="text-xl font-semibold text-blue-300">{p.title}</h3>
               <p className="text-gray-300 mt-2">{p.desc}</p>
             </div>
@@ -143,8 +135,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* 8) CONTACT SECTION */}
-      <section id="contact" className="relative z-10 bg-black text-white py-20 px-4 text-center">
+      {/* Contact Section */}
+      <section
+        id="contact"
+        className="relative z-10 bg-black text-white py-20 px-4 text-center"
+      >
         <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact</h2>
         <ul className="space-y-4">
           <li>
