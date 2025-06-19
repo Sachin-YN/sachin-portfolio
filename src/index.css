@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #000;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Good for preventing horizontal scroll if not needed */
   color-scheme: dark light;
 }
 
@@ -16,10 +16,11 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  /* Adjust these widths/heights for better full-screen coverage */
+  width: 100vw;   /* Use viewport width */
+  height: 100vh;  /* Use viewport height */
   object-fit: cover;
-  z-index: -1;
+  z-index: -2;    /* Change to -2 to ensure it's behind your z-0 overlay and z-10 content */
 }
 
 /* Smooth font rendering */
