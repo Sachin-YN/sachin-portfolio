@@ -19,5 +19,17 @@
     "react-typewriter-effect": "^1.0.4",
     "three": "^0.150.0",
     "vanta": "^0.5.21"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
