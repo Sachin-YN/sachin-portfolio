@@ -2,21 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
 import Typewriter from 'react-typewriter-effect';
 import * as THREE from 'three';
-// Note the “.js” extension here:
-import STARS from 'vanta/dist/vanta.stars.min.js';
+// **Corrected import**: drop the “.js” extension so Webpack can resolve it
+import STARS from 'vanta/dist/vanta.stars.min';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
   const vantaRef = useRef(null);
   const [vantaEffect, setVantaEffect] = useState(null);
 
-  // Loader
+  // Loader timeout
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(t);
   }, []);
 
-  // Initialize Vanta.js
+  // Initialize Vanta.js starfield
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
@@ -36,10 +36,11 @@ export default function App() {
     };
   }, [vantaEffect]);
 
-  // Scroll helper
+  // Scroll-to-top helper
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+  // Loading state
   if (loading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-black text-white text-2xl animate-pulse">
@@ -50,7 +51,7 @@ export default function App() {
 
   return (
     <div ref={vantaRef} className="relative overflow-hidden bg-black text-white">
-      {/* Overlay */}
+      {/* Dark overlay for contrast */}
       <div className="absolute inset-0 bg-black/60 z-0" />
 
       {/* Navbar */}
@@ -82,7 +83,7 @@ export default function App() {
         ⬆️
       </button>
 
-      {/* Hero Content */}
+      {/* Hero Section */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4 fade-in">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-blue-400 drop-shadow-lg">
           <Typewriter
