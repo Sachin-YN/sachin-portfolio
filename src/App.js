@@ -2,21 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
 import Typewriter from 'react-typewriter-effect';
 import * as THREE from 'three';
-// **Corrected import**: drop the “.js” extension so Webpack can resolve it
-import STARS from 'vanta/dist/vanta.stars.min';
+// Note the “.js” extension here
+import STARS from 'vanta/dist/vanta.stars.min.js';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
   const vantaRef = useRef(null);
   const [vantaEffect, setVantaEffect] = useState(null);
 
-  // Loader timeout
+  // Loader
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(t);
   }, []);
 
-  // Initialize Vanta.js starfield
+  // Vanta.js starfield
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
@@ -36,11 +36,10 @@ export default function App() {
     };
   }, [vantaEffect]);
 
-  // Scroll-to-top helper
+  // Scroll helper
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Loading state
   if (loading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-black text-white text-2xl animate-pulse">
@@ -51,7 +50,7 @@ export default function App() {
 
   return (
     <div ref={vantaRef} className="relative overflow-hidden bg-black text-white">
-      {/* Dark overlay for contrast */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60 z-0" />
 
       {/* Navbar */}
@@ -65,7 +64,7 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Dark Mode Toggle */}
+      {/* Dark mode toggle */}
       <button
         onClick={() => document.documentElement.classList.toggle('dark')}
         className="fixed bottom-4 right-4 z-50 p-2 bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 transition"
@@ -74,7 +73,7 @@ export default function App() {
         🌙
       </button>
 
-      {/* Scroll to Top */}
+      {/* Scroll to top */}
       <button
         onClick={scrollToTop}
         className="fixed bottom-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow transition"
@@ -83,7 +82,7 @@ export default function App() {
         ⬆️
       </button>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4 fade-in">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-blue-400 drop-shadow-lg">
           <Typewriter
@@ -112,7 +111,7 @@ export default function App() {
         </a>
       </div>
 
-      {/* Projects Section */}
+      {/* Projects */}
       <section id="projects" className="relative z-10 bg-gray-900 text-white py-20 px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-blue-400">
           Projects
@@ -131,7 +130,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact */}
       <section id="contact" className="relative z-10 bg-black text-white py-20 px-4 text-center">
         <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact</h2>
         <ul className="space-y-4">
