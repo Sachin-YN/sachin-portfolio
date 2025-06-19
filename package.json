@@ -2,22 +2,22 @@
   "name": "sachin-portfolio",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
-    "autoprefixer": "^10.4.0",
-    "framer-motion": "^7.6.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "framer-motion": "^7.6.9",
     "tailwindcss": "^3.0.7",
-    "three": "^0.150.0",                 // required by VANTA
-    "vanta": "^0.5.21",                  // VANTA.js
-    "react-typewriter-effect": "^1.0.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test":  "react-scripts test",
-    "eject": "react-scripts eject"
+    "autoprefixer": "^10.4.0",
+    "react-typewriter-effect": "^1.0.4",
+    "three": "^0.150.0",
+    "vanta": "^0.5.21"
   }
 }
