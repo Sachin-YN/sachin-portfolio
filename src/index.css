@@ -3,24 +3,35 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/* Full-screen reset */
+html,
+body,
+#root {
+  @apply h-full m-0 p-0 overflow-x-hidden;
 }
 
+/* Base body styling with dark gradient */
 body {
-  @apply bg-primary-bg font-sans;
+  @apply bg-primary-bg font-sans text-white relative;
+  background: linear-gradient(135deg, #0a1128 0%, #001f3f 100%);
+}
 
-  /* absolute path (served from public/) — no %PUBLIC_URL%, no module resolution */
-  background-image:
-    linear-gradient(
-      135deg,
-      rgba(10,17,40,0.8) 0%,
-      rgba(0,31,63,0.8) 100%
+/* Neon “tech blob” overlays */
+body::before {
+  content: "";
+  @apply absolute inset-0 pointer-events-none;
+  background:
+    /* cyan blob top-left */
+    radial-gradient(
+      circle at 25% 25%,
+      rgba(0, 255, 255, 0.2),
+      transparent 60%
     ),
-    url(/galaxy.jpg);
-  background-size: cover;
-  background-position: center;
-  color: white;
+    /* purple blob bottom-right */
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(138, 43, 226, 0.2),
+      transparent 60%
+    );
+  mix-blend-mode: screen;
 }
