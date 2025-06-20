@@ -12,11 +12,9 @@ import {
 } from 'react-icons/ai';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
-// Your profile links
+// Profile & project data
 const linkedInUrl = 'https://linkedin.com/in/ing-sachin-yoganandham-a06b88117';
 const githubUrl   = 'https://github.com/Sachin-YN';
-
-// Your projects—replace with real data
 const projects = [
   {
     title: 'Awesome Project',
@@ -25,17 +23,16 @@ const projects = [
   },
   {
     title: 'Data Visualizer',
-    description: 'Interactive charts & dashboards built with D3.js and React.',
+    description: 'Interactive dashboards built with D3.js & React.',
     link: 'https://github.com/Sachin-YN/data-visualizer',
   },
 ];
 
-// Sidebar nav items
 const navItems = [
-  { id: 'home',    label: 'Home',    icon: <AiOutlineHome size={24} /> },
-  { id: 'about',   label: 'About',   icon: <AiOutlineUser size={24} /> },
-  { id: 'projects',label: 'Projects',icon: <AiOutlineProject size={24} /> },
-  { id: 'contact', label: 'Contact', icon: <AiOutlineMail size={24} /> },
+  { id: 'home',     icon: <AiOutlineHome size={24} /> },
+  { id: 'about',    icon: <AiOutlineUser size={24} /> },
+  { id: 'projects', icon: <AiOutlineProject size={24} /> },
+  { id: 'contact',  icon: <AiOutlineMail size={24} /> },
 ];
 
 function Sidebar() {
@@ -46,7 +43,6 @@ function Sidebar() {
           key={item.id}
           href={`#${item.id}`}
           className="text-gray-500 hover:text-cyan-400 transition-colors"
-          title={item.label}
         >
           {item.icon}
         </a>
@@ -65,38 +61,40 @@ function Hero() {
       id="home"
       className="relative ml-20 h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black snap-start"
     >
-      {/* Particles background */}
+      {/* Starfield */}
       <Particles
         id="tsparticles"
         init={particlesInit}
         className="absolute inset-0 z-0"
         options={{
-          background: { color: "#000" },
+          fullScreen: { enable: false },
+          background: { color: '#000' },
           fpsLimit: 60,
           particles: {
             number: { value: 120, density: { enable: true, area: 800 } },
-            color: { value: ["#ffffff", "#80d8ff", "#ff80ab"] },
-            shape: { type: "star" },
-            opacity: { value: 0.7, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1 } },
+            color: { value: ['#fff', '#80d8ff', '#ff80ab'] },
+            shape: { type: 'star' },
+            opacity: {
+              value: 0.7,
+              random: true,
+              anim: { enable: true, speed: 0.5, opacity_min: 0.1 },
+            },
             size: { value: { min: 1, max: 3 }, random: true },
-            move: { enable: true, speed: 0.6, direction: "none", outModes: "bounce" },
+            move: { enable: true, speed: 0.6, direction: 'none', outModes: 'bounce' },
             links: { enable: false },
           },
           interactivity: {
             events: {
-              onHover: { enable: true, mode: "repulse" },
-              onClick: { enable: true, mode: "push" },
+              onHover: { enable: true, mode: 'repulse' },
+              onClick: { enable: true, mode: 'push' },
             },
-            modes: {
-              repulse: { distance: 120, duration: 0.4 },
-              push: { quantity: 4 },
-            },
+            modes: { repulse: { distance: 120, duration: 0.4 }, push: { quantity: 4 } },
           },
           detectRetina: true,
         }}
       />
 
-      {/* Glass-morphic hero card */}
+      {/* Hero card */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -107,20 +105,9 @@ function Hero() {
           <AiOutlineHome className="mr-3 text-cyan-400" />
           Hey, I’m Sachin.
         </h1>
-        <div className="text-lg text-gray-300 mb-6">
-          <Typewriter
-            textStyle={{ fontFamily: 'monospace', color: '#fff' }}
-            startDelay={500}
-            cursorColor="#00E5FF"
-            multiText={[
-              'Data Analyst & Web Dev',
-              'Building Future-Ready Apps',
-              'Visualizing Insights in Real-Time',
-            ]}
-            multiTextDelay={1200}
-            typeSpeed={60}
-          />
-        </div>
+        <p className="text-gray-300 italic mb-6">
+          “Building future-ready applications & transforming data into experiences.”
+        </p>
         <div className="flex justify-center space-x-4">
           <a
             href={linkedInUrl}
@@ -150,15 +137,9 @@ function About() {
       id="about"
       className="ml-20 h-screen flex items-center justify-center bg-gray-900 text-gray-200 snap-start"
     >
-      <motion.div
-        initial={{ x: -80, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-3xl p-8"
-      >
+      <motion.div initial={{ x: -80, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="max-w-3xl p-8">
         <h2 className="flex items-center text-4xl font-bold mb-4">
-          <AiOutlineUser className="mr-3 text-cyan-400" />
-          About Me
+          <AiOutlineUser className="mr-3 text-cyan-400" /> About Me
         </h2>
         <p className="mb-4 leading-relaxed">
           I’m Sachin Yoganandham—Data Analyst & Front-End Engineer—building sleek, high-performance web apps that turn raw data into interactive experiences.
@@ -173,13 +154,9 @@ function About() {
 
 function Projects() {
   return (
-    <section
-      id="projects"
-      className="ml-20 min-h-screen flex flex-col items-center bg-black text-gray-200 py-16 snap-start"
-    >
+    <section id="projects" className="ml-20 min-h-screen flex flex-col items-center bg-black text-gray-200 py-16 snap-start">
       <h2 className="flex items-center text-4xl font-bold text-cyan-400 mb-8">
-        <AiOutlineProject className="mr-3" />
-        Projects
+        <AiOutlineProject className="mr-3" /> Projects
       </h2>
       <div className="w-full max-w-4xl grid gap-10 md:grid-cols-2 px-8">
         {projects.map((p, i) => (
@@ -194,8 +171,7 @@ function Projects() {
             <h3 className="text-2xl font-semibold mb-2 text-white">{p.title}</h3>
             <p className="text-gray-400 mb-4">{p.description}</p>
             <span className="flex items-center text-cyan-400 font-medium hover:underline">
-              <FaGithub className="mr-2" />
-              View on GitHub →
+              <FaGithub className="mr-2" /> View on GitHub →
             </span>
           </motion.a>
         ))}
@@ -206,29 +182,16 @@ function Projects() {
 
 function Contact() {
   return (
-    <section
-      id="contact"
-      className="ml-20 h-screen flex items-center justify-center bg-gray-900 text-gray-200 snap-start"
-    >
-      <motion.div
-        initial={{ y: 80, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="text-center max-w-xl px-8"
-      >
+    <section id="contact" className="ml-20 h-screen flex items-center justify-center bg-gray-900 text-gray-200 snap-start">
+      <motion.div initial={{ y: 80, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="text-center max-w-xl px-8">
         <h2 className="flex items-center justify-center text-4xl font-bold text-white mb-4">
-          <AiOutlineMail className="mr-3 text-cyan-400" />
-          Let’s Connect
+          <AiOutlineMail className="mr-3 text-cyan-400" /> Let’s Connect
         </h2>
         <p className="mb-8 leading-relaxed">
           Got an idea, a project, or just want to geek out over code? Drop me a line!
         </p>
-        <a
-          href="mailto:your.email@domain.com"
-          className="inline-flex items-center px-8 py-3 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-shadow shadow-md"
-        >
-          <AiOutlineMail className="mr-2" />
-          Send an Email
+        <a href="mailto:your.email@domain.com" className="inline-flex items-center px-8 py-3 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-shadow shadow-md">
+          <AiOutlineMail className="mr-2" /> Send an Email
         </a>
       </motion.div>
     </section>
