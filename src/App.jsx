@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Typewriter from 'react-typewriter-effect';
 import {
   AiOutlineHome,
   AiOutlineUser,
@@ -9,104 +8,93 @@ import {
 } from 'react-icons/ai';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
-// Your real profile URLs
 const linkedInUrl = 'https://linkedin.com/in/ing-sachin-yoganandham-a06b88117';
 const githubUrl   = 'https://github.com/Sachin-YN';
 
-// Replace these with your actual repos
 const projects = [
   {
     title: 'Awesome Project',
-    description: 'A modern React app showcasing dynamic data visualizations.',
+    description: 'A React app showcasing dynamic data visualizations.',
     link: 'https://github.com/Sachin-YN/awesome-project',
   },
   {
     title: 'Data Visualizer',
-    description: 'Interactive charts and dashboards built with D3.js and React.',
+    description: 'Interactive charts and dashboards with D3.js & React.',
     link: 'https://github.com/Sachin-YN/data-visualizer',
   },
 ];
 
-const sections = [
-  { id: 'home',    icon: AiOutlineHome },
-  { id: 'about',   icon: AiOutlineUser },
-  { id: 'projects',icon: AiOutlineProject },
-  { id: 'contact', icon: AiOutlineMail },
+// Sidebar navigation items
+const navItems = [
+  { id: 'home',    label: 'Home',    icon: <AiOutlineHome size={24} /> },
+  { id: 'about',   label: 'About',   icon: <AiOutlineUser size={24} /> },
+  { id: 'projects',label: 'Projects',icon: <AiOutlineProject size={24} /> },
+  { id: 'contact', label: 'Contact', icon: <AiOutlineMail size={24} /> },
 ];
 
-function Navbar() {
+function Sidebar() {
   return (
-    <nav className="fixed right-8 top-1/2 transform -translate-y-1/2 z-30">
-      <ul className="space-y-6">
-        {sections.map(sec => {
-          const Icon = sec.icon;
-          return (
-            <li key={sec.id}>
-              <a
-                href={`#${sec.id}`}
-                className="text-gray-500 hover:text-white transition-colors"
-                aria-label={sec.id}
-              >
-                <Icon size={28} />
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <aside className="fixed top-0 left-0 h-full w-20 bg-gray-900 flex flex-col items-center py-8 space-y-8">
+      {navItems.map(item => (
+        <a
+          key={item.id}
+          href={`#${item.id}`}
+          className="text-gray-500 hover:text-cyan-400 transition-colors"
+          title={item.label}
+        >
+          {item.icon}
+        </a>
+      ))}
+    </aside>
   );
 }
 
 function Hero() {
   return (
-    <div className="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black overflow-hidden snap-start">
-      {/* Neon blobs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-tr from-cyan-400 to-blue-600 rounded-full mix-blend-screen filter blur-3xl opacity-70"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full mix-blend-screen filter blur-2xl opacity-50"></div>
-
+    <section
+      id="home"
+      className="ml-20 h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black snap-start"
+    >
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 p-10 max-w-lg w-full bg-black bg-opacity-40 backdrop-blur-lg border border-cyan-500 rounded-3xl shadow-2xl text-center"
+        className="max-w-4xl w-full grid md:grid-cols-2 gap-10 p-8 bg-black bg-opacity-30 backdrop-blur-md border border-cyan-600 rounded-2xl shadow-2xl"
       >
-        <h1 className="flex items-center justify-center text-5xl font-extrabold text-white mb-4">
-          <AiOutlineHome className="mr-3 text-cyan-400" /> Hey, I’m Sachin.
-        </h1>
-        <div className="text-lg text-gray-200 mb-8">
-          <Typewriter
-            textStyle={{ fontFamily: 'monospace', color: '#fff' }}
-            startDelay={500}
-            cursorColor="#00E5FF"
-            multiText={[
-              'Data Analyst & Web Dev',
-              'Building Future-Ready Apps',
-              'Visualizing Insights in Real-Time',
-            ]}
-            multiTextDelay={1200}
-            typeSpeed={60}
-          />
+        {/* Left column: intro & social */}
+        <div className="flex flex-col justify-center space-y-6">
+          <h1 className="text-5xl font-extrabold text-white">
+            Hey, I’m Sachin.
+          </h1>
+          <div className="flex space-x-4">
+            <a
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center px-4 py-2 border-2 border-cyan-500 text-cyan-400 rounded-lg hover:bg-cyan-500 hover:text-black transition"
+            >
+              <FaLinkedin className="mr-2" /> LinkedIn
+            </a>
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center px-4 py-2 border-2 border-cyan-500 text-cyan-400 rounded-lg hover:bg-cyan-500 hover:text-black transition"
+            >
+              <FaGithub className="mr-2" /> GitHub
+            </a>
+          </div>
         </div>
-        <div className="flex justify-center space-x-6">
-          <a
-            href={linkedInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center px-6 py-3 border-2 border-cyan-500 text-cyan-400 rounded-lg font-medium hover:bg-cyan-500 hover:text-black transition"
-          >
-            <FaLinkedin className="mr-2" /> LinkedIn
-          </a>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center px-6 py-3 border-2 border-cyan-500 text-cyan-400 rounded-lg font-medium hover:bg-cyan-500 hover:text-black transition"
-          >
-            <FaGithub className="mr-2" /> GitHub
-          </a>
+
+        {/* Right column: static tagline */}
+        <div className="flex items-center">
+          <p className="text-xl text-gray-300 italic">
+            “Building future-ready applications<br/>
+            & transforming data into experiences.”
+          </p>
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 }
 
@@ -114,22 +102,20 @@ function About() {
   return (
     <section
       id="about"
-      className="h-screen flex items-center justify-center bg-gray-900 text-gray-300 snap-start"
+      className="ml-20 h-screen flex items-center justify-center bg-gray-900 text-gray-200 snap-start"
     >
       <motion.div
-        initial={{ x: -100, opacity: 0 }}
+        initial={{ x: -80, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="max-w-2xl px-6"
+        className="max-w-3xl p-8"
       >
-        <h2 className="flex items-center text-4xl font-bold text-white mb-4">
-          <AiOutlineUser className="mr-3 text-cyan-400" /> About Me
-        </h2>
+        <h2 className="text-4xl font-bold mb-4">About Me</h2>
         <p className="mb-4 leading-relaxed">
-          I’m Sachin Yoganandham (Sachin-YN), a Data Analyst & front-end engineer. I turn raw data into interactive, sleek web experiences.
+          I’m Sachin Yoganandham—Data Analyst & Front-End Engineer. I build sleek, high-performance web apps that turn raw data into rich, interactive experiences.
         </p>
         <p className="leading-relaxed">
-          With a passion for pixel-perfection and performance, I bridge insights and interfaces to build future-ready applications.
+          With a passion for pixel-perfect UIs and real-time insights, I help bridge the gap between data and design.
         </p>
       </motion.div>
     </section>
@@ -140,29 +126,22 @@ function Projects() {
   return (
     <section
       id="projects"
-      className="h-screen flex items-center justify-center bg-black text-gray-200 snap-start"
+      className="ml-20 min-h-screen flex flex-col items-center bg-black text-gray-200 py-16 snap-start"
     >
-      <div className="max-w-4xl px-6 grid gap-8 md:grid-cols-2">
-        <h2 className="col-span-full flex items-center text-4xl font-bold text-cyan-400 mb-8">
-          <AiOutlineProject className="mr-3" /> Projects
-        </h2>
-
-        {projects.map((proj, i) => (
+      <h2 className="text-4xl font-bold text-cyan-400 mb-8">Projects</h2>
+      <div className="w-full max-w-4xl grid gap-10 md:grid-cols-2 px-8">
+        {projects.map((p, i) => (
           <motion.a
             key={i}
-            href={proj.link}
+            href={p.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-6 bg-gray-800 bg-opacity-50 backdrop-blur-md border border-gray-700 rounded-2xl hover:scale-105 transition-transform shadow-lg"
-            whileHover={{ y: -4 }}
+            className="block p-6 bg-gray-800 bg-opacity-40 backdrop-blur-md border border-gray-700 rounded-lg hover:scale-105 transition-transform shadow-lg"
+            whileHover={{ y: -3 }}
           >
-            <h3 className="flex items-center text-2xl font-semibold mb-2 text-white">
-              <AiOutlineProject className="mr-2 text-cyan-400" />
-              {proj.title}
-            </h3>
-            <p className="text-gray-400 mb-4">{proj.description}</p>
-            <span className="flex items-center text-cyan-400 font-medium hover:underline">
-              <FaGithub className="mr-2" />
+            <h3 className="text-2xl font-semibold mb-2">{p.title}</h3>
+            <p className="text-gray-400 mb-4">{p.description}</p>
+            <span className="text-cyan-400 font-medium hover:underline">
               View on GitHub →
             </span>
           </motion.a>
@@ -176,25 +155,23 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="h-screen flex items-center justify-center bg-gray-900 text-gray-300 snap-start"
+      className="ml-20 h-screen flex flex-col items-center justify-center bg-gray-900 text-gray-200 snap-start"
     >
       <motion.div
-        initial={{ y: 100, opacity: 0 }}
+        initial={{ y: 80, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="text-center px-6 max-w-xl"
+        className="text-center max-w-xl px-8"
       >
-        <h2 className="flex items-center justify-center text-4xl font-bold text-white mb-4">
-          <AiOutlineMail className="mr-3 text-cyan-400" /> Let’s Connect
-        </h2>
+        <h2 className="text-4xl font-bold mb-4">Let’s Connect</h2>
         <p className="mb-8 leading-relaxed">
-          Have an idea, a project, or just want to chat tech? Drop me a line!
+          Got an idea, a project, or just want to geek out over code? 
         </p>
         <a
           href="mailto:your.email@domain.com"
-          className="inline-flex items-center px-8 py-4 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-shadow shadow-xl"
+          className="inline-flex items-center px-8 py-3 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-shadow shadow-md"
         >
-          <AiOutlineMail className="mr-2" /> Shoot Me an Email
+          <AiOutlineMail className="mr-2" /> Send an Email
         </a>
       </motion.div>
     </section>
@@ -203,12 +180,14 @@ function Contact() {
 
 export default function App() {
   return (
-    <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth antialiased">
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
+    <div className="flex">
+      <Sidebar />
+      <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth antialiased">
+        <Hero />
+        <About />
+        <Projects />
+        <Contact />
+      </main>
     </div>
   );
 }
