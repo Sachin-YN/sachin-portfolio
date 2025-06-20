@@ -78,8 +78,12 @@ function Hero() {
       >
         <AiOutlineHome className="text-accent mx-auto mb-4 text-5xl" />
         <h1 className="text-5xl font-bold mb-4">Hey, I’m Sachin</h1>
-        <p className="text-lg text-gray-300 mb-8">
-          Building future-ready applications & transforming data into experiences.
+        <p className="text-2xl md:text-3xl italic text-gray-300 mb-8 leading-relaxed tracking-wide text-center">
+          Turning raw data into{" "}
+          <span className="font-semibold text-accent">
+            actionable insights
+          </span>{" "}
+          that drive smarter decisions.
         </p>
         <div className="flex justify-center space-x-4">
           <a
