@@ -1,15 +1,12 @@
-// src/App.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-// Typewriter is cool, but for a modern minimalist look, we might remove it or use it very subtly.
-// For now, let's keep it but comment out if you prefer a simpler headline animation.
 import Typewriter from 'react-typewriter-effect';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import {
   AiOutlineHome,
   AiOutlineUser,
-  AiOutlineFolderOpen, // Changed to a more generic folder icon for projects
+  AiOutlineFolderOpen,
   AiOutlineMail,
 } from 'react-icons/ai';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
@@ -28,7 +25,6 @@ const projects = [
     description: 'Interactive dashboards built with D3.js and React, transforming complex data into insights.',
     link: 'https://github.com/Sachin-YN/data-visualizer',
   },
-  // Add more projects here
   {
     title: 'Real-time Chat App',
     description: 'A responsive chat application featuring real-time messaging and user authentication.',
@@ -56,7 +52,7 @@ function Sidebar() {
         <a
           key={item.id}
           href={`#${item.id}`}
-          className="text-gray-400 hover:text-teal-400 transform hover:scale-110 transition-all duration-300 p-2 rounded-full"
+          className="text-gray-400 hover:text-accent-teal transform hover:scale-110 transition-all duration-300 p-2 rounded-full"
           aria-label={`Maps to ${item.id} section`}
         >
           {item.icon}
@@ -71,39 +67,57 @@ function Hero() {
     await loadFull(engine);
   };
 
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+
+  const glowEffectVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut", repeat: Infinity, repeatType: "reverse", delay: 3 } }
+  };
+
   return (
-    <motion.section
+    <section
       id="home"
-      className="relative pl-20 h-screen overflow-hidden bg-gradient-to-br from-zinc-950 to-black text-white flex items-center justify-center snap-start font-inter"
-      initial="hidden"
-      animate="visible"
-      variants={sectionVariants}
+      className="relative pl-20 h-screen overflow-hidden flex flex-col items-center justify-center snap-start font-inter
+                 bg-gradient-to-br from-black to-gray-950 text-white" // Deeper, richer dark background
     >
-      {/* Starfield Particles Background */}
+      {/* Dynamic Particles Background - More like a subtle network/constellation */}
       <Particles
         id="tsparticles"
         init={particlesInit}
-        className="absolute inset-0 z-0 opacity-80" // Slightly reduced opacity
+        className="absolute inset-0 z-0 opacity-70" // Slightly reduced opacity
         options={{
           fullScreen: { enable: false },
-          background: { color: { value: '#000000' } },
+          background: { color: { value: '#050505' } }, // Even darker background for particles
           fpsLimit: 60,
           particles: {
-            number: { value: 150, density: { enable: true, area: 1000 } }, // More particles, larger area
-            color: { value: ['#b3e5fc', '#e0f7fa', '#80deea'] }, // Cooler, subtle blues for stars
-            shape: { type: 'circle' }, // Simpler, cleaner circle shapes
-            opacity: {
-              value: 0.6,
-              random: true,
-              anim: { enable: true, speed: 0.3, opacity_min: 0.1, sync: false },
+            number: { value: 80, density: { enable: true, area: 1200 } }, // Fewer, but spread out
+            color: { value: ['#00F0FF', '#8A2BE2', '#FFFFFF'] }, // Teal, Electric Purple, White for tech vibe
+            shape: {
+              type: 'circle',
+              stroke: { width: 0, color: '#000000' },
+              polygon: { nb_sides: 5 },
             },
-            size: { value: { min: 0.5, max: 2.5 }, random: true, anim: { enable: false } },
-            links: { enable: false },
+            opacity: {
+              value: 0.8,
+              random: true,
+              anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false },
+            },
+            size: { value: { min: 1, max: 4 }, random: true, anim: { enable: false } },
+            links: {
+              enable: true,
+              distance: 150, // Links connecting particles
+              color: '#4A00B7', // A deep purple for lines
+              opacity: 0.3, // Subtle links
+              width: 1,
+            },
             move: {
               enable: true,
-              speed: 0.5,
+              speed: 0.4, // Slower, more deliberate movement
               direction: 'none',
-              random: true,
+              random: false,
               straight: false,
               out_mode: 'out',
               bounce: false,
@@ -112,83 +126,110 @@ function Hero() {
           },
           interactivity: {
             events: {
-              onHover: { enable: true, mode: 'bubble', parallax: { enable: false, force: 60, smooth: 10 } }, // 'bubble' for a nice effect
+              onHover: { enable: true, mode: 'repulse' }, // Push particles away
               onClick: { enable: true, mode: 'push' },
+              resize: true,
             },
             modes: {
-              bubble: { distance: 150, size: 4, duration: 2, opacity: 0.8 }, // Bubble effect on hover
+              repulse: { distance: 100, duration: 0.4 }, // Stronger repulse
               push: { quantity: 2 },
-              repulse: { distance: 100, duration: 0.4 },
             },
           },
           detectRetina: true,
         }}
       />
 
-      {/* Hero Content */}
+      {/* Radial Gradient overlay for subtle glow effect */}
+      <div className="absolute inset-0 z-10 pointer-events-none" style={{
+          background: 'radial-gradient(circle at center, rgba(0,240,255,0.05) 0%, transparent 50%)'
+      }}></div>
+
+
+      {/* Hero Content - More dynamic container */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="relative z-10 mx-auto max-w-3xl p-10 bg-black bg-opacity-30 backdrop-filter backdrop-blur-lg border border-teal-700/50 rounded-3xl shadow-xl text-center custom-gradient-border"
+        initial="hidden"
+        animate="visible"
+        transition={{ staggerChildren: 0.2 }}
+        className="relative z-20 mx-auto max-w-4xl p-12 bg-gradient-to-br from-gray-900/40 to-black/40 backdrop-blur-xl
+                   border border-accent-teal-600/50 rounded-3xl shadow-2xl-custom text-center
+                   transform-gpu hover:scale-[1.005] transition-transform duration-500 ease-out"
+        style={{
+            boxShadow: 'var(--tw-shadow-2xl-custom)', // Use the custom shadow defined in tailwind.config.js
+        }}
       >
-        <h1 className="flex flex-col items-center justify-center text-6xl font-extrabold text-white mb-4 leading-tight">
+        <motion.div
+          variants={textVariants}
+          className="mb-6"
+        >
           <motion.span
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="block mb-2 text-teal-400"
+            className="block text-accent-teal text-6xl mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <AiOutlineHome className="inline-block mr-4" />
+            <AiOutlineHome className="inline-block" />
           </motion.span>
-          <Typewriter
-            textStyle={{
-              fontFamily: 'Inter, sans-serif',
-              color: '#E0E7FF',
-              fontWeight: 700,
-            }}
-            startDelay={1000}
-            cursorColor="#00E676"
-            text="Hey, I’m Sachin Yoganandham."
-            typeSpeed={60}
-            eraseSpeed={30}
-          />
-        </h1>
+          <h1 className="text-7xl font-extrabold text-white leading-tight">
+            <Typewriter
+              textStyle={{
+                fontFamily: 'Inter, sans-serif',
+                color: '#E0E7FF',
+                fontWeight: 800,
+              }}
+              startDelay={1000}
+              cursorColor="#00F0FF"
+              text="Hey, I’m Sachin Yoganandham."
+              typeSpeed={50}
+              eraseSpeed={20}
+            />
+          </h1>
+        </motion.div>
+
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 2.5 }}
-          className="text-gray-300 italic text-xl mb-8 max-w-md mx-auto"
+          variants={textVariants}
+          className="text-gray-300 italic text-2xl mb-10 max-w-lg mx-auto"
         >
           “Building future-ready applications & transforming data into experiences.”
         </motion.p>
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 3 }}
+          variants={textVariants}
           className="flex justify-center space-x-6"
         >
           <a
             href={linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center px-6 py-3 border-2 border-teal-600 text-teal-300 rounded-full hover:bg-teal-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-teal-500/50 group"
+            className="flex items-center px-8 py-4 border-2 border-accent-teal-500 text-accent-teal-300 rounded-full
+                       font-semibold text-lg hover:bg-accent-teal-600 hover:text-black transition-all duration-300
+                       shadow-md hover:shadow-teal-500/60 transform hover:scale-105 group"
           >
-            <FaLinkedin className="mr-3 text-2xl group-hover:scale-110 transition-transform" />{' '}
-            <span className="font-semibold text-lg">LinkedIn</span>
+            <FaLinkedin className="mr-3 text-2xl group-hover:scale-110 transition-transform" /> LinkedIn
           </a>
           <a
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center px-6 py-3 border-2 border-purple-600 text-purple-300 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-purple-500/50 group"
+            className="flex items-center px-8 py-4 border-2 border-accent-purple-500 text-accent-purple-300 rounded-full
+                       font-semibold text-lg hover:bg-accent-purple-600 hover:text-black transition-all duration-300
+                       shadow-md hover:shadow-purple-500/60 transform hover:scale-105 group"
           >
-            <FaGithub className="mr-3 text-2xl group-hover:scale-110 transition-transform" />{' '}
-            <span className="font-semibold text-lg">GitHub</span>
+            <FaGithub className="mr-3 text-2xl group-hover:scale-110 transition-transform" /> GitHub
           </a>
         </motion.div>
       </motion.div>
-    </motion.section>
+
+      {/* Subtle bottom glow / pulse */}
+      <motion.div
+        className="absolute bottom-0 w-full h-1/3 opacity-20 z-10 pointer-events-none"
+        variants={glowEffectVariants}
+        initial="hidden"
+        animate="visible"
+        style={{
+            background: 'radial-gradient(circle at bottom, rgba(0, 240, 255, 0.15) 0%, transparent 60%)'
+        }}
+      ></motion.div>
+    </section>
   );
 }
 
@@ -208,8 +249,8 @@ function About() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="max-w-4xl p-10 bg-gray-800 bg-opacity-30 backdrop-filter backdrop-blur-md border border-gray-700/50 rounded-2xl shadow-xl text-center md:text-left"
       >
-        <h2 className="flex items-center justify-center md:justify-start text-5xl font-bold text-teal-400 mb-6">
-          <AiOutlineUser className="mr-4 text-teal-500" /> About Me
+        <h2 className="flex items-center justify-center md:justify-start text-5xl font-bold text-accent-teal-400 mb-6">
+          <AiOutlineUser className="mr-4 text-accent-teal-500" /> About Me
         </h2>
         <p className="mb-6 leading-relaxed text-lg text-gray-300">
           Hello! I’m **Sachin Yoganandham**, a passionate **Data Analyst** and **Front-End Engineer**. My journey is all about building sleek, high-performance web applications that transform complex, raw data into intuitive, interactive experiences.
@@ -235,8 +276,8 @@ function Projects() {
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionVariants}
     >
-      <h2 className="flex items-center text-5xl font-bold text-purple-400 mb-12">
-        <AiOutlineFolderOpen className="mr-4 text-purple-500" /> My Projects
+      <h2 className="flex items-center text-5xl font-bold text-accent-purple-400 mb-12">
+        <AiOutlineFolderOpen className="mr-4 text-accent-purple-500" /> My Projects
       </h2>
       <div className="w-full max-w-6xl grid gap-10 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (
@@ -252,10 +293,10 @@ function Projects() {
             transition={{ duration: 0.6, delay: i * 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-purple-900/20 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <h3 className="text-3xl font-bold mb-3 text-white relative z-10">{p.title}</h3>
             <p className="text-gray-400 mb-5 text-base relative z-10">{p.description}</p>
-            <span className="flex items-center text-teal-400 font-medium text-lg hover:underline relative z-10">
+            <span className="flex items-center text-accent-teal-400 font-medium text-lg hover:underline relative z-10">
               <FaGithub className="mr-3 text-2xl group-hover:scale-110 transition-transform" /> View on GitHub →
             </span>
           </motion.a>
@@ -279,17 +320,17 @@ function Contact() {
         initial={{ y: 80, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-center max-w-2xl p-10 bg-gray-800 bg-opacity-30 backdrop-filter backdrop-blur-md border border-teal-700/50 rounded-2xl shadow-xl"
+        className="text-center max-w-2xl p-10 bg-gray-800 bg-opacity-30 backdrop-filter backdrop-blur-md border border-accent-teal-700/50 rounded-2xl shadow-xl"
       >
-        <h2 className="flex items-center justify-center text-5xl font-bold text-teal-400 mb-6">
-          <AiOutlineMail className="mr-4 text-teal-500" /> Let’s Connect
+        <h2 className="flex items-center justify-center text-5xl font-bold text-accent-teal-400 mb-6">
+          <AiOutlineMail className="mr-4 text-accent-teal-500" /> Let’s Connect
         </h2>
         <p className="mb-8 leading-relaxed text-lg text-gray-300">
           Got an exciting idea, a challenging project, or just want to geek out over the latest tech? I'd love to hear from you! Feel free to drop me a line.
         </p>
         <a
           href="mailto:sachin.yoganandham@example.com" // IMPORTANT: Replace with your actual email address
-          className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold rounded-full hover:from-teal-500 hover:to-cyan-500 transition-all duration-300 shadow-lg hover:shadow-teal-700/50 text-xl"
+          className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-accent-teal-600 to-accent-teal-500 text-white font-semibold rounded-full hover:from-accent-teal-500 hover:to-accent-teal-400 transition-all duration-300 shadow-lg hover:shadow-teal-700/50 text-xl"
         >
           <AiOutlineMail className="mr-3 text-2xl" /> Send an Email
         </a>
