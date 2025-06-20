@@ -1,5 +1,8 @@
+// src/App.jsx
 import React from "react";
 import { motion } from "framer-motion";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 import {
   AiOutlineHome,
   AiOutlineUser,
@@ -17,7 +20,7 @@ import {
 } from "react-icons/si";
 
 const linkedInUrl = "https://linkedin.com/in/ing-sachin-yoganandham-a06b88117";
-const githubUrl    = "https://github.com/Sachin-YN";
+const githubUrl   = "https://github.com/Sachin-YN";
 
 const projects = [
   {
@@ -41,21 +44,21 @@ const projects = [
 ];
 
 const stackItems = [
-  { name: "Python",    icon: <SiPython />     },
-  { name: "PostgreSQL",icon: <SiPostgresql /> },
-  { name: "Pandas",    icon: <SiPandas />     },
-  { name: "NumPy",     icon: <SiNumpy />      },
-  { name: "Tableau",   icon: <SiTableau />    },
-  { name: "Power BI",  icon: <SiPowerbi />    },
+  { name: "Python",     icon: <SiPython />     },
+  { name: "PostgreSQL", icon: <SiPostgresql /> },
+  { name: "Pandas",     icon: <SiPandas />     },
+  { name: "NumPy",      icon: <SiNumpy />      },
+  { name: "Tableau",    icon: <SiTableau />    },
+  { name: "Power BI",   icon: <SiPowerbi />    },
 ];
 
 function Sidebar() {
   const nav = [
-    { id: "home",    icon: <AiOutlineHome />      },
-    { id: "about",   icon: <AiOutlineUser />      },
-    { id: "tech",    icon: <SiPython />           },
-    { id: "projects",icon: <AiOutlineFolderOpen />},
-    { id: "contact", icon: <AiOutlineMail />      },
+    { id: "home",     icon: <AiOutlineHome />      },
+    { id: "about",    icon: <AiOutlineUser />      },
+    { id: "tech",     icon: <SiPython />           },
+    { id: "projects", icon: <AiOutlineFolderOpen />},
+    { id: "contact",  icon: <AiOutlineMail />      },
   ];
 
   return (
@@ -86,43 +89,94 @@ function SectionHeading({ icon: Icon, children }) {
 }
 
 function Hero() {
+  // load particles engine
+  const particlesInit = async (engine) => {
+    await loadFull(engine);
+  };
+
   return (
     <section id="home" className="relative flex items-center justify-center h-screen snap-start">
-      {/* neon blobs */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-accent to-accent-dark rounded-full filter blur-3xl opacity-40 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-72 h-72 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full filter blur-2xl opacity-30"></div>
-      </div>
+      {/* Starfield background */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        className="absolute inset-0 z-0"
+        options={{
+          fullScreen: { enable: false },
+          background: { color: "#000" },
+          fpsLimit: 60,
+          particles: {
+            number: { value: 120, density: { enable: true, area: 800 } },
+            color: { value: ["#ffffff", "#80d8ff", "#ff80ab"] },
+            shape: { type: "star" },
+            opacity: { value: 0.7, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1 } },
+            size: { value: { min: 1, max: 3 }, random: true },
+            move: { enable: true, speed: 0.6, direction: "none", outModes: "bounce" },
+            links: { enable: false },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "repulse" },
+              onClick: { enable: true, mode: "push" },
+            },
+            modes: {
+              repulse: { distance: 120, duration: 0.4 },
+              push: { quantity: 4 },
+            },
+          },
+          detectRetina: true,
+        }}
+      />
+
+      {/* Two-column hero card */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 max-w-2xl bg-card-bg bg-opacity-60 backdrop-blur-lg border border-accent rounded-2xl p-12 text-center shadow-card"
+        className="relative z-10 mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl
+                   bg-card-bg bg-opacity-60 backdrop-blur-lg border border-accent rounded-2xl p-12 shadow-card"
       >
-        <AiOutlineHome className="text-accent mx-auto mb-4 text-5xl" />
-        <h1 className="text-5xl font-bold mb-4">Hey, I’m Sachin</h1>
-        <p className="text-2xl md:text-3xl italic text-gray-300 mb-8 leading-relaxed tracking-wide">
-          Turning raw data into{" "}
-          <span className="font-semibold text-accent">actionable insights</span>{" "}
-          that drive smarter decisions.
-        </p>
-        <div className="flex justify-center space-x-4">
-          <a
-            href={linkedInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 bg-accent hover:bg-accent-dark text-black px-6 py-3 rounded-full font-medium transition"
-          >
-            <FaLinkedin /><span>LinkedIn</span>
-          </a>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 border-2 border-accent hover:border-accent-dark hover:bg-accent-dark text-white px-6 py-3 rounded-full font-medium transition"
-          >
-            <FaGithub /><span>GitHub</span>
-          </a>
+        {/* Left Column */}
+        <div className="flex flex-col justify-center space-y-6">
+          <div className="flex items-center space-x-3">
+            <AiOutlineHome className="text-accent text-4xl" />
+            <h1 className="text-5xl font-extrabold text-white">Hey, I’m Sachin</h1>
+          </div>
+          <p className="text-lg italic text-gray-300">
+            Turning raw data into{" "}
+            <span className="text-accent font-semibold">actionable insights</span>{" "}
+            that drive smarter decisions.
+          </p>
+          <div className="flex space-x-4">
+            <a
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 bg-accent hover:bg-accent-dark text-black px-6 py-3 rounded-full font-medium transition"
+            >
+              <FaLinkedin /><span>LinkedIn</span>
+            </a>
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 border-2 border-accent hover:border-accent-dark hover:bg-accent-dark text-white px-6 py-3 rounded-full font-medium transition"
+            >
+              <FaGithub /><span>GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="flex flex-col justify-center space-y-4">
+          <h3 className="text-2xl font-bold text-white mb-2">At a Glance</h3>
+          <ul className="list-disc list-inside text-gray-300 space-y-2">
+            <li>Data Analyst</li>
+            <li>Front-End Engineer</li>
+            <li>Real-time Dashboards</li>
+            <li>D3.js & React</li>
+            <li>SQL & Python</li>
+          </ul>
         </div>
       </motion.div>
     </section>
@@ -140,10 +194,12 @@ function About() {
       >
         <SectionHeading icon={AiOutlineUser}>About Me</SectionHeading>
         <p className="text-gray-300 leading-relaxed mb-4">
-          I’m Sachin Yoganandham—Data Analyst & Front-End Engineer. I craft sleek, high-performance web apps that turn raw data into interactive experiences.
+          I’m Sachin Yoganandham—Data Analyst & Front-End Engineer. I craft sleek,
+          high-performance web apps that turn raw data into interactive experiences.
         </p>
         <p className="text-gray-300 leading-relaxed">
-          Passionate about pixel-perfect UIs and real-time visualizations, I bridge the gap between data insights and beautiful interfaces.
+          Passionate about pixel-perfect UIs and real-time visualizations, I bridge the gap
+          between data insights and beautiful interfaces.
         </p>
       </motion.div>
     </section>
@@ -221,7 +277,10 @@ function Contact() {
       >
         <SectionHeading icon={AiOutlineMail}>Let’s Connect</SectionHeading>
         <p className="text-gray-300 mb-8">Got an idea or just want to chat tech? Drop me a line!</p>
-        <a href="mailto:sachin.yoganandham@example.com" className="inline-flex items-center space-x-2 bg-accent hover:bg-accent-dark text-black px-8 py-3 rounded-full font-medium transition">
+        <a
+          href="mailto:sachin.yoganandham@example.com"
+          className="inline-flex items-center space-x-2 bg-accent hover:bg-accent-dark text-black px-8 py-3 rounded-full font-medium transition"
+        >
           <AiOutlineMail /><span>Send an Email</span>
         </a>
       </motion.div>
