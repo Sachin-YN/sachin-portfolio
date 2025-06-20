@@ -1,3 +1,11 @@
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ensure the canvas & sections fill the viewport */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
