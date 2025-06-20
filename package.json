@@ -18,7 +18,8 @@
     "framer-motion": "^7.6.9",
     "react-typewriter-effect": "^1.0.4",
     "react-icons": "^4.8.0",
-    "react-tsparticles": "^3.8.2"
+    "react-tsparticles": "^2.12.2",    
+    "tsparticles": "^3.8.1"             
   },
   "browserslist": {
     "production": [
