@@ -88,100 +88,77 @@ function SectionHeading({ icon: Icon, children }) {
   );
 }
 
+// inside src/App.jsx (just replace your Hero function)
+
 function Hero() {
-  // load particles engine
-  const particlesInit = async (engine) => {
-    await loadFull(engine);
-  };
+  const particlesInit = async engine => await loadFull(engine);
 
   return (
-    <section id="home" className="relative flex items-center justify-center h-screen snap-start">
-      {/* Starfield background */}
+    <section
+      id="home"
+      className="relative flex flex-col md:flex-row items-center justify-between h-screen px-6 md:px-20 snap-start"
+    >
+      {/* background neon grid + stars */}
       <Particles
         id="tsparticles"
         init={particlesInit}
         className="absolute inset-0 z-0"
-        options={{
-          fullScreen: { enable: false },
-          background: { color: "#000" },
-          fpsLimit: 60,
-          particles: {
-            number: { value: 120, density: { enable: true, area: 800 } },
-            color: { value: ["#ffffff", "#80d8ff", "#ff80ab"] },
-            shape: { type: "star" },
-            opacity: { value: 0.7, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1 } },
-            size: { value: { min: 1, max: 3 }, random: true },
-            move: { enable: true, speed: 0.6, direction: "none", outModes: "bounce" },
-            links: { enable: false },
-          },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: "repulse" },
-              onClick: { enable: true, mode: "push" },
-            },
-            modes: {
-              repulse: { distance: 120, duration: 0.4 },
-              push: { quantity: 4 },
-            },
-          },
-          detectRetina: true,
-        }}
+        options={{ /* your existing particles config */ }}
       />
 
-      {/* Two-column hero card */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl
-                   bg-card-bg bg-opacity-60 backdrop-blur-lg border border-accent rounded-2xl p-12 shadow-card"
-      >
-        {/* Left Column */}
-        <div className="flex flex-col justify-center space-y-6">
-          <div className="flex items-center space-x-3">
-            <AiOutlineHome className="text-accent text-4xl" />
-            <h1 className="text-5xl font-extrabold text-white">Hey, I’m Sachin</h1>
-          </div>
-          <p className="text-lg italic text-gray-300">
-            Turning raw data into{" "}
-            <span className="text-accent font-semibold">actionable insights</span>{" "}
-            that drive smarter decisions.
-          </p>
-          <div className="flex space-x-4">
-            <a
-              href={linkedInUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 bg-accent hover:bg-accent-dark text-black px-6 py-3 rounded-full font-medium transition"
-            >
-              <FaLinkedin /><span>LinkedIn</span>
-            </a>
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 border-2 border-accent hover:border-accent-dark hover:bg-accent-dark text-white px-6 py-3 rounded-full font-medium transition"
-            >
-              <FaGithub /><span>GitHub</span>
-            </a>
-          </div>
+      {/* LEFT COLUMN: Text & CTAs */}
+      <div className="relative z-10 w-full md:w-1/2 space-y-6">
+        <h1 className="text-6xl md:text-7xl font-extrabold text-white">
+          <AiOutlineHome className="inline-block text-accent mr-2" />
+          Hey, I’m Sachin
+        </h1>
+        <p className="text-xl md:text-2xl italic text-gray-300 max-w-lg">
+          Turning <span className="text-accent font-semibold">raw data</span> into
+          <br /> actionable insights that drive smarter decisions.
+        </p>
+        <div className="flex space-x-4">
+          <a
+            href={linkedInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-accent hover:bg-accent-dark text-black px-6 py-3 rounded-full font-medium transition"
+          >
+            <FaLinkedin className="inline-block mr-2" /> LinkedIn
+          </a>
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-2 border-accent hover:bg-accent-dark hover:border-accent-dark text-white px-6 py-3 rounded-full font-medium transition"
+          >
+            <FaGithub className="inline-block mr-2" /> GitHub
+          </a>
         </div>
+      </div>
 
-        {/* Right Column */}
-        <div className="flex flex-col justify-center space-y-4">
-          <h3 className="text-2xl font-bold text-white mb-2">At a Glance</h3>
-          <ul className="list-disc list-inside text-gray-300 space-y-2">
-            <li>Data Analyst</li>
-            <li>Front-End Engineer</li>
-            <li>Real-time Dashboards</li>
-            <li>D3.js & React</li>
-            <li>SQL & Python</li>
-          </ul>
-        </div>
-      </motion.div>
+      {/* RIGHT COLUMN: “At a Glance” Stats */}
+      <div className="relative z-10 mt-12 md:mt-0 w-full md:w-1/2 flex flex-col space-y-4 text-gray-200">
+        <h3 className="text-2xl font-bold text-white">At a Glance</h3>
+        <ul className="grid grid-cols-2 gap-x-8 gap-y-4">
+          {[
+            "Data Analyst",
+            "Front-End Engineer",
+            "Real-time Dashboards",
+            "D3.js & React",
+            "SQL & Python",
+            "ETL & Visualization",
+          ].map((item) => (
+            <li key={item} className="flex items-center">
+              <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
+
 
 function About() {
   return (
