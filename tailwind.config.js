@@ -22,14 +22,17 @@ module.exports = {
           light: '#b16ddb',
           dark: '#673ab7',
         },
-        // Re-mapping existing Tailwind colors for clarity if needed,
-        // or just rely on Tailwind's default gray/zinc scales.
-        // I've kept your existing cyan shades as they were.
       },
       // Define custom font families
       fontFamily: {
         inter: ['Inter', 'sans-serif'], // 'inter' custom name for the font, with sans-serif fallback
       },
+      // Define custom box shadows for glow effects
+      boxShadow: {
+        '2xl-custom': '0 0 40px rgba(0, 240, 255, 0.2), 0 0 80px rgba(138, 43, 226, 0.1)', // Dual color glow
+        'teal-500/60': '0 10px 15px -3px rgba(6, 182, 212, 0.3), 0 4px 6px -2px rgba(6, 182, 212, 0.2)', // Example for button hover
+        'purple-500/60': '0 10px 15px -3px rgba(138, 43, 226, 0.3), 0 4px 6px -2px rgba(138, 43, 226, 0.2)', // Example for button hover
+      }
     },
   },
   plugins: [
