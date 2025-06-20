@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -9,7 +10,7 @@ import {
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const linkedInUrl = "https://linkedin.com/in/ing-sachin-yoganandham-a06b88117";
-const githubUrl = "https://github.com/Sachin-YN";
+const githubUrl    = "https://github.com/Sachin-YN";
 
 const projects = [
   {
@@ -33,26 +34,32 @@ const projects = [
 ];
 
 function Navbar() {
+  const navItems = [
+    { id: "home",     icon: <AiOutlineHome />      },
+    { id: "about",    icon: <AiOutlineUser />      },
+    { id: "projects", icon: <AiOutlineFolderOpen />},
+    { id: "contact",  icon: <AiOutlineMail />      },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-secondary-bg bg-opacity-60 backdrop-blur-md py-4 z-50">
-      <ul className="container mx-auto flex justify-end space-x-6 px-6">
-        {[
-          { id: "home", label: "Home", icon: <AiOutlineHome /> },
-          { id: "about", label: "About", icon: <AiOutlineUser /> },
-          { id: "projects", label: "Projects", icon: <AiOutlineFolderOpen /> },
-          { id: "contact", label: "Contact", icon: <AiOutlineMail /> },
-        ].map((item) => (
-          <li key={item.id}>
-            <a
-              href={`#${item.id}`}
-              className="flex items-center space-x-1 text-gray-300 hover:text-white transition"
-            >
-              {item.icon}
-              <span className="hidden md:inline">{item.label}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
+    <nav className="fixed top-0 left-0 h-full w-20 bg-secondary-bg bg-opacity-50 backdrop-blur-md flex flex-col items-center py-8 z-50">
+      {navItems.map(item => (
+        <a
+          key={item.id}
+          href={`#${item.id}`}
+          className="
+            mb-8
+            text-accent text-opacity-80
+            hover:text-opacity-100
+            hover:drop-shadow-[0_0_8px_rgba(0,209,178,0.8)]
+            transition duration-300
+            text-2xl
+          "
+          aria-label={item.id}
+        >
+          {item.icon}
+        </a>
+      ))}
     </nav>
   );
 }
@@ -61,7 +68,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="flex items-center justify-center h-screen pt-16 snap-start"
+      className="flex items-center justify-center h-screen snap-start"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -192,9 +199,9 @@ function Contact() {
 
 export default function App() {
   return (
-    <div className="font-sans">
+    <div className="flex font-sans">
       <Navbar />
-      <main className="overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <main className="ml-20 overflow-y-scroll snap-y snap-mandatory scroll-smooth w-full">
         <Hero />
         <About />
         <Projects />
