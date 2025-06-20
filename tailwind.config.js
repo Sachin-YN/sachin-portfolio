@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "primary-bg": "#0a1128",      // darkest navy
-        "secondary-bg": "#001f3f",    // deep indigo
-        "accent": "#00d1b2",          // bright teal
-        "accent-dark": "#009d8a",     // darker teal on hover
-        "card-bg": "#081b3a",         // slightly lighter for cards
+        "primary-bg": "#0a1128",
+        "secondary-bg": "#001f3f",
+        accent: "#00d1b2",
+        "accent-dark": "#009d8a",
+        "card-bg": "#081b3a",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
