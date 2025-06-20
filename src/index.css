@@ -1,21 +1,25 @@
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* full‐screen reset and grid overlay */
+/* full-screen reset */
 html, body, #root {
   @apply relative h-full m-0 p-0 overflow-x-hidden;
 }
+
+/* background gradient */
 body {
   @apply bg-primary-bg font-sans text-white;
   background: linear-gradient(135deg, #0a1128 0%, #001f3f 100%);
 }
+
+/* neon grid overlay */
 body::before {
   content: "";
-  @apply absolute inset-0 pointer-events-none;
+  @apply absolute inset-0 pointer-events-none z-5;
   background-image:
     linear-gradient(0deg, rgba(0,209,178,0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,209,178,0.08) 1px, transparent 1px);
   background-size: 40px 40px;
-  z-index: 5;
 }
