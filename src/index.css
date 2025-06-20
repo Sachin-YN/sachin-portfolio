@@ -1,37 +1,25 @@
-/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Full-screen reset */
-html,
-body,
-#root {
-  @apply h-full m-0 p-0 overflow-x-hidden;
+/* full-screen setup */
+html, body, #root {
+  @apply relative h-full m-0 p-0 overflow-x-hidden;
 }
 
-/* Base body styling with dark gradient */
-body {
-  @apply bg-primary-bg font-sans text-white relative;
-  background: linear-gradient(135deg, #0a1128 0%, #001f3f 100%);
-}
-
-/* Neon “tech blob” overlays */
+/* neon grid overlay */
 body::before {
   content: "";
   @apply absolute inset-0 pointer-events-none;
-  background:
-    /* cyan blob top-left */
-    radial-gradient(
-      circle at 25% 25%,
-      rgba(0, 255, 255, 0.2),
-      transparent 60%
-    ),
-    /* purple blob bottom-right */
-    radial-gradient(
-      circle at 75% 75%,
-      rgba(138, 43, 226, 0.2),
-      transparent 60%
-    );
-  mix-blend-mode: screen;
+  background-image:
+    linear-gradient(0deg, rgba(0, 209, 178, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 209, 178, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 5;
+}
+
+/* tweak your existing body gradient if you like */
+body {
+  @apply bg-primary-bg font-sans text-white;
+  background: linear-gradient(135deg, #0a1128 0%, #001f3f 100%);
 }
