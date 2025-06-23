@@ -1,10 +1,13 @@
-// postcss.config.js
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-    // (optional) add other PostCSS plugins here, e.g.:
-    // 'postcss-import': {},
-    // 'postcss-nested': {}
-  }
+  plugins: [
+    require('postcss-import'),
+    require('postcss-nested'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+    require('postcss-preset-env')({ stage: 1 }),
+    // In production, minify CSS
+    ...(process.env.NODE_ENV === 'production'
+      ? [ require('cssnano')({ preset: 'default' }) ]
+      : []),
+  ]
 }
