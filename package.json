@@ -4,9 +4,15 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
+    "tailwind:watch": "tailwindcss -i ./src/index.css -o ./src/tailwind.output.css --watch",
+    "tailwind:build": "tailwindcss -i ./src/index.css -o ./src/tailwind.output.css --minify",
     "build": "react-scripts build",
+    "serve": "serve -s build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:js": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:css": "stylelint \"src/**/*.{css,scss}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md,json}\""
   },
   "dependencies": {
     "react": "^18.0.0",
@@ -19,10 +25,30 @@
     "react-typewriter-effect": "^1.0.4",
     "react-icons": "^4.8.0",
     "react-tsparticles": "^2.12.2",
-    "tsparticles": "^3.8.1"
+    "tsparticles": "^3.8.1",
+    "serve": "^14.0.1"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.2"
+    "@tailwindcss/forms": "^0.5.2",
+    "eslint": "^8.0.0",
+    "prettier": "^2.0.0",
+    "stylelint": "^14.0.0",
+    "stylelint-config-standard": "^30.0.0",
+    "stylelint-config-tailwindcss": "^0.2.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,css}": [
+      "npm run lint:js",
+      "npm run lint:css",
+      "npm run format"
+    ]
   },
   "browserslist": {
     "production": [
