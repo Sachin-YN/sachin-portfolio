@@ -7,14 +7,15 @@
     "build": "svelte-kit build",
     "preview": "svelte-kit preview"
   },
-  "devDependencies": {
+  "dependencies": {
     "@sveltejs/kit": "next",
-    "svelte": "3.59.2",
+    "svelte": "3.59.2"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.0.7",
     "postcss": "^8.4.6",
     "autoprefixer": "^10.4.0",
-    "@tailwindcss/forms": "^0.5.2"
-  },
-  "dependencies": {
+    "@tailwindcss/forms": "^0.5.2",
+    "svelte-preprocess": "^5.0.0"
   }
 }
