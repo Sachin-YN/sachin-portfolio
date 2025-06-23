@@ -1,7 +1,15 @@
-// tailwind.config.js
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],  // ← double‐check this path
+  darkMode: 'class',
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  safelist: [
+    // Add any dynamic classes here
+    { pattern: /bg-(primary|secondary|accent)(-dark)?/ },
+  ],
   theme: {
+    container: {
+      center: true,
+      padding: '1rem',
+    },
     extend: {
       colors: {
         "primary-bg": "#0a1128",
@@ -16,7 +24,19 @@ module.exports = {
       boxShadow: {
         card: "0 10px 25px rgba(0, 0, 0, 0.5)",
       },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    // require('@tailwindcss/typography'),
+  ],
 };
