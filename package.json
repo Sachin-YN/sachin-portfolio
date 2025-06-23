@@ -8,6 +8,7 @@
     "preview": "svelte-kit preview"
   },
   "dependencies": {
+    "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "svelte": "3.59.2"
   },
