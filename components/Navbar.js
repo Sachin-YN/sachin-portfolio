@@ -1,32 +1,25 @@
 // components/Navbar.js
-import Link from 'next/link';
+import Link from 'next/link'
 
 export default function Navbar() {
   return (
-    <nav className="bg-black p-4 shadow-lg">
-      <ul className="flex space-x-6 justify-center">
-        {/* Home */}
-        <li>
-          <Link
-            href="/"
-            className="text-neon-blue hover:underline"
-          >
+    <nav className="fixed top-0 w-full bg-black/50 backdrop-blur-md z-50">
+      <ul className="container mx-auto flex justify-between items-center py-4 px-6">
+        {/* Left: site nav */}
+        <div className="flex space-x-6">
+          <Link href="/" className="text-neon-blue hover:underline">
             Home
           </Link>
-        </li>
-
-        {/* Projects */}
-        <li>
-          <Link
-            href="/projects"
-            className="text-neon-blue hover:underline"
-          >
+          <Link href="/projects" className="text-neon-blue hover:underline">
             Projects
           </Link>
-        </li>
+          <Link href="#contact" className="text-neon-blue hover:underline">
+            Contact
+          </Link>
+        </div>
 
-        {/* LinkedIn */}
-        <li>
+        {/* Right: social */}
+        <div className="flex space-x-4">
           <a
             href="https://linkedin.com/in/ing-sachin-yoganandham"
             className="text-neon-blue hover:underline"
@@ -35,10 +28,6 @@ export default function Navbar() {
           >
             LinkedIn
           </a>
-        </li>
-
-        {/* GitHub */}
-        <li>
           <a
             href="https://github.com/Sachin-YN"
             className="text-neon-blue hover:underline"
@@ -47,8 +36,8 @@ export default function Navbar() {
           >
             GitHub
           </a>
-        </li>
+        </div>
       </ul>
     </nav>
-  );
+  )
 }
