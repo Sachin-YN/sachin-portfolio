@@ -19,22 +19,22 @@ import {
   SiGithub,
 } from 'react-icons/si'
 
-// Tech stack for grid
+// Include a color field for each tech
 const techStack = [
-  { name: 'JavaScript',    Icon: SiJavascript },
-  { name: 'TypeScript',    Icon: SiTypescript },
-  { name: 'React',         Icon: SiReact },
-  { name: 'Next.js',       Icon: SiNextdotjs },
-  { name: 'HTML5',         Icon: SiHtml5 },
-  { name: 'CSS3',          Icon: SiCss3 },
-  { name: 'Tailwind CSS',  Icon: SiTailwindcss },
-  { name: 'Node.js',       Icon: SiNodedotjs },
-  { name: 'Express',       Icon: SiExpress },
-  { name: 'MongoDB',       Icon: SiMongodb },
-  { name: 'PostgreSQL',    Icon: SiPostgresql },
-  { name: 'MySQL',         Icon: SiMysql },
-  { name: 'Git',           Icon: SiGit },
-  { name: 'GitHub',        Icon: SiGithub },
+  { name: 'JavaScript',    Icon: SiJavascript,   color: '#F7DF1E' },
+  { name: 'TypeScript',    Icon: SiTypescript,   color: '#3178C6' },
+  { name: 'React',         Icon: SiReact,        color: '#61DAFB' },
+  { name: 'Next.js',       Icon: SiNextdotjs,    color: '#000000' },
+  { name: 'HTML5',         Icon: SiHtml5,        color: '#E34F26' },
+  { name: 'CSS3',          Icon: SiCss3,         color: '#1572B6' },
+  { name: 'Tailwind CSS',  Icon: SiTailwindcss,  color: '#06B6D4' },
+  { name: 'Node.js',       Icon: SiNodedotjs,    color: '#339933' },
+  { name: 'Express',       Icon: SiExpress,      color: '#000000' },
+  { name: 'MongoDB',       Icon: SiMongodb,      color: '#47A248' },
+  { name: 'PostgreSQL',    Icon: SiPostgresql,   color: '#336791' },
+  { name: 'MySQL',         Icon: SiMysql,        color: '#4479A1' },
+  { name: 'Git',           Icon: SiGit,          color: '#F05032' },
+  { name: 'GitHub',        Icon: SiGithub,       color: '#181717' },
 ]
 
 export default function Home() {
@@ -51,35 +51,35 @@ export default function Home() {
           I’m Sachin Yoganandham
         </h1>
         <p className="text-lg md:text-xl leading-relaxed">
-          A <strong>Data-Driven Business Analyst</strong> who leverages ERP/CRM systems, cloud-scale data platforms, and automated reporting to optimize workflows and inform C-suite strategy.  
+          A <strong>Data-Driven Business Analyst</strong> who leverages ERP/CRM systems, cloud-scale data platforms, and automated reporting to optimize workflows and inform C-suite strategy.&nbsp;
           Explore my work on enterprise dashboards, master-data audits, and predictive analytics that power better sourcing outcomes across regions.
         </p>
       </motion.section>
 
-    {/* TECH STACK */}
-<motion.section
-  className="mt-16 max-w-5xl mx-auto px-6 md:px-12"
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8, delay: 0.3 }}
->
-  <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
-    My Tech Stack
-  </h2>
-  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
-    {techStack.map(({ name, Icon, color }) => (
-      <div
-        key={name}
-        className="flex flex-col items-center bg-white/80 backdrop-blur-sm p-4 rounded-lg hover:shadow-lg transition-shadow"
+      {/* TECH STACK */}
+      <motion.section
+        className="mt-16 max-w-5xl mx-auto px-6 md:px-12"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
       >
-        {/* Remove the text-teal-600 class so react-icons uses its default (brand) color */}
-        <Icon size={36} className="mb-2" />
-        <span className="text-gray-800 font-medium">{name}</span>
-      </div>
-    ))}
-  </div>
-</motion.section>
+        <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
+          My Tech Stack
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
+          {techStack.map(({ name, Icon, color }) => (
+            <div
+              key={name}
+              className="flex flex-col items-center bg-white/80 backdrop-blur-sm p-4 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              {/* Pass the brand color directly */}
+              <Icon size={36} color={color} className="mb-2" />
+              <span className="text-gray-800 font-medium">{name}</span>
+            </div>
+          ))}
+        </div>
+      </motion.section>
 
       {/* CONTACT */}
       <motion.section
