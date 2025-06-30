@@ -1,6 +1,5 @@
 // pages/index.js
 import { useState } from 'react'
-import { wrap } from 'popmotion'
 import { motion, AnimatePresence } from 'framer-motion'
 import Layout from '../components/Layout'
 import {
@@ -21,36 +20,37 @@ import {
 } from 'react-icons/si'
 
 const techStack = [
-  { name: 'JavaScript',   Icon: SiJavascript,   color: '#F7DF1E' },
-  { name: 'TypeScript',   Icon: SiTypescript,   color: '#3178C6' },
-  { name: 'React',        Icon: SiReact,        color: '#61DAFB' },
-  { name: 'Next.js',      Icon: SiNextdotjs,    color: '#000000' },
-  { name: 'HTML5',        Icon: SiHtml5,        color: '#E34F26' },
-  { name: 'CSS3',         Icon: SiCss3,         color: '#1572B6' },
-  { name: 'Tailwind CSS', Icon: SiTailwindcss,  color: '#06B6D4' },
-  { name: 'Node.js',      Icon: SiNodedotjs,    color: '#339933' },
-  { name: 'Express',      Icon: SiExpress,      color: '#000000' },
-  { name: 'MongoDB',      Icon: SiMongodb,      color: '#47A248' },
-  { name: 'PostgreSQL',   Icon: SiPostgresql,   color: '#336791' },
-  { name: 'MySQL',        Icon: SiMysql,        color: '#4479A1' },
-  { name: 'Git',          Icon: SiGit,          color: '#F05032' },
-  { name: 'GitHub',       Icon: SiGithub,       color: '#181717' },
+  { name: 'JavaScript',    Icon: SiJavascript,   color: '#F7DF1E' },
+  { name: 'TypeScript',    Icon: SiTypescript,   color: '#3178C6' },
+  { name: 'React',         Icon: SiReact,        color: '#61DAFB' },
+  { name: 'Next.js',       Icon: SiNextdotjs,    color: '#000000' },
+  { name: 'HTML5',         Icon: SiHtml5,        color: '#E34F26' },
+  { name: 'CSS3',          Icon: SiCss3,         color: '#1572B6' },
+  { name: 'Tailwind CSS',  Icon: SiTailwindcss,  color: '#06B6D4' },
+  { name: 'Node.js',       Icon: SiNodedotjs,    color: '#339933' },
+  { name: 'Express',       Icon: SiExpress,      color: '#000000' },
+  { name: 'MongoDB',       Icon: SiMongodb,      color: '#47A248' },
+  { name: 'PostgreSQL',    Icon: SiPostgresql,   color: '#336791' },
+  { name: 'MySQL',         Icon: SiMysql,        color: '#4479A1' },
+  { name: 'Git',           Icon: SiGit,          color: '#F05032' },
+  { name: 'GitHub',        Icon: SiGithub,       color: '#181717' },
 ]
 
 export default function Home() {
-  // State for carousel index
   const [index, setIndex] = useState(0)
 
-  // Helper to cycle index, wrapping at ends
+  // cycle index within bounds [0, techStack.length)
   function cycleIndex(dir) {
-    setIndex(prev => wrap(0, techStack.length, prev + dir))
+    setIndex(prev => {
+      const next = prev + dir
+      if (next < 0) return techStack.length - 1
+      if (next >= techStack.length) return 0
+      return next
+    })
   }
 
-  // Destructure the current tech object
-  const currentTech = techStack[index]
-  const IconComponent = currentTech.Icon
-  const iconColor = currentTech.color
-  const iconName = currentTech.name
+  // current tech for carousel
+  const { Icon: CurrentIcon, color: currentColor, name: currentName } = techStack[index]
 
   return (
     <Layout title="Home">
@@ -58,7 +58,7 @@ export default function Home() {
       <section className="h-64 flex items-center justify-center relative">
         <button
           onClick={() => cycleIndex(-1)}
-          className="absolute left-4 text-2xl text-white"
+          className="absolute left-4 text-3xl text-white"
         >
           ‹
         </button>
@@ -72,14 +72,14 @@ export default function Home() {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
           >
-            <IconComponent size={80} color={iconColor} />
-            <span className="mt-2 text-white text-lg">{iconName}</span>
+            <CurrentIcon size={80} color={currentColor} />
+            <span className="mt-2 text-white text-lg">{currentName}</span>
           </motion.div>
         </AnimatePresence>
 
         <button
           onClick={() => cycleIndex(1)}
-          className="absolute right-4 text-2xl text-white"
+          className="absolute right-4 text-3xl text-white"
         >
           ›
         </button>
