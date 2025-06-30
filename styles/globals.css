@@ -1,10 +1,9 @@
 /* styles/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* full-page gradient + white text */
+/* Deep navy gradient to black, white text */
 html, body {
-  @apply bg-gradient-to-br from-neon-blue-light via-neon-blue to-neon-blue-dark min-h-screen text-white;
+  @apply bg-gradient-to-br from-navy to-black text-white font-sans;
 }
