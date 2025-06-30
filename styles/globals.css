@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Wrap in @layer base so Tailwind sees your generated classes */
 @layer base {
-  html, body {
+  html,
+  body {
     @apply 
       bg-gradient-to-br 
         from-neon-silver-light 
         via-neon-silver 
         to-neon-silver-dark
       min-h-screen 
-      text-gray-900; /* dark text for contrast */
+      text-gray-900;
   }
 }
