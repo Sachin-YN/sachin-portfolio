@@ -10,7 +10,7 @@ import {
   SiHtml5,
   SiCss3,
   SiTailwindcss,
-  SiNodeDotjs,
+  SiNodedotjs,
   SiExpress,
   SiMongodb,
   SiPostgresql,
@@ -27,7 +27,7 @@ const techStack = [
   { name: 'HTML5', Icon: SiHtml5 },
   { name: 'CSS3', Icon: SiCss3 },
   { name: 'Tailwind CSS', Icon: SiTailwindcss },
-  { name: 'Node.js', Icon: SiNodeDotJs },
+  { name: 'Node.js', Icon: SiNodedotjs },
   { name: 'Express', Icon: SiExpress },
   { name: 'MongoDB', Icon: SiMongodb },
   { name: 'PostgreSQL', Icon: SiPostgresql },
@@ -74,7 +74,7 @@ export default function Home() {
           Experience &amp; Tech Stack
         </h2>
         <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 px-4">
-          {techStack.map(({ name, Icon }, i) => (
+          {techStack.map(({ name, Icon }) => (
             <motion.div
               key={name}
               className="flex flex-col items-center bg-white/80 backdrop-blur-sm p-4 rounded-lg"
