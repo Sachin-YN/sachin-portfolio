@@ -1,0 +1,8 @@
+[build]
+  # First build the Next.js app, then export it as static HTML into "out/"
+  command   = "npm run build && npm run export"
+  publish   = "out"
+
+# (Optional) You can set environment variables here if needed:
+# [build.environment]
+#   NODE_VERSION = "16.x"
