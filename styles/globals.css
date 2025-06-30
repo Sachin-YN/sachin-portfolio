@@ -1,3 +1,15 @@
+/* styles/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* change this block to whatever global background you like */
+html,
+body {
+  /* solid color */
+  /* background: #111; */
+
+  /* or a radial gradient */
+  background: radial-gradient(circle at top left, #020202, #0f0f0f);
+}
