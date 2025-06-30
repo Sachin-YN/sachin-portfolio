@@ -1,5 +1,5 @@
 // pages/_app.js
-import '../styles/globals.css'   // must import global styles
+import '../styles/globals.css'
 
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
