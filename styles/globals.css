@@ -1,16 +1,31 @@
+/* styles/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html,
-  body {
-    @apply 
-      bg-gradient-to-br 
-        from-neon-silver-light 
-        via-neon-silver 
-        to-neon-silver-dark
-      min-h-screen 
-      text-gray-900;
-  }
+/* Full-page metallic silver gradient */
+html,
+body {
+  /* A 135° linear gradient with multiple silver stops for a reflective sheen */
+  background: linear-gradient(
+    135deg,
+    #f0f0f0 0%,
+    #d9d9d9 20%,
+    #f7f7f7 40%,
+    #c0c0c0 60%,
+    #e8e8e8 80%,
+    #d0d0d0 100%
+  );
+  min-height: 100vh;
+  color: #111;      /* Dark text for contrast */
+  font-family: Inter, sans-serif;
+}
+
+/* Optional: give your “card” sections a slight translucent white background */
+.section-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem; /* rounded-xl */
 }
