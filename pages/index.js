@@ -39,17 +39,17 @@ const techStack = [
 export default function Home() {
   return (
     <Layout title="Home">
-      {/* HERO */}
+      {/* Hero Section */}
       <motion.section
-        className="max-w-4xl mx-auto p-6 bg-white/80 backdrop-blur-sm rounded-xl my-8 text-center"
+        className="section-card max-w-4xl mx-auto p-6 my-8 text-center"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 12 }}
       >
-        <h1 className="text-4xl font-extrabold mb-4 text-gray-900">
+        <h1 className="text-4xl font-extrabold mb-4">
           Hey, I’m Sachin Yoganandham
         </h1>
-        <p className="text-lg text-gray-700 mb-6">
+        <p className="text-lg mb-6">
           Turning raw numbers into dynamic, interactive stories.
         </p>
         <div className="flex justify-center space-x-4">
@@ -68,36 +68,47 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* TECH STACK */}
-      <section className="py-12">
-        <h2 className="text-3xl font-semibold text-gray-900 text-center mb-8">
+      {/* Tech Stack Section */}
+      <motion.section
+        className="section-card max-w-5xl mx-auto p-6 my-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
+        }}
+      >
+        <h2 className="text-3xl font-semibold text-center mb-6">
           Experience &amp; Tech Stack
         </h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8">
           {techStack.map(({ name, Icon }) => (
             <motion.div
               key={name}
-              className="flex flex-col items-center bg-white/80 backdrop-blur-sm p-4 rounded-lg"
+              className="flex flex-col items-center p-4"
+              variants={{
+                hidden: { opacity: 0, scale: 0.8 },
+                visible: { opacity: 1, scale: 1 }
+              }}
               whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
             >
-              <Icon className="text-4xl text-gray-900 mb-2" />
-              <span className="text-sm text-gray-800">{name}</span>
+              <Icon className="text-4xl mb-2" />
+              <span className="text-sm">{name}</span>
             </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      {/* CONTACT */}
+      {/* Contact Section */}
       <motion.section
         id="contact"
-        className="max-w-4xl mx-auto p-6 bg-white/80 backdrop-blur-sm rounded-xl my-8 text-center"
+        className="section-card max-w-4xl mx-auto p-6 my-8 text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-semibold mb-4 text-gray-900">
+        <h2 className="text-3xl font-semibold mb-4">
           Let’s Connect
         </h2>
         <div className="flex justify-center space-x-6">
