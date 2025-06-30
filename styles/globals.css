@@ -4,29 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === GLOBAL INDIGO→VIOLET GRADIENT BACKGROUND === */
 @layer base {
-  html, body {
+  html,
+  body {
+    /* 00002: darker-top → lighter-bottom silver gradient */
     background: linear-gradient(
-      135deg,
-      #4f46e5 0%,    /* Indigo */
-      #9333ea 50%,   /* Violet */
-      #7c3aed 100%   /* Deep violet */
+      180deg,
+      #b3b3b3 0%,
+      #e7e7e7 100%
     );
     min-height: 100vh;
     margin: 0;
-    color: #f1f5f9; /* Light gray text */
+    color: #111;
     font-family: Inter, sans-serif;
   }
-}
 
-/* === FROSTED-GLASS “CARD” PANELS === */
-.section-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  margin: 2rem auto;
-  overflow: hidden;
+  /* Frosted-glass panels for all sections */
+  .section-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    overflow: hidden;
+  }
 }
