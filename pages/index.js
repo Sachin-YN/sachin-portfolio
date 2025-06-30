@@ -5,7 +5,7 @@ export default function Home() {
     <Layout title="Home">
       <h1 className="text-4xl font-bold mb-4">Welcome to Sachiny.me!</h1>
       <p className="mb-2">
-        Hi, I’m Sachin Yadav, a Data Analyst specializing in interactive dashboards and data storytelling.
+        Hi, I’m Sachin Yoganandham, a Data Analyst specializing in interactive dashboards and data storytelling.
       </p>
       <p>
         Check out my <a href="/projects" className="text-blue-600 hover:underline">Projects</a> below.
