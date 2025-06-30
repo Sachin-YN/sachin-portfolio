@@ -21,28 +21,36 @@ import {
 } from 'react-icons/si'
 
 const techStack = [
-  { name: 'JavaScript',  Icon: SiJavascript,  color: '#F7DF1E' },
-  { name: 'TypeScript',  Icon: SiTypescript,  color: '#3178C6' },
-  { name: 'React',       Icon: SiReact,       color: '#61DAFB' },
-  { name: 'Next.js',     Icon: SiNextdotjs,   color: '#000000' },
-  { name: 'HTML5',       Icon: SiHtml5,       color: '#E34F26' },
-  { name: 'CSS3',        Icon: SiCss3,        color: '#1572B6' },
-  { name: 'Tailwind CSS',Icon: SiTailwindcss, color: '#06B6D4' },
-  { name: 'Node.js',     Icon: SiNodedotjs,   color: '#339933' },
-  { name: 'Express',     Icon: SiExpress,     color: '#000000' },
-  { name: 'MongoDB',     Icon: SiMongodb,     color: '#47A248' },
-  { name: 'PostgreSQL',  Icon: SiPostgresql,  color: '#336791' },
-  { name: 'MySQL',       Icon: SiMysql,       color: '#4479A1' },
-  { name: 'Git',         Icon: SiGit,         color: '#F05032' },
-  { name: 'GitHub',      Icon: SiGithub,      color: '#181717' },
+  { name: 'JavaScript',   Icon: SiJavascript,   color: '#F7DF1E' },
+  { name: 'TypeScript',   Icon: SiTypescript,   color: '#3178C6' },
+  { name: 'React',        Icon: SiReact,        color: '#61DAFB' },
+  { name: 'Next.js',      Icon: SiNextdotjs,    color: '#000000' },
+  { name: 'HTML5',        Icon: SiHtml5,        color: '#E34F26' },
+  { name: 'CSS3',         Icon: SiCss3,         color: '#1572B6' },
+  { name: 'Tailwind CSS', Icon: SiTailwindcss,  color: '#06B6D4' },
+  { name: 'Node.js',      Icon: SiNodedotjs,    color: '#339933' },
+  { name: 'Express',      Icon: SiExpress,      color: '#000000' },
+  { name: 'MongoDB',      Icon: SiMongodb,      color: '#47A248' },
+  { name: 'PostgreSQL',   Icon: SiPostgresql,   color: '#336791' },
+  { name: 'MySQL',        Icon: SiMysql,        color: '#4479A1' },
+  { name: 'Git',          Icon: SiGit,          color: '#F05032' },
+  { name: 'GitHub',       Icon: SiGithub,       color: '#181717' },
 ]
 
 export default function Home() {
+  // State for carousel index
   const [index, setIndex] = useState(0)
-  const cycleIndex = (dir) => setIndex(prev => wrap(0, techStack.length, prev + dir))
 
-  // Destructure current tech for carousel
-  const { name, Icon, color } = techStack[index]
+  // Helper to cycle index, wrapping at ends
+  function cycleIndex(dir) {
+    setIndex(prev => wrap(0, techStack.length, prev + dir))
+  }
+
+  // Destructure the current tech object
+  const currentTech = techStack[index]
+  const IconComponent = currentTech.Icon
+  const iconColor = currentTech.color
+  const iconName = currentTech.name
 
   return (
     <Layout title="Home">
@@ -64,8 +72,8 @@ export default function Home() {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
           >
-            <Icon size={80} color={color} />
-            <span className="mt-2 text-white text-lg">{name}</span>
+            <IconComponent size={80} color={iconColor} />
+            <span className="mt-2 text-white text-lg">{iconName}</span>
           </motion.div>
         </AnimatePresence>
 
@@ -102,17 +110,17 @@ export default function Home() {
           My Tech Stack
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-5xl mx-auto px-4">
-          {techStack.map(({ name, Icon, color }, i) => (
+          {techStack.map((tech, i) => (
             <motion.div
-              key={name}
+              key={tech.name}
               className="flex flex-col items-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
             >
-              <Icon size={48} color={color} />
-              <span className="mt-2 text-white">{name}</span>
+              <tech.Icon size={48} color={tech.color} />
+              <span className="mt-2 text-white">{tech.name}</span>
             </motion.div>
           ))}
         </div>
