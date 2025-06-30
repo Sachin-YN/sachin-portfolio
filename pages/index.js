@@ -2,22 +2,38 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiMysql,
+  SiGit,
+  SiGithub,
+} from 'react-icons/si'
 
 const techStack = [
-  { name: 'JavaScript', icon: '/icons/js.svg' },
-  { name: 'TypeScript', icon: '/icons/ts.svg' },
-  { name: 'React', icon: '/icons/react.svg' },
-  { name: 'Next.js', icon: '/icons/nextjs.svg' },
-  { name: 'HTML5', icon: '/icons/html5.svg' },
-  { name: 'CSS3', icon: '/icons/css3.svg' },
-  { name: 'Tailwind CSS', icon: '/icons/tailwind.svg' },
-  { name: 'Node.js', icon: '/icons/nodejs.svg' },
-  { name: 'Express', icon: '/icons/express.svg' },
-  { name: 'MongoDB', icon: '/icons/mongodb.svg' },
-  { name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
-  { name: 'MySQL', icon: '/icons/mysql.svg' },
-  { name: 'Git', icon: '/icons/git.svg' },
-  { name: 'GitHub', icon: '/icons/github.svg' },
+  { name: 'JavaScript', Icon: SiJavascript,   color: '#F7DF1E' },
+  { name: 'TypeScript', Icon: SiTypescript,   color: '#3178C6' },
+  { name: 'React',      Icon: SiReact,        color: '#61DAFB' },
+  { name: 'Next.js',    Icon: SiNextdotjs,    color: '#000000' },
+  { name: 'HTML5',      Icon: SiHtml5,        color: '#E34F26' },
+  { name: 'CSS3',       Icon: SiCss3,         color: '#1572B6' },
+  { name: 'Tailwind',   Icon: SiTailwindcss,  color: '#06B6D4' },
+  { name: 'Node.js',    Icon: SiNodedotjs,    color: '#339933' },
+  { name: 'Express',    Icon: SiExpress,      color: '#000000' },
+  { name: 'MongoDB',    Icon: SiMongodb,      color: '#47A248' },
+  { name: 'PostgreSQL', Icon: SiPostgresql,   color: '#336791' },
+  { name: 'MySQL',      Icon: SiMysql,        color: '#4479A1' },
+  { name: 'Git',        Icon: SiGit,          color: '#F05032' },
+  { name: 'GitHub',     Icon: SiGithub,       color: '#181717' },
 ]
 
 export default function Home() {
@@ -58,7 +74,7 @@ export default function Home() {
           Experience &amp; Tech Stack
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-5xl mx-auto px-4">
-          {techStack.map(({ name, icon }, i) => (
+          {techStack.map(({ name, Icon, color }, i) => (
             <motion.div
               key={name}
               className="section-card flex flex-col items-center"
@@ -68,12 +84,7 @@ export default function Home() {
               transition={{ delay: i * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
               whileHover={{ scale: 1.05 }}
             >
-              {/* Plain <img> pointing at /public/icons/... */}
-              <img
-                src={icon}
-                alt={name}
-                className="w-12 h-12 mb-2"
-              />
+              <Icon size={48} color={color} className="mb-2" />
               <span className="text-gray-900">{name}</span>
             </motion.div>
           ))}
