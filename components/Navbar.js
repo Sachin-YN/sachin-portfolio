@@ -39,7 +39,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="https://linkedin.com/in/ing-sachin-yoganandham"
+                href="linkedin.com/in/ing-sachin-yoganandham-a06b88117"
                 target="_blank"
                 rel="noreferrer"
                 className="text-[#00ffff] hover:opacity-80 transition-opacity text-2xl"
