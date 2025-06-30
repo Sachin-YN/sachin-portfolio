@@ -1,32 +1,12 @@
-/* styles/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html,
-  body {
-    /* 00002: darker-top → lighter-bottom silver gradient */
-    background: linear-gradient(
-      180deg,
-      #b3b3b3 0%,
-      #e7e7e7 100%
-    );
-    min-height: 100vh;
-    margin: 0;
-    color: #111;
-    font-family: Inter, sans-serif;
-  }
-
-  /* Frosted-glass panels for all sections */
-  .section-card {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    margin: 2rem auto;
-    overflow: hidden;
-  }
+/* make sure backdrop-blur is enabled in tailwind.config.js */
+html, body {
+  background: #0a0f1c;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Inter, sans-serif;
 }
