@@ -1,7 +1,7 @@
 // pages/index.js
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import Layout from '../components/Layout'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 import {
   SiJavascript,
   SiTypescript,
@@ -19,133 +19,85 @@ import {
   SiGithub,
 } from 'react-icons/si'
 
+// Tech stack for grid
 const techStack = [
-  { name: 'JavaScript',    Icon: SiJavascript,   color: '#F7DF1E' },
-  { name: 'TypeScript',    Icon: SiTypescript,   color: '#3178C6' },
-  { name: 'React',         Icon: SiReact,        color: '#61DAFB' },
-  { name: 'Next.js',       Icon: SiNextdotjs,    color: '#000000' },
-  { name: 'HTML5',         Icon: SiHtml5,        color: '#E34F26' },
-  { name: 'CSS3',          Icon: SiCss3,         color: '#1572B6' },
-  { name: 'Tailwind CSS',  Icon: SiTailwindcss,  color: '#06B6D4' },
-  { name: 'Node.js',       Icon: SiNodedotjs,    color: '#339933' },
-  { name: 'Express',       Icon: SiExpress,      color: '#000000' },
-  { name: 'MongoDB',       Icon: SiMongodb,      color: '#47A248' },
-  { name: 'PostgreSQL',    Icon: SiPostgresql,   color: '#336791' },
-  { name: 'MySQL',         Icon: SiMysql,        color: '#4479A1' },
-  { name: 'Git',           Icon: SiGit,          color: '#F05032' },
-  { name: 'GitHub',        Icon: SiGithub,       color: '#181717' },
+  { name: 'JavaScript',    Icon: SiJavascript },
+  { name: 'TypeScript',    Icon: SiTypescript },
+  { name: 'React',         Icon: SiReact },
+  { name: 'Next.js',       Icon: SiNextdotjs },
+  { name: 'HTML5',         Icon: SiHtml5 },
+  { name: 'CSS3',          Icon: SiCss3 },
+  { name: 'Tailwind CSS',  Icon: SiTailwindcss },
+  { name: 'Node.js',       Icon: SiNodedotjs },
+  { name: 'Express',       Icon: SiExpress },
+  { name: 'MongoDB',       Icon: SiMongodb },
+  { name: 'PostgreSQL',    Icon: SiPostgresql },
+  { name: 'MySQL',         Icon: SiMysql },
+  { name: 'Git',           Icon: SiGit },
+  { name: 'GitHub',        Icon: SiGithub },
 ]
 
 export default function Home() {
-  const [index, setIndex] = useState(0)
-
-  // cycle index within bounds [0, techStack.length)
-  function cycleIndex(dir) {
-    setIndex(prev => {
-      const next = prev + dir
-      if (next < 0) return techStack.length - 1
-      if (next >= techStack.length) return 0
-      return next
-    })
-  }
-
-  // current tech for carousel
-  const { Icon: CurrentIcon, color: currentColor, name: currentName } = techStack[index]
-
   return (
     <Layout title="Home">
-      {/* 1. Carousel */}
-      <section className="h-64 flex items-center justify-center relative">
-        <button
-          onClick={() => cycleIndex(-1)}
-          className="absolute left-4 text-3xl text-white"
-        >
-          ‹
-        </button>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            className="flex flex-col items-center"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-          >
-            <CurrentIcon size={80} color={currentColor} />
-            <span className="mt-2 text-white text-lg">{currentName}</span>
-          </motion.div>
-        </AnimatePresence>
-
-        <button
-          onClick={() => cycleIndex(1)}
-          className="absolute right-4 text-3xl text-white"
-        >
-          ›
-        </button>
-      </section>
-
-      {/* 2. Curtain-Reveal Hero */}
+      {/* HERO */}
       <motion.section
-        className="min-h-screen flex items-center justify-center"
-        initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
-        whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
+        className="bg-gradient-to-br from-teal-400 to-blue-600 text-white py-20 px-6 md:px-12 rounded-xl section-card max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        <h1 className="text-6xl font-bold text-white text-center">
-          Sachin Yoganandham - Data Analyst
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          I’m Sachin Yoganandham
         </h1>
+        <p className="text-lg md:text-xl leading-relaxed">
+          A <strong>Data-Driven Business Analyst</strong> who leverages ERP/CRM systems, cloud-scale data platforms, and automated reporting to optimize workflows and inform C-suite strategy.  
+          Explore my work on enterprise dashboards, master-data audits, and predictive analytics that power better sourcing outcomes across regions.
+        </p>
       </motion.section>
 
-      {/* 3. Curtain-Reveal Tech Grid */}
+      {/* TECH STACK */}
       <motion.section
-        className="py-16"
-        initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
-        whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+        className="mt-16 max-w-5xl mx-auto px-6 md:px-12"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
       >
-        <h2 className="text-3xl font-semibold text-center text-white mb-8">
+        <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
           My Tech Stack
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-5xl mx-auto px-4">
-          {techStack.map((tech, i) => (
-            <motion.div
-              key={tech.name}
-              className="flex flex-col items-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
+          {techStack.map(({ name, Icon }) => (
+            <div
+              key={name}
+              className="flex flex-col items-center bg-white/80 backdrop-blur-sm p-4 rounded-lg hover:shadow-lg transition-shadow"
             >
-              <tech.Icon size={48} color={tech.color} />
-              <span className="mt-2 text-white">{tech.name}</span>
-            </motion.div>
+              <Icon size={36} className="text-teal-600 mb-2" />
+              <span className="text-gray-800 font-medium">{name}</span>
+            </div>
           ))}
         </div>
       </motion.section>
 
-      {/* 4. Curtain-Reveal Contact */}
+      {/* CONTACT */}
       <motion.section
         id="contact"
-        className="min-h-screen flex items-center justify-center"
-        initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
-        whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+        className="mt-16 mb-20 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
       >
-        <div className="text-center">
-          <h2 className="text-4xl font-semibold text-white mb-4">
-            Let’s Connect
-          </h2>
-          <a
-            href="mailto:you@sachiny.me"
-            className="px-6 py-3 bg-white/30 text-white rounded-md hover:bg-white/50 transition"
-          >
-            Email Me
-          </a>
-        </div>
+        <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+          Let’s Talk Data
+        </h2>
+        <Link
+          href="mailto:you@sachiny.me"
+          className="inline-block px-8 py-3 bg-teal-600 text-white font-semibold rounded-md shadow hover:bg-teal-700 transition"
+        >
+          Email Me
+        </Link>
       </motion.section>
     </Layout>
   )
