@@ -64,7 +64,7 @@ export default function Home() {
           onClick={() => {
             document.getElementById('tech').scrollIntoView({ behavior: 'smooth' })
           }}
-          className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -73,7 +73,10 @@ export default function Home() {
       </div>
 
       {/* TECH STACK GRID */}
-      <section id="tech" className="py-16 bg-white/10 backdrop-blur-md">
+      <section
+        id="tech"
+        className="py-16 bg-white/10 backdrop-blur-md"
+      >
         <h2 className="text-3xl text-center text-white font-semibold mb-8">My Tech Stack</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-6xl mx-auto px-4">
           {techStack.map(({ name, Icon, color }) => (
@@ -86,6 +89,26 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* ACHIEVEMENTS */}
+      <motion.section
+        id="achievements"
+        className="py-16 max-w-4xl mx-auto px-6 md:px-0 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <h2 className="text-3xl font-semibold text-white mb-6">Achievements</h2>
+        <a
+          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block px-6 py-3 bg-green-500 text-white font-medium rounded-md shadow hover:bg-green-600 transition"
+        >
+          Google Data Analytics Professional Certificate
+        </a>
+      </motion.section>
 
       {/* CONTACT CTA */}
       <section className="py-16 text-center">
