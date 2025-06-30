@@ -10,7 +10,7 @@ import {
   SiHtml5,
   SiCss3,
   SiTailwindcss,
-  SiNodeDotJs,
+  SiNodeDotjs,
   SiExpress,
   SiMongodb,
   SiPostgresql,
