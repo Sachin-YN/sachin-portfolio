@@ -1,82 +1,87 @@
 // pages/index.js
 import Layout from '../components/Layout'
 import Link from 'next/link'
-import {
-  FaDatabase,
-  FaChartBar,
-  FaPaintBrush
+import { 
+  FaDatabase, 
+  FaChartBar, 
+  FaPaintBrush 
 } from 'react-icons/fa'
 
 export default function Home() {
   return (
     <Layout title="Home">
-      {/* Hero */}
-      <section className="text-center py-12">
-        <h1 className="text-5xl font-extrabold mb-4 text-neon-blue">
+      {/* HERO */}
+      <section className="max-w-4xl mx-auto p-6 bg-navy/80 backdrop-blur-sm rounded-xl my-8">
+        <h1 className="text-4xl font-extrabold mb-4 text-electric-blue">
           Welcome to Sachiny.me!
         </h1>
-        <p className="mb-6">
+        <p className="mb-6 text-white">
           I’m Sachin Yadav, a Data Analyst who turns raw numbers into interactive stories.
         </p>
-        <div className="flex justify-center space-x-4">
+        <div className="flex space-x-4">
           <Link
             href="/projects"
-            className="px-6 py-3 bg-neon-blue text-black font-semibold rounded hover:bg-neon-blue-dark"
+            className="px-5 py-2 bg-electric-blue text-black rounded hover:bg-electric-blue/80"
           >
             Projects
           </Link>
           <Link
             href="#contact"
-            className="px-6 py-3 bg-neon-blue-light text-black font-semibold rounded hover:bg-neon-blue"
+            className="px-5 py-2 bg-electric-blue/50 text-white rounded hover:bg-electric-blue/70"
           >
             Contact Me
           </Link>
         </div>
       </section>
 
-      {/* Skills & Data Stack */}
-      <section className="py-8 px-4 max-w-3xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-4 text-neon-blue">
+      {/* SKILLS & DATA STACK */}
+      <section className="max-w-4xl mx-auto p-6 bg-navy/80 backdrop-blur-sm rounded-xl my-8">
+        <h2 className="text-3xl font-semibold mb-4 text-electric-blue">
           Skills & Data Stack
         </h2>
         <ul className="list-none space-y-4">
           <li className="flex items-start space-x-3">
-            <FaDatabase className="mt-1 text-neon-blue" />
-            <div>
-              <strong>Programming & Analysis:</strong>{' '}
-              SQL (MySQL, PostgreSQL), Python (BeautifulSoup, Pandas, NumPy), R (Basic), Excel (PivotTables, VLOOKUP, Conditional Formatting)
+            <FaDatabase className="mt-1 text-electric-blue" />
+            <div className="text-white">
+              <strong>Programming &amp; Analysis:</strong> SQL (MySQL, PostgreSQL), Python
+              (BeautifulSoup, Pandas, NumPy), R (Basic), Excel (PivotTables, VLOOKUP,
+              Conditional Formatting)
             </div>
           </li>
           <li className="flex items-start space-x-3">
-            <FaChartBar className="mt-1 text-neon-blue" />
-            <div>
+            <FaChartBar className="mt-1 text-electric-blue" />
+            <div className="text-white">
               <strong>Data Visualization:</strong> Tableau, Power BI, Matplotlib, Seaborn
             </div>
           </li>
           <li className="flex items-start space-x-3">
-            <FaPaintBrush className="mt-1 text-neon-blue" />
-            <div>
-              <strong>Design & Productivity:</strong> Figma, Adobe Illustrator, Photoshop, Notion, Asana
+            <FaPaintBrush className="mt-1 text-electric-blue" />
+            <div className="text-white">
+              <strong>Design &amp; Productivity:</strong> Figma, Adobe Illustrator,
+              Photoshop, Notion, Asana
             </div>
           </li>
         </ul>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-8 text-center">
-        <h2 className="text-3xl font-semibold mb-4 text-neon-blue">
+      {/* CONTACT */}
+      <section
+        id="contact"
+        className="max-w-4xl mx-auto p-6 bg-navy/80 backdrop-blur-sm rounded-xl my-8 text-center"
+      >
+        <h2 className="text-3xl font-semibold mb-4 text-electric-blue">
           Get in Touch
         </h2>
         <div className="flex justify-center space-x-6">
           <a
             href="mailto:you@sachiny.me"
-            className="px-6 py-3 bg-neon-blue-light text-black font-semibold rounded hover:bg-neon-blue"
+            className="px-6 py-2 bg-electric-blue text-black rounded hover:bg-electric-blue/80"
           >
             Email Me
           </a>
           <a
             href="https://linkedin.com/in/ing-sachin-yoganandham"
-            className="text-neon-blue hover:underline"
+            className="text-electric-blue hover:underline"
             target="_blank"
             rel="noreferrer"
           >
@@ -84,7 +89,7 @@ export default function Home() {
           </a>
           <a
             href="https://github.com/Sachin-YN"
-            className="text-neon-blue hover:underline"
+            className="text-electric-blue hover:underline"
             target="_blank"
             rel="noreferrer"
           >
@@ -93,5 +98,5 @@ export default function Home() {
         </div>
       </section>
     </Layout>
-)
+  )
 }
