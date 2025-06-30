@@ -4,10 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'neon-blue-light': '#66fcf1',
-        'neon-blue':       '#00ffff',
-        'neon-blue-dark':  '#00b7eb',
+        'navy': '#0a1f44',
+        'electric-blue': '#00b7eb',
+        'sky-blue': '#66d9ef',
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      }
     },
   },
   plugins: [],
