@@ -1,3 +1,4 @@
+// components/Layout.js
 import Head from 'next/head'
 import Navbar from './Navbar'
 
@@ -10,7 +11,8 @@ export default function Layout({ children, title = 'Sachin Yadav' }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className="container mx-auto p-4">{children}</main>
+      {/* pt-20 gives enough space for the fixed navbar */}
+      <main className="pt-20">{children}</main>
     </>
   )
 }
