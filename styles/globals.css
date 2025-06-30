@@ -6,5 +6,5 @@
 
 /* full-page gradient + white text */
 html, body {
-  @apply bg-gradient-to-br from-neon-pink via-neon-blue to-neon-green min-h-screen text-white;
+  @apply bg-gradient-to-br from-neon-blue-light via-neon-blue to-neon-blue-dark min-h-screen text-white;
 }
