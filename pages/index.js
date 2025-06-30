@@ -41,9 +41,12 @@ export default function Home() {
   const [index, setIndex] = useState(0)
   const cycleIndex = (dir) => setIndex(prev => wrap(0, techStack.length, prev + dir))
 
+  // Destructure current tech for carousel
+  const { name, Icon, color } = techStack[index]
+
   return (
     <Layout title="Home">
-      {/* 1. Auto-Cycling / Manual Tech Carousel */}
+      {/* 1. Carousel */}
       <section className="h-64 flex items-center justify-center relative">
         <button
           onClick={() => cycleIndex(-1)}
@@ -61,8 +64,8 @@ export default function Home() {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
           >
-            <techStack[index].Icon size={80} color={techStack[index].color} />
-            <span className="mt-2 text-white text-lg">{techStack[index].name}</span>
+            <Icon size={80} color={color} />
+            <span className="mt-2 text-white text-lg">{name}</span>
           </motion.div>
         </AnimatePresence>
 
@@ -76,7 +79,7 @@ export default function Home() {
 
       {/* 2. Curtain-Reveal Hero */}
       <motion.section
-        className="min-h-screen flex items-center justify-center bg-transparent"
+        className="min-h-screen flex items-center justify-center"
         initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
         whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
         viewport={{ once: true }}
@@ -89,7 +92,7 @@ export default function Home() {
 
       {/* 3. Curtain-Reveal Tech Grid */}
       <motion.section
-        className="py-16 bg-transparent"
+        className="py-16"
         initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
         whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
         viewport={{ once: true }}
@@ -118,7 +121,7 @@ export default function Home() {
       {/* 4. Curtain-Reveal Contact */}
       <motion.section
         id="contact"
-        className="min-h-screen flex items-center justify-center bg-transparent"
+        className="min-h-screen flex items-center justify-center"
         initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
         whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
         viewport={{ once: true }}
