@@ -1,16 +1,24 @@
 // pages/index.js
-import { useCallback, useRef } from 'react'
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
-import Particles from 'react-tsparticles'
-import { loadFull } from 'tsparticles'
 import Typewriter from 'typewriter-effect'
 import Tilt from 'react-parallax-tilt'
 import Link from 'next/link'
 import {
-  SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiHtml5,
-  SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMongodb,
-  SiPostgresql, SiMysql, SiGit, SiGithub,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiMysql,
+  SiGit,
+  SiGithub,
 } from 'react-icons/si'
 
 // Tech stack cards
@@ -32,50 +40,17 @@ const techStack = [
 ]
 
 export default function Home() {
-  // particles init
-  const particlesInit = useCallback(async engine => {
-    await loadFull(engine)
-  }, [])
-
-  // scroll to tech section
-  const techRef = useRef(null)
-  const scrollToTech = () => techRef.current?.scrollIntoView({ behavior: 'smooth' })
-
   return (
     <Layout title="Home">
-      {/* PARTICLES BACKGROUND */}
-      <Particles
-        className="absolute inset-0 -z-10"
-        init={particlesInit}
-        options={{
-          background: { color: { value: '#0a0f1c' } },
-          fpsLimit: 60,
-          interactivity: {
-            events: {
-              onClick: { enable: true, mode: 'push' },
-              onHover: { enable: true, mode: 'repulse' },
-            },
-            modes: {
-              push: { quantity: 4 },
-              repulse: { distance: 100 },
-            }
-          },
-          particles: {
-            color: { value: '#61DAFB' },
-            links: { color: '#61DAFB', enable: true, distance: 150 },
-            move: { enable: true, speed: 1, outModes: 'bounce' },
-            number: { density: { enable: true, area: 800 }, value: 60 },
-            size: { value: { min: 1, max: 4 } },
-          }
-        }}
-      />
-
       {/* HERO WITH TYPEWRITER */}
       <div className="h-screen flex flex-col justify-center items-center text-center px-4">
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
           <Typewriter
             options={{
-              strings: ["I’m Sachin Yoganandham", "Data-Driven Business Analyst"],
+              strings: [
+                "I’m Sachin Yoganandham",
+                "Data-Driven Business Analyst"
+              ],
               autoStart: true,
               loop: true,
               pauseFor: 2000,
@@ -86,7 +61,9 @@ export default function Home() {
           Leveraging ERP/CRM systems, cloud-data platforms & automated reporting to optimize workflows, inform C-suite strategy, and power better sourcing outcomes.
         </p>
         <motion.button
-          onClick={scrollToTech}
+          onClick={() => {
+            document.getElementById('tech').scrollIntoView({ behavior: 'smooth' })
+          }}
           className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -96,7 +73,7 @@ export default function Home() {
       </div>
 
       {/* TECH STACK GRID */}
-      <section ref={techRef} className="py-16 bg-white/10 backdrop-blur-sm">
+      <section id="tech" className="py-16 bg-white/10 backdrop-blur-md">
         <h2 className="text-3xl text-center text-white font-semibold mb-8">My Tech Stack</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-6xl mx-auto px-4">
           {techStack.map(({ name, Icon, color }) => (
