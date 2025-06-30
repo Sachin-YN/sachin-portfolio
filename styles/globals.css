@@ -1,9 +1,15 @@
-/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Deep navy gradient to black, white text */
-html, body {
-  @apply bg-gradient-to-br from-navy to-black text-white font-sans;
+/* Wrap your custom @apply inside @layer base so Tailwind generates those classes */
+@layer base {
+  html,
+  body {
+    /* full-screen gradient from sky-blue ➔ electric-blue ➔ navy */
+    @apply bg-gradient-to-br from-sky-blue via-electric-blue to-navy
+           min-h-screen
+           text-white
+           font-sans;
+  }
 }
