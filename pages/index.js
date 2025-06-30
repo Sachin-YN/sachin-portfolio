@@ -94,7 +94,7 @@ export default function Home() {
         transition={{ duration: 1 }}
       >
         <h1 className="text-6xl font-bold text-white text-center">
-          Sachin Yoganandham
+          Sachin Yoganandham - Data Analyst
         </h1>
       </motion.section>
 
