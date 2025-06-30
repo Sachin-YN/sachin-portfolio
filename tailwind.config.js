@@ -3,14 +3,11 @@ module.exports = {
   content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
   theme: {
     extend: {
-      colors: {
-        'neon-silver-light': '#F0F0F0',
-        'neon-silver':       '#D0D0D0',
-        'neon-silver-dark':  '#A8A8A8',
-        'neon-silver-glow':  '#FFFFFF',
-      },
-      boxShadow: {
-        'neon-silver': '0 0 8px rgba(255,255,255,0.7), 0 0 16px rgba(255,255,255,0.5)',
+      backdropBlur: {
+        xs: '2px',
+        sm: '4px',
+        md: '8px',
+        DEFAULT: '12px',
       },
     },
   },
