@@ -2,7 +2,6 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const techStack = [
   { name: 'JavaScript', icon: '/icons/js.svg' },
@@ -24,7 +23,7 @@ const techStack = [
 export default function Home() {
   return (
     <Layout title="Home">
-      {/* Hero */}
+      {/* Hero Section */}
       <motion.section
         className="section-card text-center max-w-3xl mx-auto"
         initial={{ y: -40, opacity: 0 }}
@@ -58,7 +57,7 @@ export default function Home() {
         <h2 className="text-3xl font-semibold text-center text-gray-900 mb-8">
           Experience &amp; Tech Stack
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-5xl mx-auto px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-5xl mx-auto px-4">
           {techStack.map(({ name, icon }, i) => (
             <motion.div
               key={name}
@@ -69,15 +68,12 @@ export default function Home() {
               transition={{ delay: i * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="relative w-12 h-12 mb-2">
-                <Image
-                  src={icon}
-                  alt={name}
-                  layout="fill"
-                  objectFit="contain"
-                  priority={true}
-                />
-              </div>
+              {/* Plain <img> pointing at /public/icons/... */}
+              <img
+                src={icon}
+                alt={name}
+                className="w-12 h-12 mb-2"
+              />
               <span className="text-gray-900">{name}</span>
             </motion.div>
           ))}
@@ -103,22 +99,22 @@ export default function Home() {
           >
             Email Me
           </a>
-          <Link
+          <a
             href="https://linkedin.com/in/ing-sachin-yoganandham"
             className="px-6 py-2 border border-gray-900 text-gray-900 rounded-md hover:bg-gray-100 transition"
             target="_blank"
             rel="noreferrer"
           >
             LinkedIn
-          </Link>
-          <Link
+          </a>
+          <a
             href="https://github.com/Sachin-YN"
             className="px-6 py-2 border border-gray-900 text-gray-900 rounded-md hover:bg-gray-100 transition"
             target="_blank"
             rel="noreferrer"
           >
             GitHub
-          </Link>
+          </a>
         </div>
       </motion.section>
     </Layout>
