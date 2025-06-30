@@ -1,18 +1,18 @@
 // pages/index.js
 import Layout from '../components/Layout'
 import Link from 'next/link'
-import { 
-  FaDatabase,     // for Programming & Analysis
-  FaChartBar,     // for Data Visualization
-  FaPaintBrush    // for Design & Productivity
+import {
+  FaDatabase,
+  FaChartBar,
+  FaPaintBrush
 } from 'react-icons/fa'
 
 export default function Home() {
   return (
     <Layout title="Home">
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="text-center py-12">
-        <h1 className="text-5xl font-extrabold mb-4 text-neon-pink">
+        <h1 className="text-5xl font-extrabold mb-4 text-neon-blue">
           Welcome to Sachiny.me!
         </h1>
         <p className="mb-6">
@@ -21,58 +21,56 @@ export default function Home() {
         <div className="flex justify-center space-x-4">
           <Link
             href="/projects"
-            className="px-6 py-3 bg-neon-blue text-black font-semibold rounded hover:bg-neon-blue/80"
+            className="px-6 py-3 bg-neon-blue text-black font-semibold rounded hover:bg-neon-blue-dark"
           >
             Projects
           </Link>
           <Link
             href="#contact"
-            className="px-6 py-3 bg-neon-green text-black font-semibold rounded hover:bg-neon-green/80"
+            className="px-6 py-3 bg-neon-blue-light text-black font-semibold rounded hover:bg-neon-blue"
           >
             Contact Me
           </Link>
         </div>
       </section>
 
-      {/* Skills & Data Stack (with icons) */}
+      {/* Skills & Data Stack */}
       <section className="py-8 px-4 max-w-3xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-4 text-neon-green">
+        <h2 className="text-3xl font-semibold mb-4 text-neon-blue">
           Skills & Data Stack
         </h2>
-        <ul className="space-y-4">
+        <ul className="list-none space-y-4">
           <li className="flex items-start space-x-3">
-            <FaDatabase className="mt-1 text-neon-pink w-6 h-6 flex-shrink-0" />
+            <FaDatabase className="mt-1 text-neon-blue" />
             <div>
-              <strong>Programming &amp; Analysis:</strong>{' '}
+              <strong>Programming & Analysis:</strong>{' '}
               SQL (MySQL, PostgreSQL), Python (BeautifulSoup, Pandas, NumPy), R (Basic), Excel (PivotTables, VLOOKUP, Conditional Formatting)
             </div>
           </li>
           <li className="flex items-start space-x-3">
-            <FaChartBar className="mt-1 text-neon-pink w-6 h-6 flex-shrink-0" />
+            <FaChartBar className="mt-1 text-neon-blue" />
             <div>
-              <strong>Data Visualization:</strong>{' '}
-              Tableau, Power BI, Matplotlib, Seaborn
+              <strong>Data Visualization:</strong> Tableau, Power BI, Matplotlib, Seaborn
             </div>
           </li>
           <li className="flex items-start space-x-3">
-            <FaPaintBrush className="mt-1 text-neon-pink w-6 h-6 flex-shrink-0" />
+            <FaPaintBrush className="mt-1 text-neon-blue" />
             <div>
-              <strong>Design &amp; Productivity:</strong>{' '}
-              Figma, Adobe Illustrator, Photoshop, Notion, Asana
+              <strong>Design & Productivity:</strong> Figma, Adobe Illustrator, Photoshop, Notion, Asana
             </div>
           </li>
         </ul>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact */}
       <section id="contact" className="py-8 text-center">
-        <h2 className="text-3xl font-semibold mb-4 text-neon-orange">
+        <h2 className="text-3xl font-semibold mb-4 text-neon-blue">
           Get in Touch
         </h2>
         <div className="flex justify-center space-x-6">
           <a
             href="mailto:you@sachiny.me"
-            className="px-6 py-3 bg-neon-pink text-black font-semibold rounded hover:bg-neon-pink/80"
+            className="px-6 py-3 bg-neon-blue-light text-black font-semibold rounded hover:bg-neon-blue"
           >
             Email Me
           </a>
@@ -95,5 +93,5 @@ export default function Home() {
         </div>
       </section>
     </Layout>
-  )
+)
 }
