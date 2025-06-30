@@ -2,14 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Wrap your custom @apply inside @layer base so Tailwind generates those classes */
 @layer base {
   html,
   body {
-    /* full-screen gradient from sky-blue ➔ electric-blue ➔ navy */
-    @apply bg-gradient-to-br from-sky-blue via-electric-blue to-navy
+    /* full-page silver gradient + dark text */
+    @apply bg-gradient-to-br
+           from-silver-light
+           via-silver
+           to-silver-dark
            min-h-screen
-           text-white
+           text-gray-900
            font-sans;
   }
 }
