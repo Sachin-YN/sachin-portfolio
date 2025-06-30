@@ -4,13 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'silver-light': '#f5f5f5',
-        'silver':       '#c0c0c0',
-        'silver-dark':  '#808080',
+        // Silver-neon palette
+        'neon-silver-light': '#F0F0F0',
+        'neon-silver':       '#D0D0D0',
+        'neon-silver-dark':  '#A8A8A8',
+        'neon-silver-glow':  '#FFFFFF',  // for text/icon glow accents
       },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
+      boxShadow: {
+        // subtle glow effect
+        'neon-silver': '0 0 8px rgba(255,255,255,0.7), 0 0 16px rgba(255,255,255,0.5)',
+      }
     },
   },
   plugins: [],
