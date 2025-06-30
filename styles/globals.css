@@ -4,54 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global silver gradient */
+/* === GLOBAL INDIGO→VIOLET GRADIENT BACKGROUND === */
 @layer base {
-  html,
-  body {
+  html, body {
     background: linear-gradient(
-      180deg,
-      #b3b3b3 0%,
-      #e7e7e7 100%
+      135deg,
+      #4f46e5 0%,    /* Indigo */
+      #9333ea 50%,   /* Violet */
+      #7c3aed 100%   /* Deep violet */
     );
     min-height: 100vh;
     margin: 0;
-    color: #111;
+    color: #f1f5f9; /* Light gray text */
     font-family: Inter, sans-serif;
   }
 }
 
-/* Frosted-glass panels with rainbow gradient border */
+/* === FROSTED-GLASS “CARD” PANELS === */
 .section-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   border-radius: 0.75rem;
   padding: 1.5rem;
   margin: 2rem auto;
   overflow: hidden;
 }
-.section-card::before {
-  content: '';
-  position: absolute;
-  top: -2px; left: -2px; right: -2px; bottom: -2px;
-  z-index: -1;
-  border-radius: inherit;
-  background: linear-gradient(
-    45deg,
-    #f7df1e, /* JS yellow */
-    #61dafb, /* React cyan */
-    #306998, /* Python blue */
-    #f7df1e  /* repeat to smooth cycle */
-  );
-  mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: destination-out;
-}
-
-/* Alternating tints */
-.section-card--js { background: rgba(247,223,30,0.1); }      /* JS yellow tint */
-.section-card--react { background: rgba(97,218,251,0.1); }   /* React cyan tint */
-.section-card--py { background: rgba(54,114,164,0.1); }      /* Python blue tint */
-/* Add more if you want per-section colors */
