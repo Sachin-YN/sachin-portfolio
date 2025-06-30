@@ -4,23 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 00002-style silver gradient: dark → light */
-html,
-body {
-  background: linear-gradient(
-    180deg,
-    #b3b3b3 0%,  /* darker silver at top */
-    #e7e7e7 100% /* lighter silver at bottom */
-  );
-  min-height: 100vh;
-  color: #111;               /* dark text for contrast */
-  font-family: Inter, sans-serif;
-}
-
-/* Frosted-glass “card” panels to lift content off the gradient */
-.section-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-radius: 0.75rem; /* rounded-xl */
+/* Now wrap in a base layer so Tailwind actually generates these classes */
+@layer base {
+  html, body {
+    background: linear-gradient(
+      180deg,
+      #b3b3b3 0%,   /* 00002 top color */
+      #e7e7e7 100%  /* 00002 bottom color */
+    );
+    min-height: 100vh;    /* allows content to push beyond viewport and scroll */
+    color: #111;          /* dark text */
+    font-family: Inter, sans-serif;
+    margin: 0;            /* remove any default margin that could hide scroll */
+  }
 }
