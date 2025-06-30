@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full bg-black/50 backdrop-blur-md z-50">
       <ul className="container mx-auto flex justify-between items-center py-4 px-6">
-        {/* Left: site nav */}
+        {/* Site nav */}
         <div className="flex space-x-6">
           <Link href="/" className="text-neon-blue hover:underline">
             Home
@@ -17,8 +17,7 @@ export default function Navbar() {
             Contact
           </Link>
         </div>
-
-        {/* Right: social */}
+        {/* Social */}
         <div className="flex space-x-4">
           <a
             href="https://linkedin.com/in/ing-sachin-yoganandham"
