@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-// Use your full-color SVG logos in public/icons/
+// Full-color SVG logos in public/icons/
 const techStack = [
   { name: 'JavaScript', icon: '/icons/js.svg' },
   { name: 'TypeScript', icon: '/icons/ts.svg' },
@@ -24,9 +24,9 @@ const techStack = [
 export default function Home() {
   return (
     <Layout title="Home">
-      {/* HERO */}
+      {/* Hero Section */}
       <motion.section
-        className="section-card text-center max-w-3xl"
+        className="section-card text-center max-w-3xl mx-auto"
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 14 }}
@@ -34,7 +34,7 @@ export default function Home() {
         <h1 className="text-5xl font-extrabold mb-4 text-[#FF6B6B]">
           Hey, I’m Sachin Yoganandham
         </h1>
-        <p className="text-lg mb-6">
+        <p className="text-lg mb-6 text-gray-100">
           Turning raw numbers into dynamic, interactive stories.
         </p>
         <div className="flex justify-center space-x-4">
@@ -53,7 +53,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* TECH STACK */}
+      {/* Tech Stack */}
       <section className="py-12">
         <h2 className="text-3xl font-semibold text-center text-white mb-8">
           Experience &amp; Tech Stack
@@ -76,10 +76,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* Contact Section */}
       <motion.section
         id="contact"
-        className="section-card text-center max-w-3xl"
+        className="section-card text-center max-w-3xl mx-auto"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
