@@ -4,10 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'neon-blue': '#00ffff',
-        'neon-pink': '#ff00ff',
-        'neon-green': '#39ff14',
-        'neon-orange': '#ff4500',
+        'neon-blue-light': '#66fcf1',
+        'neon-blue':       '#00ffff',
+        'neon-blue-dark':  '#00b7eb',
       },
     },
   },
