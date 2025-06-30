@@ -1,102 +1,106 @@
 // pages/index.js
 import Layout from '../components/Layout'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { 
-  FaDatabase, 
-  FaChartBar, 
-  FaPaintBrush 
-} from 'react-icons/fa'
+
+// List out your tech-stack icons here
+const techStack = [
+  { name: 'JavaScript', src: '/icons/js.svg' },
+  { name: 'TypeScript', src: '/icons/ts.svg' },
+  { name: 'React', src: '/icons/react.svg' },
+  { name: 'Next.js', src: '/icons/nextjs.svg' },
+  { name: 'HTML5', src: '/icons/html5.svg' },
+  { name: 'CSS3', src: '/icons/css3.svg' },
+  { name: 'Tailwind', src: '/icons/tailwind.svg' },
+  { name: 'Node.js', src: '/icons/nodejs.svg' },
+  { name: 'Express', src: '/icons/express.svg' },
+  { name: 'MongoDB', src: '/icons/mongodb.svg' },
+  { name: 'PostgreSQL', src: '/icons/postgresql.svg' },
+  { name: 'MySQL', src: '/icons/mysql.svg' },
+  { name: 'Git', src: '/icons/git.svg' },
+  { name: 'GitHub', src: '/icons/github.svg' },
+  // add more as needed…
+]
 
 export default function Home() {
   return (
     <Layout title="Home">
       {/* HERO */}
-      <section className="max-w-4xl mx-auto p-6 bg-navy/80 backdrop-blur-sm rounded-xl my-8">
-        <h1 className="text-4xl font-extrabold mb-4 text-electric-blue">
-          Welcome to Sachiny.me!
+      <motion.section
+        className="text-center py-20"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 12 }}
+      >
+        <h1 className="text-5xl font-extrabold text-electric-blue">
+          Hey, I’m Sachin Yoganandham
         </h1>
-        <p className="mb-6 text-white">
-          I’m Sachin Yadav, a Data Analyst who turns raw numbers into interactive stories.
+        <p className="mt-4 text-lg text-white">
+          Turning raw numbers into dynamic, interactive stories.
         </p>
-        <div className="flex space-x-4">
-          <Link
-            href="/projects"
-            className="px-5 py-2 bg-electric-blue text-black rounded hover:bg-electric-blue/80"
-          >
-            Projects
-          </Link>
-          <Link
-            href="#contact"
-            className="px-5 py-2 bg-electric-blue/50 text-white rounded hover:bg-electric-blue/70"
-          >
-            Contact Me
-          </Link>
+      </motion.section>
+
+      {/* TECH STACK */}
+      <section className="py-12">
+        <h2 className="text-3xl font-semibold text-electric-blue text-center mb-8">
+          Experience & Tech Stack
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-5xl mx-auto px-4">
+          {techStack.map((tech, i) => (
+            <motion.div
+              key={tech.name}
+              className="flex flex-col items-center"
+              whileHover={{ scale: 1.15 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
+              <img
+                src={tech.src}
+                alt={tech.name}
+                className="w-16 h-16 object-contain mb-2"
+              />
+              <span className="text-sm text-white">{tech.name}</span>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* SKILLS & DATA STACK */}
-      <section className="max-w-4xl mx-auto p-6 bg-navy/80 backdrop-blur-sm rounded-xl my-8">
-        <h2 className="text-3xl font-semibold mb-4 text-electric-blue">
-          Skills & Data Stack
-        </h2>
-        <ul className="list-none space-y-4">
-          <li className="flex items-start space-x-3">
-            <FaDatabase className="mt-1 text-electric-blue" />
-            <div className="text-white">
-              <strong>Programming &amp; Analysis:</strong> SQL (MySQL, PostgreSQL), Python
-              (BeautifulSoup, Pandas, NumPy), R (Basic), Excel (PivotTables, VLOOKUP,
-              Conditional Formatting)
-            </div>
-          </li>
-          <li className="flex items-start space-x-3">
-            <FaChartBar className="mt-1 text-electric-blue" />
-            <div className="text-white">
-              <strong>Data Visualization:</strong> Tableau, Power BI, Matplotlib, Seaborn
-            </div>
-          </li>
-          <li className="flex items-start space-x-3">
-            <FaPaintBrush className="mt-1 text-electric-blue" />
-            <div className="text-white">
-              <strong>Design &amp; Productivity:</strong> Figma, Adobe Illustrator,
-              Photoshop, Notion, Asana
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      {/* CONTACT */}
-      <section
+      {/* CONTACT CTA */}
+      <motion.section
         id="contact"
-        className="max-w-4xl mx-auto p-6 bg-navy/80 backdrop-blur-sm rounded-xl my-8 text-center"
+        className="text-center py-12"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
       >
         <h2 className="text-3xl font-semibold mb-4 text-electric-blue">
-          Get in Touch
+          Let’s Connect
         </h2>
         <div className="flex justify-center space-x-6">
-          <a
+          <Link
             href="mailto:you@sachiny.me"
-            className="px-6 py-2 bg-electric-blue text-black rounded hover:bg-electric-blue/80"
+            className="px-6 py-3 bg-electric-blue text-black font-semibold rounded hover:bg-electric-blue/80"
           >
             Email Me
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://linkedin.com/in/ing-sachin-yoganandham"
-            className="text-electric-blue hover:underline"
+            className="px-6 py-3 border-2 border-electric-blue text-electric-blue rounded hover:bg-electric-blue/10"
             target="_blank"
             rel="noreferrer"
           >
             LinkedIn
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://github.com/Sachin-YN"
-            className="text-electric-blue hover:underline"
+            className="px-6 py-3 border-2 border-electric-blue text-electric-blue rounded hover:bg-electric-blue/10"
             target="_blank"
             rel="noreferrer"
           >
             GitHub
-          </a>
+          </Link>
         </div>
-      </section>
+      </motion.section>
     </Layout>
   )
 }
