@@ -56,29 +56,30 @@ export default function Home() {
         </p>
       </motion.section>
 
-      {/* TECH STACK */}
-      <motion.section
-        className="mt-16 max-w-5xl mx-auto px-6 md:px-12"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+    {/* TECH STACK */}
+<motion.section
+  className="mt-16 max-w-5xl mx-auto px-6 md:px-12"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, delay: 0.3 }}
+>
+  <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
+    My Tech Stack
+  </h2>
+  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
+    {techStack.map(({ name, Icon, color }) => (
+      <div
+        key={name}
+        className="flex flex-col items-center bg-white/80 backdrop-blur-sm p-4 rounded-lg hover:shadow-lg transition-shadow"
       >
-        <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
-          My Tech Stack
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
-          {techStack.map(({ name, Icon }) => (
-            <div
-              key={name}
-              className="flex flex-col items-center bg-white/80 backdrop-blur-sm p-4 rounded-lg hover:shadow-lg transition-shadow"
-            >
-              <Icon size={36} className="text-teal-600 mb-2" />
-              <span className="text-gray-800 font-medium">{name}</span>
-            </div>
-          ))}
-        </div>
-      </motion.section>
+        {/* Remove the text-teal-600 class so react-icons uses its default (brand) color */}
+        <Icon size={36} className="mb-2" />
+        <span className="text-gray-800 font-medium">{name}</span>
+      </div>
+    ))}
+  </div>
+</motion.section>
 
       {/* CONTACT */}
       <motion.section
