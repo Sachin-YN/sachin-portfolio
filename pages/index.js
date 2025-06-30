@@ -1,6 +1,11 @@
 // pages/index.js
 import Layout from '../components/Layout'
 import Link from 'next/link'
+import { 
+  FaDatabase,     // for Programming & Analysis
+  FaChartBar,     // for Data Visualization
+  FaPaintBrush    // for Design & Productivity
+} from 'react-icons/fa'
 
 export default function Home() {
   return (
@@ -29,22 +34,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills & Data Stack (Rafsan’s layout) */}
+      {/* Skills & Data Stack (with icons) */}
       <section className="py-8 px-4 max-w-3xl mx-auto">
         <h2 className="text-3xl font-semibold mb-4 text-neon-green">
           Skills & Data Stack
         </h2>
-        <ul className="list-disc list-inside space-y-2">
-          <li>
-            <strong>Programming & Analysis:</strong> SQL (MySQL, PostgreSQL), Python (BeautifulSoup,
-            Pandas, NumPy), R (Basic), Excel (PivotTables, VLOOKUP, Conditional Formatting)
+        <ul className="space-y-4">
+          <li className="flex items-start space-x-3">
+            <FaDatabase className="mt-1 text-neon-pink w-6 h-6 flex-shrink-0" />
+            <div>
+              <strong>Programming &amp; Analysis:</strong>{' '}
+              SQL (MySQL, PostgreSQL), Python (BeautifulSoup, Pandas, NumPy), R (Basic), Excel (PivotTables, VLOOKUP, Conditional Formatting)
+            </div>
           </li>
-          <li>
-            <strong>Data Visualization:</strong> Tableau, Power BI, Matplotlib, Seaborn
+          <li className="flex items-start space-x-3">
+            <FaChartBar className="mt-1 text-neon-pink w-6 h-6 flex-shrink-0" />
+            <div>
+              <strong>Data Visualization:</strong>{' '}
+              Tableau, Power BI, Matplotlib, Seaborn
+            </div>
           </li>
-          <li>
-            <strong>Design & Productivity:</strong> Figma, Adobe Illustrator, Photoshop, Notion,
-            Asana
+          <li className="flex items-start space-x-3">
+            <FaPaintBrush className="mt-1 text-neon-pink w-6 h-6 flex-shrink-0" />
+            <div>
+              <strong>Design &amp; Productivity:</strong>{' '}
+              Figma, Adobe Illustrator, Photoshop, Notion, Asana
+            </div>
           </li>
         </ul>
       </section>
