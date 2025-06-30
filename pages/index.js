@@ -2,6 +2,7 @@
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const techStack = [
   { name: 'JavaScript', icon: '/icons/js.svg' },
@@ -23,7 +24,7 @@ const techStack = [
 export default function Home() {
   return (
     <Layout title="Home">
-      {/* Hero Section */}
+      {/* Hero */}
       <motion.section
         className="section-card text-center max-w-3xl mx-auto"
         initial={{ y: -40, opacity: 0 }}
@@ -68,7 +69,15 @@ export default function Home() {
               transition={{ delay: i * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
               whileHover={{ scale: 1.05 }}
             >
-              <img src={icon} alt={name} className="w-12 h-12 mb-2" />
+              <div className="relative w-12 h-12 mb-2">
+                <Image
+                  src={icon}
+                  alt={name}
+                  layout="fill"
+                  objectFit="contain"
+                  priority={true}
+                />
+              </div>
               <span className="text-gray-900">{name}</span>
             </motion.div>
           ))}
