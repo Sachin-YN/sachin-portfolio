@@ -11,8 +11,10 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      {/* pt-20 to clear fixed navbar; leaves height auto so page scrolls */}
-      <main className="pt-20">{children}</main>
+      {/* pt-20 pushes content below the fixed navbar */}
+      <main className="pt-20">
+        {children}
+      </main>
     </>
   )
 }
