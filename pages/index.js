@@ -3,7 +3,6 @@ import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-// Full-color SVG logos in public/icons/
 const techStack = [
   { name: 'JavaScript', icon: '/icons/js.svg' },
   { name: 'TypeScript', icon: '/icons/ts.svg' },
@@ -34,13 +33,13 @@ export default function Home() {
         <h1 className="text-5xl font-extrabold mb-4 text-[#FF6B6B]">
           Hey, I’m Sachin Yoganandham
         </h1>
-        <p className="text-lg mb-6 text-gray-100">
+        <p className="text-lg mb-6 text-gray-900">
           Turning raw numbers into dynamic, interactive stories.
         </p>
         <div className="flex justify-center space-x-4">
           <Link
             href="/projects"
-            className="px-6 py-2 bg-white/30 text-white rounded-md hover:bg-white/50 transition"
+            className="px-6 py-2 bg-white/30 text-gray-900 rounded-md hover:bg-white/50 transition"
           >
             Projects
           </Link>
@@ -55,7 +54,7 @@ export default function Home() {
 
       {/* Tech Stack */}
       <section className="py-12">
-        <h2 className="text-3xl font-semibold text-center text-white mb-8">
+        <h2 className="text-3xl font-semibold text-center text-gray-900 mb-8">
           Experience &amp; Tech Stack
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-5xl mx-auto px-4">
@@ -70,7 +69,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
             >
               <img src={icon} alt={name} className="w-12 h-12 mb-2" />
-              <span className="text-white">{name}</span>
+              <span className="text-gray-900">{name}</span>
             </motion.div>
           ))}
         </div>
@@ -85,32 +84,32 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-semibold mb-4 text-white">
+        <h2 className="text-3xl font-semibold mb-4 text-gray-900">
           Let’s Connect
         </h2>
         <div className="flex justify-center space-x-6">
           <a
             href="mailto:you@sachiny.me"
-            className="px-6 py-2 bg-white/30 text-white rounded-md hover:bg-white/50 transition"
+            className="px-6 py-2 bg-white/30 text-gray-900 rounded-md hover:bg-white/50 transition"
           >
             Email Me
           </a>
-          <a
+          <Link
             href="https://linkedin.com/in/ing-sachin-yoganandham"
-            className="px-6 py-2 border border-white text-white rounded-md hover:bg-white/20 transition"
+            className="px-6 py-2 border border-gray-900 text-gray-900 rounded-md hover:bg-gray-100 transition"
             target="_blank"
             rel="noreferrer"
           >
             LinkedIn
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://github.com/Sachin-YN"
-            className="px-6 py-2 border border-white text-white rounded-md hover:bg-white/20 transition"
+            className="px-6 py-2 border border-gray-900 text-gray-900 rounded-md hover:bg-gray-100 transition"
             target="_blank"
             rel="noreferrer"
           >
             GitHub
-          </a>
+          </Link>
         </div>
       </motion.section>
     </Layout>
