@@ -66,7 +66,9 @@ export default function Home() {
           type="button"
           aria-label="Scroll to Tech Stack"
           onClick={() =>
-            document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
+            document
+              .getElementById('data-stack')
+              .scrollIntoView({ behavior: 'smooth' })
           }
           className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
           whileHover={{ scale: 1.05 }}
@@ -92,8 +94,8 @@ export default function Home() {
         >
           Tech Stack
         </h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6">
-          {dataStack.map(item => (
+        <div className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4">
+          {dataStack.map((item) => (
             <div
               key={item.name}
               role="button"
@@ -101,9 +103,9 @@ export default function Home() {
               aria-label={item.name}
               className="
                 flex flex-col items-center
-                p-3
+                p-2
                 bg-slate-900/50 backdrop-blur-xs
-                rounded-lg
+                rounded-md
                 hover:scale-105 transition-transform
                 focus:outline-none focus:ring-2 focus:ring-accent
               "
@@ -112,14 +114,16 @@ export default function Home() {
                 <img
                   src={item.imgSrc}
                   alt={`${item.name} logo`}
-                  width={40}
-                  height={40}
+                  width={32}
+                  height={32}
                   className="mb-1"
                 />
               ) : (
-                <item.Icon size={40} color={item.color} className="mb-1" />
+                <item.Icon size={32} color={item.color} className="mb-1" />
               )}
-              <span className="text-white font-medium text-sm">{item.name}</span>
+              <span className="text-white font-medium text-xs">
+                {item.name}
+              </span>
             </div>
           ))}
         </div>
