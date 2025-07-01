@@ -3,7 +3,6 @@ import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 import Link from 'next/link'
-import Image from 'next/image'
 
 // React-Icon imports
 import {
@@ -20,27 +19,25 @@ import {
   FaProjectDiagram,
   FaMicrosoft,
   FaChartLine,
-  FaBrain,
-  FaFlask,
 } from 'react-icons/fa'
 
 const dataStack = [
-  { name: 'Python',         useImg: true,  imgSrc: '/icons/python.jpg' },
-  { name: 'SQL',            useImg: true,  imgSrc: '/icons/sql.png' },
-  { name: 'R',              Icon: FaChartLine,      color: '#276DC3' },
-  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346' },
-  { name: 'Power BI',       Icon: SiPowerbi,        color: '#F2C811' },
-  { name: 'Qlik',           Icon: SiQlik,           color: '#0066CC' },
-  { name: 'Tableau',        Icon: SiTableau,        color: '#E97627' },
-  { name: 'SAP HANA',       Icon: SiSap,            color: '#1CABE2' },
-  { name: 'Snowflake',      Icon: SiSnowflake,      color: '#28A8E0' },
-  { name: 'Oracle',         Icon: SiOracle,         color: '#FF0000' },
-  { name: 'Data Mapping',   Icon: FaProjectDiagram, color: '#6c757d' },
-  { name: 'Power Automate', useImg: true,  imgSrc: '/icons/power automate.png' },
-  { name: 'Dynamics 365',   Icon: FaMicrosoft,      color: '#107C10' },
-  { name: 'SAP CRM',        Icon: SiSap,            color: '#1CABE2' },
-  { name: 'Forecasting',    Icon: FaChartLine,      color: '#6c757d' },
-  { name: 'PostgreSQL',     Icon: SiPostgresql,     color: '#336791' },
+  { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
+  { name: 'SQL', useImg: true, imgSrc: '/icons/sql.png' },
+  { name: 'R', Icon: FaChartLine, color: '#276DC3' },
+  { name: 'Excel', Icon: SiMicrosoftexcel, color: '#217346' },
+  { name: 'Power BI', Icon: SiPowerbi, color: '#F2C811' },
+  { name: 'Qlik', Icon: SiQlik, color: '#0066CC' },
+  { name: 'Tableau', Icon: SiTableau, color: '#E97627' },
+  { name: 'SAP HANA', Icon: SiSap, color: '#1CABE2' },
+  { name: 'Snowflake', Icon: SiSnowflake, color: '#28A8E0' },
+  { name: 'Oracle', Icon: SiOracle, color: '#FF0000' },
+  { name: 'Data Mapping', Icon: FaProjectDiagram, color: '#6c757d' },
+  { name: 'Power Automate', useImg: true, imgSrc: '/icons/power automate.png' },
+  { name: 'Dynamics 365', Icon: FaMicrosoft, color: '#107C10' },
+  { name: 'SAP CRM', Icon: SiSap, color: '#1CABE2' },
+  { name: 'Forecasting', Icon: FaChartLine, color: '#6c757d' },
+  { name: 'PostgreSQL', Icon: SiPostgresql, color: '#336791' },
 ]
 
 export default function Home() {
@@ -52,20 +49,16 @@ export default function Home() {
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-6"
         aria-labelledby="hero-heading"
       >
-        <Image
-          src="/profile.jpg"
-          alt=""
-          width={120}
-          height={120}
-          className="rounded-full shadow-lg"
-        />
         <h1
           id="hero-heading"
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
         >
           <Typewriter
             options={{
-              strings: ["I’m Sachin Yoganandham", "Data-Driven Business Analyst"],
+              strings: [
+                "I’m Sachin Yoganandham",
+                "Data-Driven Business Analyst"
+              ],
               autoStart: true,
               loop: true,
               pauseFor: 2000,
@@ -110,7 +103,7 @@ export default function Home() {
           Data Stack
         </h2>
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-          {dataStack.map((item) => (
+          {dataStack.map(item => (
             <div
               key={item.name}
               role="button"
@@ -119,9 +112,9 @@ export default function Home() {
               className="flex flex-col items-center p-4 bg-white/20 rounded-lg border-2 border-accent hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {item.useImg ? (
-                <Image
+                <img
                   src={item.imgSrc}
-                  alt={item.name + ' logo'}
+                  alt={`${item.name} logo`}
                   width={48}
                   height={48}
                   className="mb-2"
@@ -153,7 +146,10 @@ export default function Home() {
         >
           Achievements
         </h2>
-        <Link href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4" passHref>
+        <Link
+          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
+          passHref
+        >
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -179,7 +175,7 @@ export default function Home() {
         </h2>
         <Link href="mailto:contact@sachiny.me" passHref>
           <a
-            className="inline-block px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition text-base font-medium"
+            className="inline-block px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
             aria-label="Email Sachin"
           >
             Email Me
