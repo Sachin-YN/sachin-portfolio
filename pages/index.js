@@ -18,19 +18,18 @@ import {
 } from 'react-icons/si'
 import {
   FaProjectDiagram,
-  FaRobot,
   FaMicrosoft,
   FaChartLine,
   FaBrain,
   FaFlask,
 } from 'react-icons/fa'
 
-// Define your data stack
+// Data Stack items: PNG/JPG for Python & Power Automate, plus React Icons
 const dataStack = [
   {
     name: 'Python',
     useImg: true,
-    imgSrc: '/icons/python.png',
+    imgSrc: '/icons/python.jpg',            // ← updated extension
   },
   {
     name: 'SQL',
@@ -85,7 +84,7 @@ const dataStack = [
   {
     name: 'Power Automate',
     useImg: true,
-    imgSrc: '/icons/power-automate.png',
+    imgSrc: '/icons/power automate.png',    // ← uses space as-is
   },
   {
     name: 'Dynamics 365',
