@@ -8,8 +8,8 @@ module.exports = {
     extend: {
       colors: {
         // Primary accent for buttons, borders, etc.
-        accent: '#10B981',        // Emerald
-        'accent-dark': '#059669', // Darker Emerald on hover
+        accent: '#14B8A6',
+       'accent-dark': '#0D9488', // Darker Emerald on hover
       },
       backdropBlur: {
         xs: '2px',
