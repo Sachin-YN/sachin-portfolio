@@ -20,7 +20,7 @@ import { FaProjectDiagram, FaMicrosoft, FaChartLine } from 'react-icons/fa'
 const dataStack = [
   { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
   { name: 'SQL', useImg: true, imgSrc: '/icons/sql.png' },
-  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/D365.jpeg' },
+  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/D365.png' },
   { name: 'Excel', Icon: SiMicrosoftexcel, color: '#217346' },
   { name: 'Power BI', Icon: SiPowerbi, color: '#F2C811' },
   { name: 'Qlik', Icon: SiQlik, color: '#0066CC' },
