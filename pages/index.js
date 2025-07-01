@@ -20,7 +20,7 @@ import { FaProjectDiagram, FaMicrosoft, FaChartLine } from 'react-icons/fa'
 const dataStack = [
   { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
   { name: 'SQL', useImg: true, imgSrc: '/icons/sql.png' },
-  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/D365.png' },   // ← updated
+  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/D365.png' },
   { name: 'Excel', Icon: SiMicrosoftexcel, color: '#217346' },
   { name: 'Power BI', Icon: SiPowerbi, color: '#F2C811' },
   { name: 'Qlik', Icon: SiQlik, color: '#0066CC' },
@@ -66,9 +66,7 @@ export default function Home() {
           type="button"
           aria-label="Scroll to Tech Stack"
           onClick={() =>
-            document
-              .getElementById('data-stack')
-              .scrollIntoView({ behavior: 'smooth' })
+            document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
           }
           className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
           whileHover={{ scale: 1.05 }}
@@ -94,7 +92,7 @@ export default function Home() {
         >
           Tech Stack
         </h2>
-        <div className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4">
+        <div className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6">
           {dataStack.map(item => (
             <div
               key={item.name}
@@ -103,9 +101,9 @@ export default function Home() {
               aria-label={item.name}
               className="
                 flex flex-col items-center
-                p-2
+                p-3
                 bg-slate-900/50 backdrop-blur-xs
-                rounded-md
+                rounded-lg
                 hover:scale-105 transition-transform
                 focus:outline-none focus:ring-2 focus:ring-accent
               "
@@ -114,14 +112,14 @@ export default function Home() {
                 <img
                   src={item.imgSrc}
                   alt={`${item.name} logo`}
-                  className="w-8 h-8 mb-1 object-contain"
+                  width={40}
+                  height={40}
+                  className="mb-1 object-contain"
                 />
               ) : (
-                <item.Icon className="w-8 h-8 mb-1" />
+                <item.Icon size={40} color={item.color} className="mb-1" />
               )}
-              <span className="text-white font-medium text-xs">
-                {item.name}
-              </span>
+              <span className="text-white font-medium text-xs">{item.name}</span>
             </div>
           ))}
         </div>
