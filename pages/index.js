@@ -20,7 +20,7 @@ import { FaProjectDiagram, FaMicrosoft, FaChartLine } from 'react-icons/fa'
 const dataStack = [
   { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
   { name: 'SQL', useImg: true, imgSrc: '/icons/sql.png' },
-  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/D365.png' },
+  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/D365.png' },   // ← updated
   { name: 'Excel', Icon: SiMicrosoftexcel, color: '#217346' },
   { name: 'Power BI', Icon: SiPowerbi, color: '#F2C811' },
   { name: 'Qlik', Icon: SiQlik, color: '#0066CC' },
@@ -95,7 +95,7 @@ export default function Home() {
           Tech Stack
         </h2>
         <div className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4">
-          {dataStack.map((item) => (
+          {dataStack.map(item => (
             <div
               key={item.name}
               role="button"
@@ -114,12 +114,10 @@ export default function Home() {
                 <img
                   src={item.imgSrc}
                   alt={`${item.name} logo`}
-                  width={32}
-                  height={32}
-                  className="mb-1"
+                  className="w-8 h-8 mb-1 object-contain"
                 />
               ) : (
-                <item.Icon size={32} color={item.color} className="mb-1" />
+                <item.Icon className="w-8 h-8 mb-1" />
               )}
               <span className="text-white font-medium text-xs">
                 {item.name}
