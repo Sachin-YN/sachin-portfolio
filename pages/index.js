@@ -58,21 +58,21 @@ export default function Home() {
             }}
           />
         </h1>
-       <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl">
-  <span className="font-semibold block">
-    Turning complex metrics into clear stories
-  </span>
-  <span className="block">
-    Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
-  </span>
-</p>
-
-
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl space-y-1">
+          <span className="font-semibold block">
+            Turning complex metrics into clear stories
+          </span>
+          <span className="block">
+            Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
+          </span>
+        </p>
         <motion.button
           type="button"
           aria-label="Scroll to Data Stack"
           onClick={() =>
-            document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
+            document
+              .getElementById('data-stack')
+              .scrollIntoView({ behavior: 'smooth' })
           }
           className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
           whileHover={{ scale: 1.05 }}
@@ -82,57 +82,58 @@ export default function Home() {
         </motion.button>
       </section>
 
-      
-  {/* TECH STACK */}
-<motion.section
-  id="tech-stack"
-  className="py-16 bg-transparent px-4 sm:px-6 md:px-8"
-  aria-labelledby="tech-stack-heading"
-  /* motion props… */
->
-  <h2
-    id="tech-stack-heading"
-    className="text-3xl sm:text-4xl font-semibold text-center mb-10"
-  >
-    <span className="text-accent">Tech</span>{' '}
-    <span className="text-white">Stack</span>
-    <div className="mt-2 mx-auto w-16 h-1 bg-accent"></div>
-  </h2>
-
-  <div className="max-w-5xl mx-auto grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-8">
-    {dataStack.map((item) => (
-      <div
-        key={item.name}
-        role="button"
-        tabIndex={0}
-        aria-label={item.name}
-        className="
-          w-16 h-16 sm:w-20 sm:h-20  
-          bg-black/40  
-          rounded-lg  
-          flex items-center justify-center  
-          shadow-neon  
-          transition  
-          hover:shadow-neon-lg  
-          hover:bg-black/20
-        "
+      {/* TECH STACK */}
+      <motion.section
+        id="tech-stack"
+        className="py-16 bg-transparent px-4 sm:px-6 md:px-8"
+        aria-labelledby="tech-stack-heading"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
       >
-        {item.useImg ? (
-          <img
-            src={item.imgSrc}
-            alt={`${item.name} logo`}
-            width={32}
-            height={32}
-            className="object-contain filter brightness-0 invert"
-          />
-        ) : (
-          <item.Icon size={32} color="white" />
-        )}
-      </div>
-    ))}
-  </div>
-</motion.section>
+        <h2
+          id="tech-stack-heading"
+          className="text-3xl sm:text-4xl font-semibold text-center mb-10"
+        >
+          <span className="text-accent">Tech</span>{' '}
+          <span className="text-white">Stack</span>
+          <div className="mt-2 mx-auto w-16 h-1 bg-accent"></div>
+        </h2>
 
+        <div className="max-w-5xl mx-auto grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-8">
+          {dataStack.map((item) => (
+            <div
+              key={item.name}
+              role="button"
+              tabIndex={0}
+              aria-label={item.name}
+              className="
+                w-16 h-16 sm:w-20 sm:h-20
+                bg-black/40
+                rounded-lg
+                flex items-center justify-center
+                shadow-neon
+                transition
+                hover:shadow-neon-lg
+                hover:bg-black/20
+              "
+            >
+              {item.useImg ? (
+                <img
+                  src={item.imgSrc}
+                  alt={`${item.name} logo`}
+                  width={32}
+                  height={32}
+                  className="object-contain filter brightness-0 invert"
+                />
+              ) : (
+                <item.Icon size={32} color="white" />
+              )}
+            </div>
+          ))}
+        </div>
+      </motion.section>
 
       {/* ACHIEVEMENTS */}
       <motion.section
