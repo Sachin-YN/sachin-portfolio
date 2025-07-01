@@ -1,12 +1,15 @@
 // tailwind.config.js
 module.exports = {
-  content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
+  content: [
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+  ],
   theme: {
     extend: {
       colors: {
-        // new accent palette
-        accent: '#10B981',
-        'accent-dark': '#059669',
+        // Primary accent for buttons, borders, etc.
+        accent: '#10B981',        // Emerald
+        'accent-dark': '#059669', // Darker Emerald on hover
       },
       backdropBlur: {
         xs: '2px',
