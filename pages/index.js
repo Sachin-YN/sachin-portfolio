@@ -15,7 +15,6 @@ import {
   SiSap,
   SiSnowflake,
   SiOracle,
-  SiMicrosoftpowerautomate,
 } from 'react-icons/si'
 import {
   FaDatabase,
@@ -24,26 +23,27 @@ import {
   FaBrain,
   FaChartLine,
   FaFlask,
+  FaRobot,
 } from 'react-icons/fa'
 
-// Flattened list of skills with logos
-const skills = [
-  { name: 'Python',        Icon: SiPython },
-  { name: 'SQL',           Icon: FaDatabase },
-  { name: 'R',             Icon: FaChartLine },
-  { name: 'Excel',         Icon: SiMicrosoftexcel },
-  { name: 'Power BI',      Icon: SiPowerbi },
-  { name: 'Qlik',          Icon: SiQlik },
-  { name: 'Tableau',       Icon: SiTableau },
-  { name: 'SAP HANA',      Icon: SiSap },
-  { name: 'Snowflake',     Icon: SiSnowflake },
-  { name: 'Oracle R12',    Icon: SiOracle },
-  { name: 'Data Mapping',  Icon: FaProjectDiagram },
-  { name: 'Master-Data',   Icon: FaCogs },
-  { name: 'Power Automate',Icon: SiMicrosoftpowerautomate },
-  { name: 'Regression',    Icon: FaChartLine },
-  { name: 'Predictive',    Icon: FaBrain },
-  { name: 'A/B Testing',   Icon: FaFlask },
+// Flattened list of data-stack items with logos
+const dataStack = [
+  { name: 'Python',         Icon: SiPython },
+  { name: 'SQL',            Icon: FaDatabase },
+  { name: 'R',              Icon: FaChartLine },
+  { name: 'Excel',          Icon: SiMicrosoftexcel },
+  { name: 'Power BI',       Icon: SiPowerbi },
+  { name: 'Qlik',           Icon: SiQlik },
+  { name: 'Tableau',        Icon: SiTableau },
+  { name: 'SAP HANA',       Icon: SiSap },
+  { name: 'Snowflake',      Icon: SiSnowflake },
+  { name: 'Oracle R12',     Icon: SiOracle },
+  { name: 'Data Mapping',   Icon: FaProjectDiagram },
+  { name: 'Master-Data',    Icon: FaCogs },
+  { name: 'Power Automate', Icon: FaRobot },
+  { name: 'Regression',     Icon: FaChartLine },
+  { name: 'Predictive',     Icon: FaBrain },
+  { name: 'A/B Testing',    Icon: FaFlask },
 ]
 
 export default function Home() {
@@ -69,7 +69,7 @@ export default function Home() {
         </p>
         <motion.button
           onClick={() => {
-            document.getElementById('skills').scrollIntoView({ behavior: 'smooth' })
+            document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
           }}
           className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
           whileHover={{ scale: 1.05 }}
@@ -81,7 +81,7 @@ export default function Home() {
 
       {/* DATA STACK GRID */}
       <motion.section
-        id="skills"
+        id="data-stack"
         className="py-16 bg-white/10 backdrop-blur-md"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ export default function Home() {
           Data Stack
         </h2>
         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4">
-          {skills.map(({ name, Icon }) => (
+          {dataStack.map(({ name, Icon }) => (
             <div
               key={name}
               className="flex flex-col items-center p-4 bg-white/20 rounded-lg border-2 border-[#00ffff] hover:bg-white/30 transition"
