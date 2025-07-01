@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import Navbar from './Navbar'
 
+// ▶ Starfield video background (or swap for any video URL you prefer)
 export default function Layout({ children, title = 'Sachin Yoganandham' }) {
   const currentYear = new Date().getFullYear()
 
@@ -13,12 +14,9 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Starfield video background */}
+      {/* Full‐screen looping video behind everything */}
       <video
-        autoPlay
-        muted
-        loop
-        playsInline
+        autoPlay muted loop playsInline
         className="fixed inset-0 w-full h-full object-cover -z-10"
       >
         <source
@@ -26,23 +24,15 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
           type="video/mp4"
         />
       </video>
-
-      {/* Semi-dark overlay so text stays legible */}
+      {/* Dark overlay so text remains legible */}
       <div className="fixed inset-0 bg-black/50 -z-5"></div>
 
-      {/* Site header */}
       <Navbar />
-
-      {/* Main content */}
       <main className="relative z-10 pt-20">
         {children}
       </main>
-
-      {/* Footer */}
       <footer className="relative z-10 mt-16 py-6 bg-gray-800/60 text-center text-gray-300">
-        <div className="max-w-6xl mx-auto px-4">
-          <p className="text-sm">&copy; {currentYear} Sachin Yoganandham. All rights reserved.</p>
-        </div>
+        <p className="text-sm">&copy; {currentYear} Sachin Yoganandham. All rights reserved.</p>
       </footer>
     </>
   )
