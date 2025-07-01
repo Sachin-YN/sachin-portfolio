@@ -20,7 +20,8 @@ import { FaProjectDiagram, FaMicrosoft, FaChartLine } from 'react-icons/fa'
 const dataStack = [
   { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
   { name: 'SQL', useImg: true, imgSrc: '/icons/sql.png' },
-  { name: 'R', Icon: FaChartLine, color: '#276DC3' },
+  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/D365.jpeg' },
+  // { name: 'R', Icon: FaChartLine, color: '#276DC3' },  <-- removed R
   { name: 'Excel', Icon: SiMicrosoftexcel, color: '#217346' },
   { name: 'Power BI', Icon: SiPowerbi, color: '#F2C811' },
   { name: 'Qlik', Icon: SiQlik, color: '#0066CC' },
@@ -30,7 +31,7 @@ const dataStack = [
   { name: 'Oracle', Icon: SiOracle, color: '#FF0000' },
   { name: 'Data Mapping', Icon: FaProjectDiagram, color: '#6c757d' },
   { name: 'Power Automate', useImg: true, imgSrc: '/icons/power automate.png' },
-  { name: 'Dynamics 365', Icon: FaMicrosoft, color: '#107C10' },
+  
   { name: 'SAP CRM', Icon: SiSap, color: '#1CABE2' },
   { name: 'Forecasting', Icon: FaChartLine, color: '#6c757d' },
   { name: 'PostgreSQL', Icon: SiPostgresql, color: '#336791' },
@@ -80,7 +81,7 @@ export default function Home() {
       {/* TECH STACK GRID */}
       <motion.section
         id="data-stack"
-        className="py-16 px-4 sm:px-6 md:px-8"
+        className="py-12 px-4 sm:px-6 md:px-8"   {/* reduced vertical padding */}
         aria-labelledby="data-stack-heading"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -89,11 +90,11 @@ export default function Home() {
       >
         <h2
           id="data-stack-heading"
-          className="text-3xl text-center text-white font-semibold mb-8"
+          className="text-2xl sm:text-3xl text-center text-white font-semibold mb-6"
         >
           Tech Stack
         </h2>
-        <div className="max-w-6xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-8">
+        <div className="max-w-5xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6"> {/* tighter gap */}
           {dataStack.map(item => (
             <div
               key={item.name}
@@ -102,9 +103,10 @@ export default function Home() {
               aria-label={item.name}
               className="
                 flex flex-col items-center
-                p-4
-                bg-slate-900/50 backdrop-blur-xs
-                rounded-xl
+                p-3                 /* slimmer padding */
+                bg-slate-900/50
+                backdrop-blur-xs
+                rounded-lg         /* slightly smaller radius */
                 hover:scale-105 transition-transform
                 focus:outline-none focus:ring-2 focus:ring-accent
               "
@@ -113,14 +115,14 @@ export default function Home() {
                 <img
                   src={item.imgSrc}
                   alt={`${item.name} logo`}
-                  width={48}
-                  height={48}
-                  className="mb-2"
+                  width={40}    /* scaled down */
+                  height={40}
+                  className="mb-1"  /* smaller bottom margin */
                 />
               ) : (
-                <item.Icon size={48} color={item.color} className="mb-2" />
+                <item.Icon size={40} color={item.color} className="mb-1" />
               )}
-              <span className="text-white font-medium text-base">{item.name}</span>
+              <span className="text-white font-medium text-sm">{item.name}</span> {/* smaller text */}
             </div>
           ))}
         </div>
