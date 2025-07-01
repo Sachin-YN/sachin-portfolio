@@ -82,16 +82,13 @@ export default function Home() {
         </motion.button>
       </section>
 
-      {/* DATA STACK GRID */}
-     {/* TECH STACK GRID */}
+      
+  {/* TECH STACK */}
 <motion.section
   id="tech-stack"
   className="py-16 bg-transparent px-4 sm:px-6 md:px-8"
   aria-labelledby="tech-stack-heading"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8 }}
+  /* motion props… */
 >
   <h2
     id="tech-stack-heading"
@@ -109,7 +106,16 @@ export default function Home() {
         role="button"
         tabIndex={0}
         aria-label={item.name}
-        className="w-16 h-16 sm:w-20 sm:h-20 bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-center rounded-lg"
+        className="
+          w-16 h-16 sm:w-20 sm:h-20  
+          bg-black/40  
+          rounded-lg  
+          flex items-center justify-center  
+          shadow-neon  
+          transition  
+          hover:shadow-neon-lg  
+          hover:bg-black/20
+        "
       >
         {item.useImg ? (
           <img
@@ -117,7 +123,7 @@ export default function Home() {
             alt={`${item.name} logo`}
             width={32}
             height={32}
-            className="object-contain"
+            className="object-contain filter brightness-0 invert"
           />
         ) : (
           <item.Icon size={32} color="white" />
@@ -126,6 +132,7 @@ export default function Home() {
     ))}
   </div>
 </motion.section>
+
 
       {/* ACHIEVEMENTS */}
       <motion.section
