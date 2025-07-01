@@ -13,26 +13,25 @@ import {
   SiSap,
   SiSnowflake,
   SiOracle,
-  SiPostgresql,
 } from 'react-icons/si'
-import { FaProjectDiagram, FaMicrosoft, FaChartLine } from 'react-icons/fa'
+import { FaMicrosoft, FaChartLine } from 'react-icons/fa'
 
 const dataStack = [
-  { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
-  { name: 'SQL', useImg: true, imgSrc: '/icons/sql.png' },
-  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/dynamics365.jpg' },
-  { name: 'Excel', Icon: SiMicrosoftexcel, color: '#217346' },
-  { name: 'Power BI', Icon: SiPowerbi, color: '#F2C811' },
-  { name: 'Qlik', Icon: SiQlik, color: '#0066CC' },
-  { name: 'Tableau', Icon: SiTableau, color: '#E97627' },
-  { name: 'SAP HANA', Icon: SiSap, color: '#1CABE2' },
-  { name: 'Snowflake', Icon: SiSnowflake, color: '#28A8E0' },
-  { name: 'Oracle', Icon: SiOracle, color: '#FF0000' },
-  { name: 'Data Mapping', Icon: FaProjectDiagram, color: '#6c757d' },
-  { name: 'Power Automate', useImg: true, imgSrc: '/icons/power automate.png' },
-  { name: 'SAP CRM', Icon: SiSap, color: '#1CABE2' },
-  { name: 'Forecasting', Icon: FaChartLine, color: '#6c757d' },
-  { name: 'PostgreSQL', Icon: SiPostgresql, color: '#336791' },
+  { name: 'Python',         useImg: true,  imgSrc: '/icons/python.jpg'     },
+  { name: 'Pandas',         useImg: true,  imgSrc: '/icons/pandas.png'     },
+  { name: 'NumPy',          useImg: true,  imgSrc: '/icons/numpy.png'      },
+  { name: 'MySQL',          useImg: true,  imgSrc: '/icons/mysql.png'      },  // renamed
+  { name: 'Snowflake',      Icon: SiSnowflake,  color: '#28A8E0'           },
+  { name: 'Oracle',         Icon: SiOracle,      color: '#FF0000'           },
+  { name: 'SAP HANA',       Icon: SiSap,         color: '#1CABE2'           },
+  { name: 'SAP CRM',        Icon: SiSap,         color: '#1CABE2'           },
+  { name: 'Dynamics 365',   useImg: true,       imgSrc: '/icons/dynamics365.jpg' },
+  { name: 'Power Automate', useImg: true,       imgSrc: '/icons/power automate.png' },
+  { name: 'Power BI',       Icon: SiPowerbi,    color: '#F2C811'           },
+  { name: 'Tableau',        Icon: SiTableau,    color: '#E97627'           },
+  { name: 'Qlik',           Icon: SiQlik,       color: '#0066CC'           },
+  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346'       },
+  { name: 'Forecasting',    Icon: FaChartLine,  color: '#6c757d'           },
 ]
 
 export default function Home() {
@@ -57,14 +56,14 @@ export default function Home() {
             }}
           />
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl">
-  <span className="font-semibold block">
-    Turning complex metrics into clear stories
-  </span>
-  <span className="block">
-    Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
-  </span>
-</p>
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl space-y-1">
+          <span className="font-semibold block">
+            Turning complex metrics into clear stories
+          </span>
+          <span className="block">
+            Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
+          </span>
+        </p>
         <motion.button
           type="button"
           aria-label="Scroll to Tech Stack"
