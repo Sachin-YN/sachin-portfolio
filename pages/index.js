@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 import Link from 'next/link'
 
-// Logos from react-icons
+// Logos from react-icons (native colors)
 import {
   SiPython,
   SiPostgresql,
@@ -19,11 +19,9 @@ import {
 import {
   FaDatabase,
   FaProjectDiagram,
-  FaCogs,
-  FaBrain,
-  FaChartLine,
-  FaFlask,
   FaRobot,
+  FaMicrosoft,
+  FaChartLine,
 } from 'react-icons/fa'
 
 // Flattened list of data-stack items with logos
@@ -37,13 +35,12 @@ const dataStack = [
   { name: 'Tableau',        Icon: SiTableau },
   { name: 'SAP HANA',       Icon: SiSap },
   { name: 'Snowflake',      Icon: SiSnowflake },
-  { name: 'Oracle R12',     Icon: SiOracle },
+  { name: 'Oracle',         Icon: SiOracle },
   { name: 'Data Mapping',   Icon: FaProjectDiagram },
-  { name: 'Master-Data',    Icon: FaCogs },
   { name: 'Power Automate', Icon: FaRobot },
-  { name: 'Regression',     Icon: FaChartLine },
-  { name: 'Predictive',     Icon: FaBrain },
-  { name: 'A/B Testing',    Icon: FaFlask },
+  { name: 'Dynamics 365',   Icon: FaMicrosoft },
+  { name: 'SAP CRM',        Icon: SiSap },
+  { name: 'Forecasting',    Icon: FaChartLine },
 ]
 
 export default function Home() {
@@ -68,9 +65,9 @@ export default function Home() {
           Leveraging ERP/CRM systems, cloud-data platforms & automated reporting to optimize workflows, inform C-suite strategy, and power better sourcing outcomes.
         </p>
         <motion.button
-          onClick={() => {
+          onClick={() =>
             document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
-          }}
+          }
           className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -97,7 +94,8 @@ export default function Home() {
               key={name}
               className="flex flex-col items-center p-4 bg-white/20 rounded-lg border-2 border-[#00ffff] hover:bg-white/30 transition"
             >
-              <Icon size={48} className="text-[#00ffff] mb-2" />
+              {/* Native logo color retained */}
+              <Icon size={48} className="mb-2" />
               <span className="text-white font-medium">{name}</span>
             </div>
           ))}
