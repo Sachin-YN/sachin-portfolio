@@ -5,35 +5,68 @@ import Typewriter from 'typewriter-effect'
 import Tilt from 'react-parallax-tilt'
 import Link from 'next/link'
 
-// Define your skill categories and items
+// Import logos
+import { 
+  SiPython, SiPostgresql, SiMicrosoftexcel, SiPowerbi, SiQlik, SiTableau,
+  SiSap, SiSnowflake, SiOracle 
+} from 'react-icons/si'
+import { 
+  FaDatabase, FaProjectDiagram, FaCogs, FaRobot, FaChartLine, FaBrain, FaFlask 
+} from 'react-icons/fa'
+
+// Define your skill categories and items (with icons!)
 const skillCategories = [
   {
     title: 'Languages & Scripting',
-    items: ['Python', 'SQL', 'R']
+    items: [
+      { name: 'Python', Icon: SiPython },
+      { name: 'SQL',    Icon: FaDatabase },
+      { name: 'R',      Icon: FaChartLine },
+    ],
   },
   {
     title: 'Spreadsheet & Modeling',
-    items: ['Excel']
+    items: [
+      { name: 'Excel', Icon: SiMicrosoftexcel },
+    ],
   },
   {
     title: 'Data Visualization & BI',
-    items: ['Power BI', 'Qlik', 'Tableau']
+    items: [
+      { name: 'Power BI', Icon: SiPowerbi },
+      { name: 'Qlik',     Icon: SiQlik },
+      { name: 'Tableau',  Icon: SiTableau },
+    ],
   },
   {
     title: 'Databases & Data Warehousing',
-    items: ['SAP HANA', 'Snowflake', 'Oracle R12']
+    items: [
+      { name: 'SAP HANA', Icon: SiSap },
+      { name: 'Snowflake',Icon: SiSnowflake },
+      { name: 'Oracle R12', Icon: SiOracle },
+    ],
   },
   {
     title: 'ETL & Data Management',
-    items: ['Data Mapping', 'Master-Data Governance']
+    items: [
+      { name: 'Data Mapping', Icon: FaProjectDiagram },
+      { name: 'Master-Data Governance', Icon: FaCogs },
+    ],
   },
   {
     title: 'Automation & Integration',
-    items: ['Power Automate', 'Python scripting']
+    items: [
+      { name: 'Power Automate', Icon: FaRobot },
+      { name: 'Python scripting', Icon: SiPython },
+    ],
   },
   {
     title: 'Statistical & Predictive Analytics',
-    items: ['Regression Analysis', 'Predictive Modeling', 'A/B Testing']
+    items: [
+      { name: 'Regression Analysis', Icon: FaChartLine },
+      { name: 'Predictive Modeling', Icon: FaBrain },
+      { name: 'A/B Testing', Icon: FaFlask },
+    ],
   },
 ]
 
@@ -80,21 +113,23 @@ export default function Home() {
         transition={{ duration: 0.8 }}
       >
         <h2 className="text-3xl text-center text-white font-semibold mb-12">
-          Skills & Data Stack
+          Skills &amp; Data Stack
         </h2>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
           {skillCategories.map(({ title, items }) => (
-            <div
-              key={title}
-              className="p-6 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition"
-            >
-              <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-100">
-                {items.map(item => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
+            <Tilt key={title} tiltMaxAngleX={10} tiltMaxAngleY={10}>
+              <div className="p-6 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition">
+                <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
+                <ul className="space-y-3">
+                  {items.map(({ name, Icon }) => (
+                    <li key={name} className="flex items-center text-gray-100">
+                      <Icon size={24} style={{ color: '#00ffff' }} className="mr-2" />
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Tilt>
           ))}
         </div>
       </motion.section>
