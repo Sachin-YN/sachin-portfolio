@@ -17,24 +17,26 @@ import {
   SiNumpy,
   SiPlotly,
 } from 'react-icons/si'
-import { FaMicrosoft } from 'react-icons/fa'
+import { FaMicrosoft, FaChartLine } from 'react-icons/fa'
 
 const dataStack = [
+  { name: 'MySQL',          useImg: true,  imgSrc: '/icons/mysql.png'      },
+  { name: 'Snowflake',      Icon: SiSnowflake,   color: '#28A8E0'           },
+  { name: 'Oracle',         Icon: SiOracle,      color: '#FF0000'           },
+
   { name: 'Python',         useImg: true,  imgSrc: '/icons/python.jpg'    },
-  { name: 'Pandas',         Icon: SiPandas                             },
-  { name: 'NumPy',          Icon: SiNumpy                              },
-  { name: 'MySQL',          useImg: true,  imgSrc: '/icons/mysql.png'     },
-  { name: 'Snowflake',      Icon: SiSnowflake                          },
-  { name: 'Oracle',         Icon: SiOracle                             },
-  { name: 'SAP HANA',       Icon: SiSap                                },
-  { name: 'SAP CRM',        Icon: SiSap                                },
-  { name: 'Dynamics 365',   useImg: true,  imgSrc: '/icons/dynamics365.jpg'},
-  { name: 'Power Automate', useImg: true,  imgSrc: '/icons/power automate.png'},
-  { name: 'Power BI',       Icon: SiPowerbi                            },
-  { name: 'Tableau',        Icon: SiTableau                            },
-  { name: 'Qlik',           Icon: SiQlik                               },
-  { name: 'Excel',          Icon: SiMicrosoftexcel                     },
-  { name: 'Forecasting',    Icon: SiPlotly                             },
+  { name: 'Pandas',         Icon: SiPandas                              },
+  { name: 'NumPy',          Icon: SiNumpy                               },
+
+  { name: 'SAP HANA',       Icon: SiSap,         color: '#1CABE2'           },
+  { name: 'SAP CRM',        Icon: SiSap,         color: '#1CABE2'           },
+  { name: 'Dynamics 365',   useImg: true,       imgSrc: '/icons/dynamics365.jpg' },
+  { name: 'Power Automate', useImg: true,       imgSrc: '/icons/power automate.png' },
+  { name: 'Power BI',       Icon: SiPowerbi,     color: '#F2C811'           },
+  { name: 'Tableau',        Icon: SiTableau,     color: '#E97627'           },
+  { name: 'Qlik',           Icon: SiQlik,        color: '#0066CC'           },
+  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346'       },
+  { name: 'Forecasting',    Icon: SiPlotly,      color: '#3F4C6B'           },
 ]
 
 export default function Home() {
