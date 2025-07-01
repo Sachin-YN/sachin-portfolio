@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: '#00ffff',
-        'accent-dark': '#00d4d4',
+        // new accent palette
+        accent: '#10B981',
+        'accent-dark': '#059669',
       },
       backdropBlur: {
         xs: '2px',
