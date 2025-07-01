@@ -4,39 +4,37 @@ import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 import Tilt from 'react-parallax-tilt'
 import Link from 'next/link'
-import {
-  SiJavascript,
-  SiTypescript,
-  SiReact,
-  SiNextdotjs,
-  SiHtml5,
-  SiCss3,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiPostgresql,
-  SiMysql,
-  SiGit,
-  SiGithub,
-} from 'react-icons/si'
 
-// Tech stack cards
-const techStack = [
-  { name: 'JavaScript',   Icon: SiJavascript,   color: '#F7DF1E' },
-  { name: 'TypeScript',   Icon: SiTypescript,   color: '#3178C6' },
-  { name: 'React',        Icon: SiReact,        color: '#61DAFB' },
-  { name: 'Next.js',      Icon: SiNextdotjs,    color: '#000000' },
-  { name: 'HTML5',        Icon: SiHtml5,        color: '#E34F26' },
-  { name: 'CSS3',         Icon: SiCss3,         color: '#1572B6' },
-  { name: 'Tailwind CSS', Icon: SiTailwindcss,  color: '#06B6D4' },
-  { name: 'Node.js',      Icon: SiNodedotjs,    color: '#339933' },
-  { name: 'Express',      Icon: SiExpress,      color: '#000000' },
-  { name: 'MongoDB',      Icon: SiMongodb,      color: '#47A248' },
-  { name: 'PostgreSQL',   Icon: SiPostgresql,   color: '#336791' },
-  { name: 'MySQL',        Icon: SiMysql,        color: '#4479A1' },
-  { name: 'Git',          Icon: SiGit,          color: '#F05032' },
-  { name: 'GitHub',       Icon: SiGithub,       color: '#181717' },
+// Define your skill categories and items
+const skillCategories = [
+  {
+    title: 'Languages & Scripting',
+    items: ['Python', 'SQL', 'R']
+  },
+  {
+    title: 'Spreadsheet & Modeling',
+    items: ['Excel']
+  },
+  {
+    title: 'Data Visualization & BI',
+    items: ['Power BI', 'Qlik', 'Tableau']
+  },
+  {
+    title: 'Databases & Data Warehousing',
+    items: ['SAP HANA', 'Snowflake', 'Oracle R12']
+  },
+  {
+    title: 'ETL & Data Management',
+    items: ['Data Mapping', 'Master-Data Governance']
+  },
+  {
+    title: 'Automation & Integration',
+    items: ['Power Automate', 'Python scripting']
+  },
+  {
+    title: 'Statistical & Predictive Analytics',
+    items: ['Regression Analysis', 'Predictive Modeling', 'A/B Testing']
+  },
 ]
 
 export default function Home() {
@@ -62,33 +60,44 @@ export default function Home() {
         </p>
         <motion.button
           onClick={() => {
-            document.getElementById('tech').scrollIntoView({ behavior: 'smooth' })
+            document.getElementById('skills').scrollIntoView({ behavior: 'smooth' })
           }}
           className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Explore My Tech Stack
+          Explore My Skills
         </motion.button>
       </div>
 
-      {/* TECH STACK GRID */}
-      <section
-        id="tech"
+      {/* SKILLS & DATA STACK */}
+      <motion.section
+        id="skills"
         className="py-16 bg-white/10 backdrop-blur-md"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
       >
-        <h2 className="text-3xl text-center text-white font-semibold mb-8">My Tech Stack</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-6xl mx-auto px-4">
-          {techStack.map(({ name, Icon, color }) => (
-            <Tilt key={name} tiltMaxAngleX={10} tiltMaxAngleY={10}>
-              <div className="flex flex-col items-center p-4 bg-white/20 rounded-lg hover:bg-white/30 transition">
-                <Icon size={48} color={color} />
-                <span className="mt-2 text-white font-medium">{name}</span>
-              </div>
-            </Tilt>
+        <h2 className="text-3xl text-center text-white font-semibold mb-12">
+          Skills & Data Stack
+        </h2>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+          {skillCategories.map(({ title, items }) => (
+            <div
+              key={title}
+              className="p-6 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition"
+            >
+              <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
+              <ul className="list-disc list-inside space-y-2 text-gray-100">
+                {items.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ACHIEVEMENTS */}
       <motion.section
