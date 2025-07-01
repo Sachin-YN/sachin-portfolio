@@ -15,11 +15,7 @@ import {
   SiOracle,
   SiPostgresql,
 } from 'react-icons/si'
-import {
-  FaProjectDiagram,
-  FaMicrosoft,
-  FaChartLine,
-} from 'react-icons/fa'
+import { FaProjectDiagram, FaMicrosoft, FaChartLine } from 'react-icons/fa'
 
 const dataStack = [
   { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
@@ -109,7 +105,7 @@ export default function Home() {
               role="button"
               tabIndex={0}
               aria-label={item.name}
-              + className="flex flex-col items-center p-4 bg-white/20 rounded-lg border border-white/30 hover:border-white/60 hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
+              className="flex flex-col items-center p-4 bg-white/20 rounded-lg border border-white/30 hover:border-white/60 hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {item.useImg ? (
                 <img
@@ -176,7 +172,7 @@ export default function Home() {
         <Link href="mailto:contact@sachiny.me" passHref>
           <a
             className="inline-block px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
-            aria-label="Email Sachin"
+            aria-label="Drop me a line"
           >
             Drop Me a Line
           </a>
