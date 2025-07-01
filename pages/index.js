@@ -65,7 +65,7 @@ export default function Home() {
         </p>
         <motion.button
           type="button"
-          aria-label="Scroll to Data Stack"
+          aria-label="Scroll to Tech Stack"
           onClick={() =>
             document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
           }
@@ -73,14 +73,14 @@ export default function Home() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Explore My Data Stack
+          Explore My Tech Stack
         </motion.button>
       </section>
 
-      {/* DATA STACK GRID */}
+      {/* TECH STACK GRID */}
       <motion.section
         id="data-stack"
-        className="py-16 bg-white/10 backdrop-blur-md px-4 sm:px-6 md:px-8"
+        className="py-16 px-4 sm:px-6 md:px-8"
         aria-labelledby="data-stack-heading"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -91,16 +91,23 @@ export default function Home() {
           id="data-stack-heading"
           className="text-3xl text-center text-white font-semibold mb-8"
         >
-          Data Stack
+          Tech Stack
         </h2>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-8">
           {dataStack.map(item => (
             <div
               key={item.name}
               role="button"
               tabIndex={0}
               aria-label={item.name}
-              className="flex flex-col items-center p-4 bg-white/20 rounded-lg border border-white/30 hover:border-white/60 hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
+              className="
+                flex flex-col items-center
+                p-4
+                bg-slate-900/50 backdrop-blur-xs
+                rounded-xl
+                hover:scale-105 transition-transform
+                focus:outline-none focus:ring-2 focus:ring-accent
+              "
             >
               {item.useImg ? (
                 <img
