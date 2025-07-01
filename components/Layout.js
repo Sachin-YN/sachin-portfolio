@@ -9,8 +9,12 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
     <>
       <Head>
         <title>{title} | Portfolio</title>
-        <meta name="description" content="Portfolio of Sachin Yoganandham, Data Analyst" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Portfolio of Sachin Yoganandham, Data Analyst"
+        />
+        {/* use your new PNG favicon */}
+        <link rel="icon" href="/favicon.png" type="image/png" />
       </Head>
 
       {/* Full-screen video background */}
@@ -19,7 +23,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         muted
         loop
         playsInline
-        className="fixed inset-0 w-full h-full object-cover -z-10"
+        className="fixed inset-0 w-full h-full object-cover z-[-10]"
       >
         <source
           src="/videos/earth-from-space-moewalls-com.mp4"
@@ -28,20 +32,20 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         Your browser does not support the video tag.
       </video>
 
-      {/* Optional dark overlay for legibility */}
-      <div className="fixed inset-0 bg-black/30 -z-5"></div>
+      {/* Semi-dark overlay for legibility */}
+      <div className="fixed inset-0 bg-black/30 z-[-5]" />
 
       {/* Site header */}
       <Navbar />
 
       {/* Page content */}
-      <main className="relative z-10 pt-20">
-        {children}
-      </main>
+      <main className="relative z-10 pt-20">{children}</main>
 
       {/* Footer */}
       <footer className="relative z-10 mt-16 py-6 text-center text-gray-300">
-        <p className="text-sm">Designed & Built by Sachin Yoganandham. &copy; {currentYear}</p>
+        <p className="text-sm">
+          Designed &amp; Built by Sachin Yoganandham. &copy; {currentYear}
+        </p>
       </footer>
     </>
   )
