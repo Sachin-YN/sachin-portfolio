@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 import Link from 'next/link'
 
-// Logos from react-icons (native colors)
+// Logos with brand colors
 import {
   SiPython,
   SiPostgresql,
@@ -24,23 +24,24 @@ import {
   FaChartLine,
 } from 'react-icons/fa'
 
-// Flattened list of data-stack items with logos
+// Data Stack items, each with its native brand color
 const dataStack = [
-  { name: 'Python',         Icon: SiPython },
-  { name: 'SQL',            Icon: FaDatabase },
-  { name: 'R',              Icon: FaChartLine },
-  { name: 'Excel',          Icon: SiMicrosoftexcel },
-  { name: 'Power BI',       Icon: SiPowerbi },
-  { name: 'Qlik',           Icon: SiQlik },
-  { name: 'Tableau',        Icon: SiTableau },
-  { name: 'SAP HANA',       Icon: SiSap },
-  { name: 'Snowflake',      Icon: SiSnowflake },
-  { name: 'Oracle',         Icon: SiOracle },
-  { name: 'Data Mapping',   Icon: FaProjectDiagram },
-  { name: 'Power Automate', Icon: FaRobot },
-  { name: 'Dynamics 365',   Icon: FaMicrosoft },
-  { name: 'SAP CRM',        Icon: SiSap },
-  { name: 'Forecasting',    Icon: FaChartLine },
+  { name: 'Python',         Icon: SiPython,         color: '#3776AB' },
+  { name: 'SQL',            Icon: FaDatabase,       color: '#6c757d' },
+  { name: 'R',              Icon: FaChartLine,      color: '#276DC3' },
+  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346' },
+  { name: 'Power BI',       Icon: SiPowerbi,        color: '#F2C811' },
+  { name: 'Qlik',           Icon: SiQlik,           color: '#0066CC' },
+  { name: 'Tableau',        Icon: SiTableau,        color: '#E97627' },
+  { name: 'SAP HANA',       Icon: SiSap,            color: '#1CABE2' },
+  { name: 'Snowflake',      Icon: SiSnowflake,      color: '#28A8E0' },
+  { name: 'Oracle',         Icon: SiOracle,         color: '#FF0000' },
+  { name: 'Data Mapping',   Icon: FaProjectDiagram, color: '#6c757d' },
+  { name: 'Power Automate', Icon: FaRobot,          color: '#003B6D' },
+  { name: 'Dynamics 365',   Icon: FaMicrosoft,      color: '#107C10' },
+  { name: 'SAP CRM',        Icon: SiSap,            color: '#1CABE2' },
+  { name: 'Forecasting',    Icon: FaChartLine,      color: '#6c757d' },
+  { name: 'PostgreSQL',     Icon: SiPostgresql,     color: '#336791' },
 ]
 
 export default function Home() {
@@ -89,13 +90,13 @@ export default function Home() {
           Data Stack
         </h2>
         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4">
-          {dataStack.map(({ name, Icon }) => (
+          {dataStack.map(({ name, Icon, color }) => (
             <div
               key={name}
               className="flex flex-col items-center p-4 bg-white/20 rounded-lg border-2 border-[#00ffff] hover:bg-white/30 transition"
             >
-              {/* Native logo color retained */}
-              <Icon size={48} className="mb-2" />
+              {/* Render icon in its brand color */}
+              <Icon size={48} color={color} className="mb-2" />
               <span className="text-white font-medium">{name}</span>
             </div>
           ))}
