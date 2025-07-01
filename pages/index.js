@@ -47,57 +47,81 @@ export default function Home() {
   return (
     <Layout title="Home">
       {/* HERO */}
-      <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
+      <section
+        id="hero"
+        className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-6"
+        aria-labelledby="hero-heading"
+      >
+        <Image
+          src="/profile.jpg"
+          alt="Sachin Yoganandham profile photo"
+          width={120}
+          height={120}
+          className="rounded-full shadow-lg"
+        />
+        <h1
+          id="hero-heading"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
+        >
           <Typewriter
             options={{
-              strings: [
-                "I’m Sachin Yoganandham",
-                "Data-Driven Business Analyst",
-              ],
+              strings: ["I’m Sachin Yoganandham", "Data-Driven Business Analyst"],
               autoStart: true,
               loop: true,
               pauseFor: 2000,
             }}
           />
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-xl mb-8">
-          Leveraging ERP/CRM systems, cloud-data platforms & automated reporting to optimize workflows, inform C-suite strategy, and power better sourcing outcomes.
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl">
+          Leveraging ERP/CRM systems, cloud-data platforms & automated reporting to
+          optimize workflows, inform C-suite strategy, and power better sourcing
+          outcomes.
         </p>
         <motion.button
+          type="button"
+          aria-label="Scroll to Data Stack"
           onClick={() =>
-            document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
+            document
+              .getElementById('data-stack')
+              .scrollIntoView({ behavior: 'smooth' })
           }
-          className="px-5 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition text-sm sm:text-base"
+          className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           Explore My Data Stack
         </motion.button>
-      </div>
+      </section>
 
       {/* DATA STACK GRID */}
       <motion.section
         id="data-stack"
-        className="py-12 sm:py-16 bg-white/10 backdrop-blur-md px-4 sm:px-6 md:px-8"
+        className="py-16 bg-white/10 backdrop-blur-md px-4 sm:px-6 md:px-8"
+        aria-labelledby="data-stack-heading"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-2xl sm:text-3xl text-center text-white font-semibold mb-6 sm:mb-8">
+        <h2
+          id="data-stack-heading"
+          className="text-3xl text-center text-white font-semibold mb-8"
+        >
           Data Stack
         </h2>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 md:gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
           {dataStack.map((item) => (
             <div
               key={item.name}
-              className="flex flex-col items-center p-3 sm:p-4 bg-white/20 rounded-lg border-2 border-[#00ffff] hover:bg-white/30 transition"
+              role="button"
+              tabIndex={0}
+              aria-label={item.name}
+              className="flex flex-col items-center p-4 bg-white/20 rounded-lg border-2 border-accent hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {item.useImg ? (
                 <Image
                   src={item.imgSrc}
-                  alt={item.name}
+                  alt={item.name + ' logo'}
                   width={48}
                   height={48}
                   className="mb-2"
@@ -105,7 +129,7 @@ export default function Home() {
               ) : (
                 <item.Icon size={48} color={item.color} className="mb-2" />
               )}
-              <span className="text-white font-medium text-sm sm:text-base">
+              <span className="text-white font-medium text-base">
                 {item.name}
               </span>
             </div>
@@ -116,32 +140,48 @@ export default function Home() {
       {/* ACHIEVEMENTS */}
       <motion.section
         id="achievements"
-        className="py-12 sm:py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
+        className="py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
+        aria-labelledby="achievements-heading"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4 sm:mb-6">
+        <h2
+          id="achievements-heading"
+          className="text-3xl font-semibold text-white mb-6"
+        >
           Achievements
         </h2>
-        <a
-          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block px-5 py-2 sm:px-6 sm:py-3 bg-green-500 text-white font-medium rounded-md shadow hover:bg-green-600 transition text-sm sm:text-base"
-        >
-          Google Data Analytics Professional Certificate
-        </a>
+        <Link href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4" passHref>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 bg-green-500 text-white font-medium rounded-md shadow hover:bg-green-600 transition text-base"
+            aria-label="View Google Data Analytics Professional Certificate"
+          >
+            Google Data Analytics Professional Certificate
+          </a>
+        </Link>
       </motion.section>
 
       {/* CONTACT CTA */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 md:px-8 text-center">
-        <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
+      <section
+        id="contact"
+        className="py-16 px-4 sm:px-6 md:px-8 text-center"
+        aria-labelledby="contact-heading"
+      >
+        <h2
+          id="contact-heading"
+          className="text-3xl font-semibold text-white mb-6"
+        >
           Let’s Talk Data
         </h2>
-        <Link href="mailto:contact@sachiny.me">
-          <a className="inline-block px-5 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition text-sm sm:text-base">
+        <Link href="mailto:contact@sachiny.me" passHref>
+          <a
+            className="inline-block px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition text-base font-medium"
+            aria-label="Email Sachin"
+          >
             Email Me
           </a>
         </Link>
