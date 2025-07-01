@@ -5,15 +5,18 @@ import Navbar from './Navbar'
 export default function Layout({ children, title = 'Sachin Yoganandham' }) {
   const currentYear = new Date().getFullYear()
   const siteUrl = 'https://sachiny.me'
-  const pageUrl = `${siteUrl}${typeof window !== 'undefined' ? window.location.pathname : ''}`
+  const pageUrl =
+    typeof window !== 'undefined'
+      ? `${siteUrl}${window.location.pathname}`
+      : siteUrl
   const siteTitle = `${title} | Portfolio`
   const description = 'Portfolio of Sachin Yoganandham, Data Analyst'
-  const ogImage = `${siteUrl}/og-image.png`  // generate a 1200x630 PNG for sharing
+  const ogImage = `${siteUrl}/og-image.png` // 1200×630 share image
 
   return (
     <>
       <Head>
-        {/* Basic metadata */}
+        {/* Responsive viewport */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{siteTitle}</title>
         <meta name="description" content={description} />
@@ -30,32 +33,33 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={pageUrl} />
         <meta name="twitter:title" content={siteTitle} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
 
-        {/* Structured Data */}
+        {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Sachin Yoganandham",
-              "url": siteUrl,
-              "jobTitle": "Data Analyst",
-              "sameAs": [
-                "https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117/",
-                "https://github.com/Sachin-YN"
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Sachin Yoganandham',
+              url: siteUrl,
+              jobTitle: 'Data Analyst',
+              sameAs: [
+                'https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117/',
+                'https://github.com/Sachin-YN'
               ],
-              "image": ogImage,
-              "description": description
+              image: ogImage,
+              description
             })
           }}
         />
       </Head>
 
-      {/* Accessibility: skip straight to content */}
+      {/* Accessibility: skip to main content */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-2 py-1 rounded"
@@ -63,7 +67,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         Skip to content
       </a>
 
-      {/* Full-screen video background */}
+      {/* Background video + overlay */}
       <video
         autoPlay
         muted
@@ -77,21 +81,15 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
           src="/videos/earth-from-space-moewalls-com.mp4"
           type="video/mp4"
         />
-        {/* Fallback text is intentionally empty for screen readers */}
       </video>
-
-      {/* Semi-dark overlay for legibility */}
       <div className="fixed inset-0 bg-black/30 z-[-5]" />
 
-      {/* Site header */}
       <Navbar />
 
-      {/* Page content */}
       <main id="main-content" className="relative z-10 pt-20">
         {children}
       </main>
 
-      {/* Footer */}
       <footer className="relative z-10 mt-16 py-6 text-center text-gray-300">
         <p className="text-sm">
           Designed &amp; Built by Sachin Yoganandham. &copy; {currentYear}
