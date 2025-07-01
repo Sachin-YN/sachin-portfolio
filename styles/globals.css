@@ -4,30 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === Animated Cosmic Gradient Background === */
-@keyframes gradientShift {
-  0%   { background-position:   0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position:   0% 50%; }
-}
-
 @layer base {
-  html,
-  body {
-    /* multi-stop gradient */
-    background: linear-gradient(
-      270deg,
-      #0f172a,   /* deep navy */
-      #1e40af,   /* indigo */
-      #4338ca,   /* violet */
-      #6366f1    /* periwinkle */
-    );
-    background-size: 800% 800%;
-    animation: gradientShift 20s ease infinite;
-
+  html, body {
     margin: 0;
     min-height: 100vh;
-    color: #fff;
     font-family: Inter, sans-serif;
+    color: #fff; /* text over video */
+    background: none; /* remove any solid bg */
   }
 }
