@@ -54,7 +54,7 @@ export default function Home() {
       >
         <Image
           src="/profile.jpg"
-          alt="Sachin Yoganandham profile photo"
+          alt=""
           width={120}
           height={120}
           className="rounded-full shadow-lg"
