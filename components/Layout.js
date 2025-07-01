@@ -68,20 +68,25 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
       </a>
 
       {/* Background video + overlay */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/videos/earth-from-space-poster.jpg"
-        aria-hidden="true"
-        className="fixed inset-0 w-full h-full object-cover z-[-10]"
-      >
-        <source
-          src="/videos/earth-from-space-moewalls-com.mp4"
-          type="video/mp4"
-        />
-      </video>
+     <video
+  autoPlay
+  muted
+  loop
+  preload="auto"
+  playsInline
+  webkit-playsinline="true"
+  disablePictureInPicture
+  onEnded={(e) => e.currentTarget.play()}    // fallback if loop ever glitches
+  aria-hidden="true"
+  className="fixed inset-0 w-full h-full object-cover z-[-10]"
+>
+  <source
+    src="/videos/earth-from-space-moewalls-com.mp4"
+    type="video/mp4"
+  />
+  {/* No fallback text needed for screen readers, since aria-hidden="true" */}
+</video>
+
       <div className="fixed inset-0 bg-black/30 z-[-5]" />
 
       <Navbar />
