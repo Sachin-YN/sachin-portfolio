@@ -109,7 +109,7 @@ export default function Home() {
               role="button"
               tabIndex={0}
               aria-label={item.name}
-              className="flex flex-col items-center p-4 bg-white/20 rounded-lg border-2 border-accent hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
+              + className="flex flex-col items-center p-4 bg-white/20 rounded-lg border border-white/30 hover:border-white/60 hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {item.useImg ? (
                 <img
