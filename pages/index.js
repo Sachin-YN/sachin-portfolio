@@ -58,11 +58,16 @@ export default function Home() {
             }}
           />
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl">
-          Leveraging ERP/CRM systems, cloud-data platforms & automated reporting to
-          optimize workflows, inform C-suite strategy, and power better sourcing
-          outcomes.
-        </p>
+       <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl">
+  <span className="font-semibold block">
+    Turning complex metrics into clear stories
+  </span>
+  <span className="block">
+    Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
+  </span>
+</p>
+
+
         <motion.button
           type="button"
           aria-label="Scroll to Data Stack"
