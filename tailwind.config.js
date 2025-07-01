@@ -1,17 +1,15 @@
 // tailwind.config.js
 module.exports = {
-  // … your existing config …
+  content: [
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+  ],
   theme: {
     extend: {
       colors: {
-        accent: '#10B981',
-        'accent-dark': '#059669',
-      },
-      boxShadow: {
-        // subtle default glow
-        neon: '0 0 4px rgba(16, 185, 129, 0.6), 0 0 8px rgba(16, 185, 129, 0.4)',
-        // stronger on hover
-        'neon-lg': '0 0 8px rgba(16, 185, 129, 0.8), 0 0 16px rgba(16, 185, 129, 0.6)',
+        // Primary accent for buttons, borders, etc.
+        accent: '#10B981',        // Emerald
+        'accent-dark': '#059669', // Darker Emerald on hover
       },
       backdropBlur: {
         xs: '2px',
