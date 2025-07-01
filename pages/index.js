@@ -20,21 +20,21 @@ import {
 import { FaMicrosoft } from 'react-icons/fa'
 
 const dataStack = [
-  { name: 'Python',         useImg: true,  imgSrc: '/icons/python.jpg'     },
-  { name: 'Pandas',         Icon: SiPandas,      color: '#150458'           },
-  { name: 'NumPy',          Icon: SiNumpy,       color: '#013243'           },
-  { name: 'MySQL',          useImg: true,  imgSrc: '/icons/mysql.png'      },
-  { name: 'Snowflake',      Icon: SiSnowflake,   color: '#28A8E0'           },
-  { name: 'Oracle',         Icon: SiOracle,      color: '#FF0000'           },
-  { name: 'SAP HANA',       Icon: SiSap,         color: '#1CABE2'           },
-  { name: 'SAP CRM',        Icon: SiSap,         color: '#1CABE2'           },
-  { name: 'Dynamics 365',   useImg: true,       imgSrc: '/icons/dynamics365.jpg' },
-  { name: 'Power Automate', useImg: true,       imgSrc: '/icons/power automate.png' },
-  { name: 'Power BI',       Icon: SiPowerbi,     color: '#F2C811'           },
-  { name: 'Tableau',        Icon: SiTableau,     color: '#E97627'           },
-  { name: 'Qlik',           Icon: SiQlik,        color: '#0066CC'           },
-  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346'       },
-  { name: 'Forecasting',    Icon: SiPlotly,      color: '#3F4C6B'           },
+  { name: 'Python',         useImg: true,  imgSrc: '/icons/python.jpg'    },
+  { name: 'Pandas',         Icon: SiPandas                             },
+  { name: 'NumPy',          Icon: SiNumpy                              },
+  { name: 'MySQL',          useImg: true,  imgSrc: '/icons/mysql.png'     },
+  { name: 'Snowflake',      Icon: SiSnowflake                          },
+  { name: 'Oracle',         Icon: SiOracle                             },
+  { name: 'SAP HANA',       Icon: SiSap                                },
+  { name: 'SAP CRM',        Icon: SiSap                                },
+  { name: 'Dynamics 365',   useImg: true,  imgSrc: '/icons/dynamics365.jpg'},
+  { name: 'Power Automate', useImg: true,  imgSrc: '/icons/power automate.png'},
+  { name: 'Power BI',       Icon: SiPowerbi                            },
+  { name: 'Tableau',        Icon: SiTableau                            },
+  { name: 'Qlik',           Icon: SiQlik                               },
+  { name: 'Excel',          Icon: SiMicrosoftexcel                     },
+  { name: 'Forecasting',    Icon: SiPlotly                             },
 ]
 
 export default function Home() {
@@ -119,10 +119,10 @@ export default function Home() {
                   alt={`${item.name} logo`}
                   width={40}
                   height={40}
-                  className="mb-1 object-contain"
+                  className="mb-1 object-contain filter brightness-0 invert"
                 />
               ) : (
-                <item.Icon size={40} color={item.color} className="mb-1" />
+                <item.Icon size={40} className="mb-1 text-white" />
               )}
               <span className="text-white font-medium text-xs">{item.name}</span>
             </div>
