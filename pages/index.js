@@ -83,46 +83,49 @@ export default function Home() {
       </section>
 
       {/* DATA STACK GRID */}
-      <motion.section
-        id="data-stack"
-        className="py-16 bg-white/10 backdrop-blur-md px-4 sm:px-6 md:px-8"
-        aria-labelledby="data-stack-heading"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+     {/* TECH STACK GRID */}
+<motion.section
+  id="tech-stack"
+  className="py-16 bg-transparent px-4 sm:px-6 md:px-8"
+  aria-labelledby="tech-stack-heading"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+>
+  <h2
+    id="tech-stack-heading"
+    className="text-3xl sm:text-4xl font-semibold text-center mb-10"
+  >
+    <span className="text-accent">Tech</span>{' '}
+    <span className="text-white">Stack</span>
+    <div className="mt-2 mx-auto w-16 h-1 bg-accent"></div>
+  </h2>
+
+  <div className="max-w-5xl mx-auto grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-8">
+    {dataStack.map((item) => (
+      <div
+        key={item.name}
+        role="button"
+        tabIndex={0}
+        aria-label={item.name}
+        className="w-16 h-16 sm:w-20 sm:h-20 bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-center rounded-lg"
       >
-        <h2
-          id="data-stack-heading"
-          className="text-3xl text-center text-white font-semibold mb-8"
-        >
-          Data Stack
-        </h2>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-          {dataStack.map(item => (
-            <div
-              key={item.name}
-              role="button"
-              tabIndex={0}
-              aria-label={item.name}
-              className="flex flex-col items-center p-4 bg-white/20 rounded-lg border border-white/30 hover:border-white/60 hover:bg-white/30 transition focus:outline-none focus:ring-2 focus:ring-accent"
-            >
-              {item.useImg ? (
-                <img
-                  src={item.imgSrc}
-                  alt={`${item.name} logo`}
-                  width={48}
-                  height={48}
-                  className="mb-2"
-                />
-              ) : (
-                <item.Icon size={48} color={item.color} className="mb-2" />
-              )}
-              <span className="text-white font-medium text-base">{item.name}</span>
-            </div>
-          ))}
-        </div>
-      </motion.section>
+        {item.useImg ? (
+          <img
+            src={item.imgSrc}
+            alt={`${item.name} logo`}
+            width={32}
+            height={32}
+            className="object-contain"
+          />
+        ) : (
+          <item.Icon size={32} color="white" />
+        )}
+      </div>
+    ))}
+  </div>
+</motion.section>
 
       {/* ACHIEVEMENTS */}
       <motion.section
