@@ -1,33 +1,13 @@
-/* styles/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* === Animated Gradient Background === */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 @layer base {
-  html,
-  body {
-    /* 3-color gradient, animated */
-    background: linear-gradient(
-      270deg,
-      #1e3a8a,
-      #2563eb,
-      #3b82f6
-    );
-    background-size: 600% 600%;
-    animation: gradientShift 15s ease infinite;
-
-    /* essentials */
+  html, body {
+    background: #0a0f1c; /* solid canvas */
     margin: 0;
     min-height: 100vh;
-    color: #fff;
     font-family: Inter, sans-serif;
+    color: #fff;
   }
 }
