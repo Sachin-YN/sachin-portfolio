@@ -3,11 +3,10 @@ import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 import Link from 'next/link'
+import Image from 'next/image'
 
-// Logos with brand colors
+// React-Icon imports for the rest
 import {
-  SiPython,
-  SiPostgresql,
   SiMicrosoftexcel,
   SiPowerbi,
   SiQlik,
@@ -15,33 +14,99 @@ import {
   SiSap,
   SiSnowflake,
   SiOracle,
+  SiPostgresql,
 } from 'react-icons/si'
 import {
-  FaDatabase,
   FaProjectDiagram,
   FaRobot,
   FaMicrosoft,
   FaChartLine,
+  FaBrain,
+  FaFlask,
 } from 'react-icons/fa'
 
-// Data Stack items, each with its native brand color
+// Define your data stack
 const dataStack = [
-  { name: 'Python',         Icon: SiPython,         color: '#3776AB' },
-  { name: 'SQL',            Icon: FaDatabase,       color: '#6c757d' },
-  { name: 'R',              Icon: FaChartLine,      color: '#276DC3' },
-  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346' },
-  { name: 'Power BI',       Icon: SiPowerbi,        color: '#F2C811' },
-  { name: 'Qlik',           Icon: SiQlik,           color: '#0066CC' },
-  { name: 'Tableau',        Icon: SiTableau,        color: '#E97627' },
-  { name: 'SAP HANA',       Icon: SiSap,            color: '#1CABE2' },
-  { name: 'Snowflake',      Icon: SiSnowflake,      color: '#28A8E0' },
-  { name: 'Oracle',         Icon: SiOracle,         color: '#FF0000' },
-  { name: 'Data Mapping',   Icon: FaProjectDiagram, color: '#6c757d' },
-  { name: 'Power Automate', Icon: FaRobot,          color: '#003B6D' },
-  { name: 'Dynamics 365',   Icon: FaMicrosoft,      color: '#107C10' },
-  { name: 'SAP CRM',        Icon: SiSap,            color: '#1CABE2' },
-  { name: 'Forecasting',    Icon: FaChartLine,      color: '#6c757d' },
-  { name: 'PostgreSQL',     Icon: SiPostgresql,     color: '#336791' },
+  {
+    name: 'Python',
+    useImg: true,
+    imgSrc: '/icons/python.png',
+  },
+  {
+    name: 'SQL',
+    useImg: true,
+    imgSrc: '/icons/sql.png',
+  },
+  {
+    name: 'R',
+    Icon: FaChartLine,
+    color: '#276DC3',
+  },
+  {
+    name: 'Excel',
+    Icon: SiMicrosoftexcel,
+    color: '#217346',
+  },
+  {
+    name: 'Power BI',
+    Icon: SiPowerbi,
+    color: '#F2C811',
+  },
+  {
+    name: 'Qlik',
+    Icon: SiQlik,
+    color: '#0066CC',
+  },
+  {
+    name: 'Tableau',
+    Icon: SiTableau,
+    color: '#E97627',
+  },
+  {
+    name: 'SAP HANA',
+    Icon: SiSap,
+    color: '#1CABE2',
+  },
+  {
+    name: 'Snowflake',
+    Icon: SiSnowflake,
+    color: '#28A8E0',
+  },
+  {
+    name: 'Oracle',
+    Icon: SiOracle,
+    color: '#FF0000',
+  },
+  {
+    name: 'Data Mapping',
+    Icon: FaProjectDiagram,
+    color: '#6c757d',
+  },
+  {
+    name: 'Power Automate',
+    useImg: true,
+    imgSrc: '/icons/power-automate.png',
+  },
+  {
+    name: 'Dynamics 365',
+    useImg: true,
+    imgSrc: '/icons/dynamics-365.png',
+  },
+  {
+    name: 'SAP CRM',
+    Icon: SiSap,
+    color: '#1CABE2',
+  },
+  {
+    name: 'Forecasting',
+    Icon: FaChartLine,
+    color: '#6c757d',
+  },
+  {
+    name: 'PostgreSQL',
+    Icon: SiPostgresql,
+    color: '#336791',
+  },
 ]
 
 export default function Home() {
@@ -54,7 +119,7 @@ export default function Home() {
             options={{
               strings: [
                 "I’m Sachin Yoganandham",
-                "Data-Driven Business Analyst"
+                "Data-Driven Business Analyst",
               ],
               autoStart: true,
               loop: true,
@@ -90,14 +155,23 @@ export default function Home() {
           Data Stack
         </h2>
         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4">
-          {dataStack.map(({ name, Icon, color }) => (
+          {dataStack.map((item) => (
             <div
-              key={name}
+              key={item.name}
               className="flex flex-col items-center p-4 bg-white/20 rounded-lg border-2 border-[#00ffff] hover:bg-white/30 transition"
             >
-              {/* Render icon in its brand color */}
-              <Icon size={48} color={color} className="mb-2" />
-              <span className="text-white font-medium">{name}</span>
+              {item.useImg ? (
+                <Image
+                  src={item.imgSrc}
+                  alt={item.name}
+                  width={48}
+                  height={48}
+                  className="mb-2"
+                />
+              ) : (
+                <item.Icon size={48} color={item.color} className="mb-2" />
+              )}
+              <span className="text-white font-medium">{item.name}</span>
             </div>
           ))}
         </div>
