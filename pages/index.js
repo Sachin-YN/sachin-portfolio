@@ -126,36 +126,45 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* ACHIEVEMENTS */}
-      <motion.section
-        id="achievements"
-        className="py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
-        aria-labelledby="achievements-heading"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <h2
-          id="achievements-heading"
-          className="text-3xl font-semibold text-white mb-6"
-        >
-          Achievements
-        </h2>
-        <Link
-          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
-          passHref
-        >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-green-500 text-white font-medium rounded-md shadow hover:bg-green-600 transition text-base"
-            aria-label="View Google Data Analytics Professional Certificate"
-          >
-            Google Data Analytics Professional Certificate
-          </a>
-        </Link>
-      </motion.section>
+     {/* ACHIEVEMENTS */}
+<motion.section
+  id="achievements"
+  className="py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
+  aria-labelledby="achievements-heading"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+>
+  <h2
+    id="achievements-heading"
+    className="text-3xl font-semibold text-white mb-6"
+  >
+    Achievements
+  </h2>
+  <Link
+    href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
+    passHref
+  >
+-   <a
+-     target="_blank"
+-     rel="noopener noreferrer"
+-     className="inline-block px-6 py-3 bg-green-500 text-white font-medium rounded-md shadow hover:bg-green-600 transition text-base"
+-     aria-label="View Google Data Analytics Professional Certificate"
+-   >
+-     Google Data Analytics Professional Certificate
+-   </a>
++   <a
++     target="_blank"
++     rel="noopener noreferrer"
++     className="inline-block px-6 py-3 bg-accent text-white font-medium rounded-md shadow hover:bg-accent-dark transition text-base"
++     aria-label="View Google Data Analytics Professional Certificate"
++   >
++     Google Data Analytics Professional Certificate
++   </a>
+  </Link>
+</motion.section>
+
 
       {/* CONTACT CTA */}
       <section
