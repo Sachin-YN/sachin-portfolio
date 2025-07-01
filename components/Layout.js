@@ -41,7 +41,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
 
       {/* Footer */}
       <footer className="relative z-10 mt-16 py-6 text-center text-gray-300">
-        <p className="text-sm">&copy; {currentYear} Sachin Yoganandham. All rights reserved.</p>
+        <p className="text-sm">Designed & Built by Sachin Yoganandham. &copy; {currentYear}</p>
       </footer>
     </>
   )
