@@ -171,14 +171,14 @@ export default function Home() {
           id="contact-heading"
           className="text-3xl font-semibold text-white mb-6"
         >
-          Let’s Talk Data
+          Got an idea or just want to chat tech?
         </h2>
         <Link href="mailto:contact@sachiny.me" passHref>
           <a
             className="inline-block px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
             aria-label="Email Sachin"
           >
-            Email Me
+            Drop Me a Line
           </a>
         </Link>
       </section>
