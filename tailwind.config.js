@@ -7,9 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary accent for buttons, borders, etc.
-        accent: '#10B981',        // Emerald
-        'accent-dark': '#059669', // Darker Emerald on hover
+        accent: '#10B981',
+        'accent-dark': '#059669',
       },
       backdropBlur: {
         xs: '2px',
