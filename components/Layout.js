@@ -11,12 +11,19 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
       : siteUrl
   const siteTitle = `${title} | Portfolio`
   const description = 'Portfolio of Sachin Yoganandham, Data Analyst'
-  const ogImage = `${siteUrl}/og-image.png` // 1200×630 share image
+  const ogImage = `${siteUrl}/og-image.png`
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
   return (
     <>
       <Head>
+        {/* AdSense site verification */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8612329739653505"
+          crossOrigin="anonymous"
+        ></script>
+
         {/* Responsive viewport */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{siteTitle}</title>
@@ -59,9 +66,9 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
           }}
         />
 
+        {/* Google Analytics */}
         {GA_ID && (
           <>
-            {/* Google Analytics */}
             <script
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
@@ -82,7 +89,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         )}
       </Head>
 
-      {/* Accessibility: skip to main content */}
+      {/* Skip link for screen readers */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-2 py-1 rounded"
@@ -90,7 +97,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         Skip to content
       </a>
 
-      {/* Background video + overlay */}
+      {/* Background video & overlay */}
       <video
         autoPlay
         muted
@@ -99,7 +106,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         playsInline
         webkit-playsinline="true"
         disablePictureInPicture
-        onEnded={(e) => e.currentTarget.play()}    // fallback if loop ever glitches
+        onEnded={(e) => e.currentTarget.play()}
         aria-hidden="true"
         className="fixed inset-0 w-full h-full object-cover -z-10"
       >
