@@ -29,23 +29,23 @@ const childVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 }
 
-// Tech-stack with explicit SAP blue
+// Tech-stack with brand colors
 const dataStack = [
-  { name: 'MySQL',          useImg: true, imgSrc: '/icons/mysql.png'      },
-  { name: 'Snowflake',      Icon: SiSnowflake },
-  { name: 'Oracle',         Icon: SiOracle },
-  { name: 'Python',         useImg: true, imgSrc: '/icons/python.jpg'     },
-  { name: 'Pandas',         Icon: SiPandas },
-  { name: 'NumPy',          Icon: SiNumpy },
-  { name: 'SAP HANA',       Icon: SiSap,      color: '#0C66E4' },
-  { name: 'SAP CRM',        Icon: SiSap,      color: '#0C66E4' },
+  { name: 'MySQL',          useImg: true, imgSrc: '/icons/mysql.png' },
+  { name: 'Snowflake',      Icon: SiSnowflake, color: '#56B9EB' },
+  { name: 'Oracle',         Icon: SiOracle, color: '#F80000' },
+  { name: 'Python',         useImg: true, imgSrc: '/icons/python.jpg' },
+  { name: 'Pandas',         Icon: SiPandas, color: '#150458' },
+  { name: 'NumPy',          Icon: SiNumpy, color: '#013243' },
+  { name: 'SAP HANA',       Icon: SiSap, color: '#0C66E4' },
+  { name: 'SAP CRM',        Icon: SiSap, color: '#0C66E4' },
   { name: 'Dynamics 365',   useImg: true, imgSrc: '/icons/dynamics365.jpg' },
   { name: 'Power Automate', useImg: true, imgSrc: '/icons/power automate.png' },
-  { name: 'Power BI',       Icon: SiPowerbi },
-  { name: 'Tableau',        Icon: SiTableau },
-  { name: 'Qlik',           Icon: SiQlik },
-  { name: 'Excel',          Icon: SiMicrosoftexcel },
-  { name: 'Forecasting',    Icon: SiPlotly },
+  { name: 'Power BI',       Icon: SiPowerbi, color: '#F2C811' },
+  { name: 'Tableau',        Icon: SiTableau, color: '#E97627' },
+  { name: 'Qlik',           Icon: SiQlik, color: '#009645' },
+  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346' },
+  { name: 'Forecasting',    Icon: SiPlotly, color: '#3F4F75' },
 ]
 
 export default function Home() {
@@ -181,7 +181,7 @@ export default function Home() {
                     className="mb-1 object-contain"
                   />
                 ) : (
-                  <item.Icon size={40} color={item.color || 'white'} className="mb-1" />
+                  <item.Icon size={40} color={item.color} className="mb-1" />
                 )}
                 <span className="text-white font-medium text-xs">{item.name}</span>
               </motion.div>
