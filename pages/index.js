@@ -1,4 +1,3 @@
-// pages/index.js
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { motion } from 'framer-motion'
@@ -7,6 +6,7 @@ import Tilt from 'react-parallax-tilt'
 import Layout from '../components/Layout'
 import Link from 'next/link'
 import emailjs from 'emailjs-com'
+import toast from 'react-hot-toast'
 import {
   SiMicrosoftexcel,
   SiPowerbi,
@@ -20,7 +20,6 @@ import {
   SiPlotly,
 } from 'react-icons/si'
 
-// Framer Motion variants
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } },
@@ -30,29 +29,27 @@ const childVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 }
 
-// Tech-stack with brand colors
 const dataStack = [
-  { name: 'MySQL',          useImg: true, imgSrc: '/icons/mysql.png' },
-  { name: 'Snowflake',      Icon: SiSnowflake, color: '#56B9EB' },
-  { name: 'Oracle',         Icon: SiOracle, color: '#F80000' },
-  { name: 'Python',         useImg: true, imgSrc: '/icons/python.jpg' },
-  { name: 'Pandas',         Icon: SiPandas, color: '#150458' },
-  { name: 'NumPy',          Icon: SiNumpy, color: '#013243' },
-  { name: 'SAP HANA',       Icon: SiSap, color: '#0C66E4' },
-  { name: 'SAP CRM',        Icon: SiSap, color: '#0C66E4' },
-  { name: 'Dynamics 365',   useImg: true, imgSrc: '/icons/dynamics365.jpg' },
+  { name: 'MySQL', useImg: true, imgSrc: '/icons/mysql.png' },
+  { name: 'Snowflake', Icon: SiSnowflake, color: '#56B9EB' },
+  { name: 'Oracle', Icon: SiOracle, color: '#F80000' },
+  { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
+  { name: 'Pandas', Icon: SiPandas, color: '#150458' },
+  { name: 'NumPy', Icon: SiNumpy, color: '#013243' },
+  { name: 'SAP HANA', Icon: SiSap, color: '#0C66E4' },
+  { name: 'SAP CRM', Icon: SiSap, color: '#0C66E4' },
+  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/dynamics365.jpg' },
   { name: 'Power Automate', useImg: true, imgSrc: '/icons/power automate.png' },
-  { name: 'Power BI',       Icon: SiPowerbi, color: '#F2C811' },
-  { name: 'Tableau',        Icon: SiTableau, color: '#E97627' },
-  { name: 'Qlik',           Icon: SiQlik, color: '#009645' },
-  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346' },
-  { name: 'Forecasting',    Icon: SiPlotly, color: '#3F4F75' },
+  { name: 'Power BI', Icon: SiPowerbi, color: '#F2C811' },
+  { name: 'Tableau', Icon: SiTableau, color: '#E97627' },
+  { name: 'Qlik', Icon: SiQlik, color: '#009645' },
+  { name: 'Excel', Icon: SiMicrosoftexcel, color: '#217346' },
+  { name: 'Forecasting', Icon: SiPlotly, color: '#3F4F75' },
 ]
 
 export default function Home() {
   const cardsRef = useRef(null)
 
-  // GSAP hover glow
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll('.tech-card')
     if (!cards) return
@@ -82,30 +79,28 @@ export default function Home() {
   const sendEmail = (e) => {
     e.preventDefault()
     const form = e.target
-    const currentTime = new Date().toLocaleString()
 
     const templateParams = {
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
       title: 'Website Contact Form',
-      time: currentTime,
+      time: new Date().toLocaleString(),
     }
 
-    emailjs.send(
-      'service_rec6ze3',
-      'template_0hk0x7m',
-      templateParams,
-      '79r0FQ9nqNFXnqcw9'
-    )
-      .then(result => {
-        console.log('✅ Email sent:', result.text)
-        alert('Message sent successfully!')
+    emailjs
+      .send(
+        'service_rec6ze3',
+        'template_0hk0x7m',
+        templateParams,
+        '79r0FQ9nqNFXnqcw9'
+      )
+      .then(() => {
+        toast.success('Message sent successfully! 🚀')
         form.reset()
       })
-      .catch(error => {
-        console.error('❌ Email error:', error.text)
-        alert('Something went wrong. Please try again later.')
+      .catch(() => {
+        toast.error('Something went wrong. Please try again later.')
       })
   }
 
@@ -261,32 +256,34 @@ export default function Home() {
 
         <motion.form
           onSubmit={sendEmail}
-          className="max-w-xl mx-auto p-6 bg-white/5 backdrop-blur-md rounded-xl shadow-md space-y-4"
           variants={childVariants}
+          className="max-w-xl mx-auto p-6 bg-white/5 backdrop-blur-md rounded-xl shadow-md space-y-4"
         >
           <div className="flex flex-col sm:flex-row gap-4">
             <input
-              name="name"
               type="text"
+              name="name"
               placeholder="Your Name"
               required
-              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400"
+              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
             />
             <input
-              name="email"
               type="email"
+              name="email"
               placeholder="Your Email"
               required
-              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400"
+              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
             />
           </div>
+
           <textarea
             name="message"
             rows={5}
             placeholder="Your Message"
             required
-            className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400"
+            className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
           ></textarea>
+
           <button
             type="submit"
             className="w-full py-3 bg-cyan-400 text-white font-medium rounded-md hover:bg-cyan-500 transition"
