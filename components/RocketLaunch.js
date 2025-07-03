@@ -12,15 +12,15 @@ export default function RocketLaunch() {
   }
 
   return (
-    <div className="fixed top-4 left-4 z-50 w-12 h-12">
+    <div className="fixed bottom-6 left-6 z-50 w-12 h-12">
       <div
-        className={`relative transition-transform duration-[2s] ease-in-out ${
-          launched ? 'translate-x-[120vw] -translate-y-[100vh]' : ''
+        className={`relative transition-transform duration-[3s] ease-in-out ${
+          launched ? 'translate-x-[100vw]' : ''
         }`}
       >
         <button onClick={handleLaunch} className="relative flex flex-col items-center">
-          <FaRocket className="text-white text-3xl z-20" />
-          {launched && <div className="flame absolute top-8 z-10"></div>}
+          <FaRocket className="text-white text-3xl z-20 rotate-90" />
+          {launched && <div className="flame absolute left-3 top-7 z-10"></div>}
         </button>
       </div>
 
