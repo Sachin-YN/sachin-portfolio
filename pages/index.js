@@ -1,3 +1,4 @@
+// pages/index.js
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { motion } from 'framer-motion'
@@ -5,6 +6,7 @@ import Typewriter from 'typewriter-effect'
 import Tilt from 'react-parallax-tilt'
 import Layout from '../components/Layout'
 import Link from 'next/link'
+import emailjs from 'emailjs-com'
 import {
   SiMicrosoftexcel,
   SiPowerbi,
@@ -77,6 +79,36 @@ export default function Home() {
     return () => cards.forEach(c => c.__cleanup?.())
   }, [])
 
+  const sendEmail = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const currentTime = new Date().toLocaleString()
+
+    const templateParams = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+      title: 'Website Contact Form',
+      time: currentTime,
+    }
+
+    emailjs.send(
+      'service_rec6ze3',
+      'template_0hk0x7m',
+      templateParams,
+      '79r0FQ9nqNFXnqcw9'
+    )
+      .then(result => {
+        console.log('✅ Email sent:', result.text)
+        alert('Message sent successfully!')
+        form.reset()
+      })
+      .catch(error => {
+        console.error('❌ Email error:', error.text)
+        alert('Something went wrong. Please try again later.')
+      })
+  }
+
   return (
     <Layout title="Home">
       {/* HERO */}
@@ -118,7 +150,6 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* Highlighted CTA in cyan-teal */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -216,7 +247,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* CONTACT FORM SECTION */}
+      {/* CONTACT FORM */}
       <motion.section
         className="py-16 px-4 md:px-8 text-center"
         initial="hidden"
@@ -229,12 +260,9 @@ export default function Home() {
         </motion.h2>
 
         <motion.form
-          variants={childVariants}
+          onSubmit={sendEmail}
           className="max-w-xl mx-auto p-6 bg-white/5 backdrop-blur-md rounded-xl shadow-md space-y-4"
-          onSubmit={(e) => {
-            e.preventDefault()
-            alert('Form submitted! (Backend can be added later)')
-          }}
+          variants={childVariants}
         >
           <div className="flex flex-col sm:flex-row gap-4">
             <input
@@ -242,25 +270,23 @@ export default function Home() {
               type="text"
               placeholder="Your Name"
               required
-              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400"
             />
             <input
               name="email"
               type="email"
               placeholder="Your Email"
               required
-              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400"
             />
           </div>
-
           <textarea
             name="message"
             rows={5}
             placeholder="Your Message"
             required
-            className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400"
           ></textarea>
-
           <button
             type="submit"
             className="w-full py-3 bg-cyan-400 text-white font-medium rounded-md hover:bg-cyan-500 transition"
