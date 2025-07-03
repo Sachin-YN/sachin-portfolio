@@ -1,28 +1,25 @@
-// tailwind.config.js
-module.exports = {
-  content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
-  darkMode: 'class',
-  theme: {
-    extend: {
-      // 🔁 Custom animations (e.g., flicker for binary hover)
-      animation: {
-        'gradient-x': 'gradient-x 15s ease infinite',
-        flicker: 'flicker 2s infinite',
-      },
-      keyframes: {
-        'gradient-x': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
-        flicker: {
-          '0%, 100%': { opacity: 1 },
-          '50%': { opacity: 0.4 },
-        },
-      },
-      backgroundSize: {
-        'size-200': '200% 200%',
-      },
-    },
-  },
-  plugins: [],
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, sans-serif;
+    color: #fff;
+    background: none;
+    overflow-x: hidden;
+  }
+}
+
+@keyframes rocketFlame {
+  0% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(1.5); opacity: 0.7; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+.animate-rocket-flame {
+  animation: rocketFlame 0.3s infinite;
 }
