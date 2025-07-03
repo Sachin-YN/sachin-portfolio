@@ -17,7 +17,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
   return (
     <>
       <Head>
-        {/* AdSense site verification */}
+        {/* AdSense verification snippet */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8612329739653505"
@@ -89,7 +89,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         )}
       </Head>
 
-      {/* Skip link for screen readers */}
+      {/* Skip to content for accessibility */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-2 py-1 rounded"
@@ -97,7 +97,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         Skip to content
       </a>
 
-      {/* Background video & overlay */}
+      {/* Background video + overlay */}
       <video
         autoPlay
         muted
