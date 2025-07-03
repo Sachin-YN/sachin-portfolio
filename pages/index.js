@@ -17,99 +17,6 @@ import {
   SiNumpy,
   SiPlotly,
 } from 'react-icons/si'
-import { FaMicrosoft } from 'react-icons/fa'
-
-// (Your dataStack and any GSAP setup here…)
-
-export default function Home() {
-  const cardsRef = useRef(null)
-
-  // (GSAP hover effect for tech cards…)
-
-  return (
-    <Layout title="Home">
-      {/* ================= HERO ================= */}
-      <section
-        id="hero"
-        className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-6"
-      >
-        {/* 1) Headline fades in */}
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
-        >
-          I’m Sachin Yoganandham
-        </motion.h1>
-
-        {/* 2) Subtitle slides up + fades */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          className="max-w-2xl text-gray-300 text-base sm:text-lg md:text-xl"
-        >
-          Turning complex metrics into clear stories
-        </motion.p>
-
-        {/* 3) Typewriter tagline appears */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-        >
-          <Typewriter
-            options={{
-              strings: ["Data-Driven Business Analyst"],
-              autoStart: true,
-              loop: false,
-              cursor: '',
-              delay: 75,
-            }}
-          />
-        </motion.div>
-
-        {/* 4) Button scales in */}
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.6, duration: 0.4, ease: 'backOut' }}
-          onClick={() =>
-            document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
-          }
-          className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
-        >
-          Explore My Tech Stack
-        </motion.button>
-      </section>
-
-      {/* ================= TECH STACK & REST OF PAGE ================= */}
-      {/* ... your tech-stack, certifications, contact ... */}
-
-    </Layout>
-  )
-}
-// pages/index.js
-import { useRef, useEffect } from 'react'
-import { gsap } from 'gsap'
-import Layout from '../components/Layout'
-import { motion } from 'framer-motion'
-import Typewriter from 'typewriter-effect'
-import Link from 'next/link'
-import {
-  SiMicrosoftexcel,
-  SiPowerbi,
-  SiQlik,
-  SiTableau,
-  SiSap,
-  SiSnowflake,
-  SiOracle,
-  SiPandas,
-  SiNumpy,
-  SiPlotly,
-} from 'react-icons/si'
-import { FaMicrosoft } from 'react-icons/fa'
 
 // Tech‐stack data
 const dataStack = [
@@ -131,80 +38,99 @@ const dataStack = [
 ]
 
 export default function Home() {
-  // Just a plain JS ref—no <HTMLDivElement> generic
   const cardsRef = useRef(null)
 
+  // GSAP hover glow on tech cards
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll('.tech-card')
     if (!cards) return
 
     cards.forEach((card) => {
-      // Hover in
-      card.addEventListener('mouseenter', () => {
+      const enter = () => {
         gsap.to(card, {
           scale: 1.05,
           boxShadow: '0 0 12px rgba(16,185,129,0.6)',
           duration: 0.3,
           ease: 'power1.out',
         })
-      })
-      // Hover out
-      card.addEventListener('mouseleave', () => {
+      }
+      const leave = () => {
         gsap.to(card, {
           scale: 1,
           boxShadow: '0 0 4px rgba(0,0,0,0.2)',
           duration: 0.3,
           ease: 'power1.in',
         })
-      })
+      }
+      card.addEventListener('mouseenter', enter)
+      card.addEventListener('mouseleave', leave)
+      // cleanup
+      card.__cleanup = () => {
+        card.removeEventListener('mouseenter', enter)
+        card.removeEventListener('mouseleave', leave)
+      }
     })
 
-    // Cleanup by cloning nodes (removes all listeners)
     return () => {
-      cards.forEach((card) => {
-        card.replaceWith(card.cloneNode(true))
-      })
+      cards.forEach((card) => card.__cleanup && card.__cleanup())
     }
   }, [])
 
   return (
     <Layout title="Home">
-      {/* HERO */}
+      {/* HERO with Type & Fade */}
       <section
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-6"
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
+        >
+          I’m Sachin Yoganandham
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+          className="max-w-2xl text-gray-300 text-base sm:text-lg md:text-xl"
+        >
+          Turning complex metrics into clear stories
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.5 }}
+        >
           <Typewriter
             options={{
-              strings: ["I’m Sachin Yoganandham", "Data-Driven Business Analyst"],
+              strings: ['Data-Driven Business Analyst'],
               autoStart: true,
-              loop: true,
-              pauseFor: 2000,
+              loop: false,
+              cursor: '',
+              delay: 75,
             }}
           />
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl space-y-1">
-          <span className="font-semibold block">
-            Turning complex metrics into clear stories
-          </span>
-          <span className="block">
-            Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
-          </span>
-        </p>
+        </motion.div>
+
         <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.6, duration: 0.4, ease: 'backOut' }}
           onClick={() =>
             document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
           }
           className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
         >
           Explore My Tech Stack
         </motion.button>
       </section>
 
-      {/* TECH STACK GRID */}
+      {/* TECH STACK */}
       <motion.section
         id="data-stack"
         className="py-12 px-4 sm:px-6 md:px-8"
@@ -242,7 +168,41 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* rest of page… */}
+      {/* CERTIFICATIONS */}
+      <motion.section
+        id="certifications"
+        className="py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <h2 className="text-3xl font-semibold text-white mb-6">Certifications</h2>
+        <Link
+          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
+          passHref
+        >
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 bg-accent text-white font-medium rounded-md shadow hover:bg-accent-dark transition text-base"
+          >
+            Google Data Analytics Professional Certificate
+          </a>
+        </Link>
+      </motion.section>
+
+      {/* CONTACT CTA */}
+      <section id="contact" className="py-16 text-center px-4 sm:px-6 md:px-8">
+        <h2 className="text-3xl font-semibold text-white mb-6">
+          Got an idea or just want to chat tech?
+        </h2>
+        <Link href="mailto:contact@sachiny.me" passHref>
+          <a className="inline-block px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium">
+            Drop Me a Line
+          </a>
+        </Link>
+      </section>
     </Layout>
   )
 }
