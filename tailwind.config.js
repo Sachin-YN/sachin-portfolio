@@ -1,6 +1,7 @@
 // tailwind.config.js
 module.exports = {
   content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
+  darkMode: 'class', // ✅ Enable dark mode using class strategy
   theme: {
     extend: {
       backdropBlur: {
@@ -9,7 +10,7 @@ module.exports = {
         md: '8px',
         DEFAULT: '12px',
       },
-      // No extra config needed for scale-x—Tailwind v3 has it by default
+      // You can add more theming customizations here later
     },
   },
   plugins: [],
