@@ -1,23 +1,22 @@
 // pages/_app.js
-import '../styles/globals.css'    // 🔥 required for Tailwind
-import { useEffect } from 'react'
+import '../styles/globals.css'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 
-function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   const router = useRouter()
-  const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
-  useEffect(() => {
-    if (!GA_ID) return
-
-    const handleRouteChange = (url) => {
-      window.gtag('config', GA_ID, { page_path: url })
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => router.events.off('routeChangeComplete', handleRouteChange)
-  }, [router.events, GA_ID])
-
-  return <Component {...pageProps} />
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={router.pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Component {...pageProps} />
+      </motion.div>
+    </AnimatePresence>
+  )
 }
-
-export default App
