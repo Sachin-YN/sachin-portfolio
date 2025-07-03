@@ -1,9 +1,10 @@
 // pages/index.js
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
+import Tilt from 'react-parallax-tilt'
+import Layout from '../components/Layout'
 import Link from 'next/link'
 import {
   SiMicrosoftexcel,
@@ -18,71 +19,65 @@ import {
   SiPlotly,
 } from 'react-icons/si'
 
-// Tech‐stack data
+// 1. Scroll-reveal variants
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { staggerChildren: 0.1, ease: 'easeOut', duration: 0.5 },
+  },
+}
+const childVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+}
+
+// 2. Tech-stack data
 const dataStack = [
-  { name: 'MySQL',          useImg: true,       imgSrc: '/icons/mysql.png'     },
-  { name: 'Snowflake',      Icon: SiSnowflake,   color: '#28A8E0'               },
-  { name: 'Oracle',         Icon: SiOracle,      color: '#FF0000'               },
-  { name: 'Python',         useImg: true,       imgSrc: '/icons/python.jpg'    },
-  { name: 'Pandas',         Icon: SiPandas,      color: '#150458'               },
-  { name: 'NumPy',          Icon: SiNumpy,       color: '#013243'               },
-  { name: 'SAP HANA',       Icon: SiSap,         color: '#1CABE2'               },
-  { name: 'SAP CRM',        Icon: SiSap,         color: '#1CABE2'               },
-  { name: 'Dynamics 365',   useImg: true,       imgSrc: '/icons/dynamics365.jpg' },
-  { name: 'Power Automate', useImg: true,       imgSrc: '/icons/power automate.png' },
-  { name: 'Power BI',       Icon: SiPowerbi,     color: '#F2C811'               },
-  { name: 'Tableau',        Icon: SiTableau,     color: '#E97627'               },
-  { name: 'Qlik',           Icon: SiQlik,        color: '#0066CC'               },
-  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346'            },
-  { name: 'Forecasting',    Icon: SiPlotly,      color: '#3F4C6B'               },
+  { name: 'MySQL', useImg: true, imgSrc: '/icons/mysql.png' },
+  { name: 'Snowflake', Icon: SiSnowflake },
+  { name: 'Oracle', Icon: SiOracle },
+  { name: 'Python', useImg: true, imgSrc: '/icons/python.jpg' },
+  { name: 'Pandas', Icon: SiPandas },
+  { name: 'NumPy', Icon: SiNumpy },
+  { name: 'SAP HANA', Icon: SiSap },
+  { name: 'SAP CRM', Icon: SiSap },
+  { name: 'Dynamics 365', useImg: true, imgSrc: '/icons/dynamics365.jpg' },
+  { name: 'Power Automate', useImg: true, imgSrc: '/icons/power automate.png' },
+  { name: 'Power BI', Icon: SiPowerbi },
+  { name: 'Tableau', Icon: SiTableau },
+  { name: 'Qlik', Icon: SiQlik },
+  { name: 'Excel', Icon: SiMicrosoftexcel },
+  { name: 'Forecasting', Icon: SiPlotly },
 ]
 
 export default function Home() {
   const cardsRef = useRef(null)
 
-  // GSAP hover glow on tech cards
+  // GSAP hover glow
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll('.tech-card')
     if (!cards) return
-
     cards.forEach((card) => {
-      const enter = () => {
-        gsap.to(card, {
-          scale: 1.05,
-          boxShadow: '0 0 12px rgba(16,185,129,0.6)',
-          duration: 0.3,
-          ease: 'power1.out',
-        })
-      }
-      const leave = () => {
-        gsap.to(card, {
-          scale: 1,
-          boxShadow: '0 0 4px rgba(0,0,0,0.2)',
-          duration: 0.3,
-          ease: 'power1.in',
-        })
-      }
-      card.addEventListener('mouseenter', enter)
-      card.addEventListener('mouseleave', leave)
-      // cleanup
+      const onEnter = () =>
+        gsap.to(card, { scale: 1.05, boxShadow: '0 0 12px rgba(16,185,129,0.6)', duration: 0.3 })
+      const onLeave = () =>
+        gsap.to(card, { scale: 1, boxShadow: '0 0 4px rgba(0,0,0,0.2)', duration: 0.3 })
+      card.addEventListener('mouseenter', onEnter)
+      card.addEventListener('mouseleave', onLeave)
       card.__cleanup = () => {
-        card.removeEventListener('mouseenter', enter)
-        card.removeEventListener('mouseleave', leave)
+        card.removeEventListener('mouseenter', onEnter)
+        card.removeEventListener('mouseleave', onLeave)
       }
     })
-
-    return () => {
-      cards.forEach((card) => card.__cleanup && card.__cleanup())
-    }
+    return () => cards.forEach((c) => c.__cleanup && c.__cleanup())
   }, [])
 
   return (
     <Layout title="Home">
-      {/* HERO with Type & Fade */}
-      <section
-        id="hero"
-        className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-6"
-      >
+      {/* HERO */}
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12">
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -96,7 +91,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.5 }}
-          className="max-w-2xl text-gray-300 text-base sm:text-lg md:text-xl"
+          className="mt-4 max-w-2xl text-gray-300 text-lg"
         >
           Turning complex metrics into clear stories
         </motion.p>
@@ -105,6 +100,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.5 }}
+          className="mt-2"
         >
           <Typewriter
             options={{
@@ -117,92 +113,104 @@ export default function Home() {
           />
         </motion.div>
 
+        {/* Underline-slide button */}
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.6, duration: 0.4, ease: 'backOut' }}
-          onClick={() =>
-            document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
-          }
-          className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
+          onClick={() => document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })}
+          className="group relative mt-8 inline-block px-6 py-3 bg-accent text-white rounded-md text-base font-medium"
         >
           Explore My Tech Stack
+          <span className="absolute bottom-1 left-0 h-0.5 w-full bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
         </motion.button>
       </section>
 
       {/* TECH STACK */}
       <motion.section
         id="data-stack"
-        className="py-12 px-4 sm:px-6 md:px-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        className="py-16 px-4 md:px-8 bg-white/5 backdrop-blur-md"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
       >
-        <h2 className="text-2xl sm:text-3xl text-center text-white font-semibold mb-6">
+        <motion.h2
+          variants={childVariants}
+          className="text-3xl text-center text-white font-semibold mb-8"
+        >
           Tech Stack
-        </h2>
+        </motion.h2>
+
         <div
           ref={cardsRef}
-          className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6"
+          className="mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6 max-w-5xl"
         >
-          {dataStack.map((item) => (
-            <div
+          {dataStack.map((item, i) => (
+            <Tilt
               key={item.name}
-              className="tech-card flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs rounded-lg"
+              glareEnable
+              glareMaxOpacity={0.1}
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              className="tech-card"
             >
-              {item.useImg ? (
-                <img
-                  src={item.imgSrc}
-                  alt={`${item.name} logo`}
-                  width={40}
-                  height={40}
-                  className="mb-1 object-contain"
-                />
-              ) : (
-                <item.Icon size={40} color={item.color} className="mb-1" />
-              )}
-              <span className="text-white font-medium text-xs">{item.name}</span>
-            </div>
+              <motion.div
+                variants={childVariants}
+                className="flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs rounded-lg"
+              >
+                {item.useImg ? (
+                  <img src={item.imgSrc} alt={`${item.name} logo`} width={40} height={40} className="mb-1 object-contain" />
+                ) : (
+                  <item.Icon size={40} color="white" className="mb-1" />
+                )}
+                <span className="text-white font-medium text-xs">{item.name}</span>
+              </motion.div>
+            </Tilt>
           ))}
         </div>
       </motion.section>
 
       {/* CERTIFICATIONS */}
       <motion.section
-        id="certifications"
-        className="py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        className="py-16 px-4 md:px-8 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
       >
-        <h2 className="text-3xl font-semibold text-white mb-6">Certifications</h2>
-        <Link
-          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
-          passHref
-        >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-accent text-white font-medium rounded-md shadow hover:bg-accent-dark transition text-base"
-          >
-            Google Data Analytics Professional Certificate
-          </a>
-        </Link>
+        <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
+          Certifications
+        </motion.h2>
+        <motion.div variants={childVariants}>
+          <Link href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4" passHref>
+            <a className="inline-block px-6 py-3 bg-accent text-white rounded-md shadow hover:bg-accent-dark transition">
+              Google Data Analytics Professional Certificate
+            </a>
+          </Link>
+        </motion.div>
       </motion.section>
 
       {/* CONTACT CTA */}
-      <section id="contact" className="py-16 text-center px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-semibold text-white mb-6">
+      <motion.section
+        className="py-16 px-4 md:px-8 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
           Got an idea or just want to chat tech?
-        </h2>
-        <Link href="mailto:contact@sachiny.me" passHref>
-          <a className="inline-block px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium">
-            Drop Me a Line
-          </a>
-        </Link>
-      </section>
+        </motion.h2>
+        <motion.div variants={childVariants}>
+          <Link href="mailto:contact@sachiny.me" passHref>
+            <a className="relative group inline-block px-6 py-3 bg-accent text-white rounded-md transition">
+              Drop Me a Line
+              <span className="absolute bottom-1 left-0 h-0.5 w-full bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+            </a>
+          </Link>
+        </motion.div>
+      </motion.section>
     </Layout>
   )
 }
