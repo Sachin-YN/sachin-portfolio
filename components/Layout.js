@@ -1,5 +1,8 @@
+// components/Layout.js
+
 import Head from 'next/head'
 import Navbar from './Navbar'
+import RocketLaunch from './RocketLaunch'
 
 export default function Layout({ children, title = 'Sachin Yoganandham' }) {
   const currentYear = new Date().getFullYear()
@@ -16,17 +19,18 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
   return (
     <>
       <Head>
-        {/* AdSense verification snippet */}
+        {/* AdSense */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8612329739653505"
           crossOrigin="anonymous"
         ></script>
 
+        {/* Meta */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{siteTitle}</title>
         <meta name="description" content={description} />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
@@ -42,7 +46,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
 
-        {/* JSON-LD structured data */}
+        {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -54,21 +58,18 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
               jobTitle: 'Data Analyst',
               sameAs: [
                 'https://www.linkedin.com/in/ing-sachin-yoganandham-a06b88117/',
-                'https://github.com/Sachin-YN',
+                'https://github.com/Sachin-YN'
               ],
               image: ogImage,
-              description,
-            }),
+              description
+            })
           }}
         />
 
         {/* Google Analytics */}
         {GA_ID && (
           <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-            />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
             <script
               dangerouslySetInnerHTML={{
                 __html: `
@@ -78,14 +79,14 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
                   gtag('config', '${GA_ID}', {
                     page_path: window.location.pathname,
                   });
-                `,
+                `
               }}
             />
           </>
         )}
       </Head>
 
-      {/* Skip to content for accessibility */}
+      {/* Skip to content */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-2 py-1 rounded"
@@ -93,7 +94,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         Skip to content
       </a>
 
-      {/* 🔄 BACKGROUND VIDEO and overlay restored */}
+      {/* Background video */}
       <video
         autoPlay
         muted
@@ -106,14 +107,15 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
         aria-hidden="true"
         className="fixed inset-0 w-full h-full object-cover -z-10"
       >
-        <source
-          src="/videos/earth-from-space-moewalls-com.mp4"
-          type="video/mp4"
-        />
+        <source src="/videos/earth-from-space-moewalls-com.mp4" type="video/mp4" />
       </video>
+
+      {/* Overlay */}
       <div className="fixed inset-0 bg-black/30 -z-5" />
 
+      {/* Components */}
       <Navbar />
+      <RocketLaunch />
 
       <main id="main-content" className="relative z-10 pt-20">
         {children}
