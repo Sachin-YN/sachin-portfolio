@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base Layer */
 @layer base {
   html, body {
     margin: 0;
@@ -19,27 +18,37 @@
   }
 }
 
-/* Custom Rocket Stars Animation */
+/* Flame Animation */
+.flame {
+  width: 10px;
+  height: 20px;
+  background: linear-gradient(to top, orange, yellow, transparent);
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: flameFlicker 0.2s infinite;
+  transform: translateY(10px);
+}
+
+@keyframes flameFlicker {
+  0% { transform: scale(1) translateY(10px); opacity: 0.8; }
+  50% { transform: scale(1.2) translateY(12px); opacity: 1; }
+  100% { transform: scale(1) translateY(10px); opacity: 0.8; }
+}
+
+/* Twinkling Stars */
 .star {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   background: white;
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 0.7;
+  animation: twinkle 1.5s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: 10;
 }
 
-@keyframes star {
-  0% {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(-60px);
-    opacity: 0;
-  }
-}
-
-.animate-star {
-  animation: star 2s linear forwards;
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.5); }
 }
