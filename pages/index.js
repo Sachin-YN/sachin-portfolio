@@ -19,7 +19,7 @@ import {
   SiPlotly,
 } from 'react-icons/si'
 
-// Framer Motion section variants
+// Framer Motion variants
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } },
@@ -29,7 +29,7 @@ const childVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 }
 
-// Your tech-stack data
+// Tech-stack with explicit SAP blue
 const dataStack = [
   { name: 'MySQL',          useImg: true, imgSrc: '/icons/mysql.png'      },
   { name: 'Snowflake',      Icon: SiSnowflake },
@@ -37,8 +37,8 @@ const dataStack = [
   { name: 'Python',         useImg: true, imgSrc: '/icons/python.jpg'     },
   { name: 'Pandas',         Icon: SiPandas },
   { name: 'NumPy',          Icon: SiNumpy },
-  { name: 'SAP HANA',       Icon: SiSap },
-  { name: 'SAP CRM',        Icon: SiSap },
+  { name: 'SAP HANA',       Icon: SiSap,      color: '#0C66E4' },
+  { name: 'SAP CRM',        Icon: SiSap,      color: '#0C66E4' },
   { name: 'Dynamics 365',   useImg: true, imgSrc: '/icons/dynamics365.jpg' },
   { name: 'Power Automate', useImg: true, imgSrc: '/icons/power automate.png' },
   { name: 'Power BI',       Icon: SiPowerbi },
@@ -51,28 +51,28 @@ const dataStack = [
 export default function Home() {
   const cardsRef = useRef(null)
 
-  // GSAP hover-glow on cards
+  // GSAP hover glow
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll('.tech-card')
     if (!cards) return
     cards.forEach(card => {
-      const onEnter = () =>
+      const enter = () =>
         gsap.to(card, {
           scale: 1.05,
           boxShadow: '0 0 12px rgba(16,185,129,0.6)',
           duration: 0.3,
         })
-      const onLeave = () =>
+      const leave = () =>
         gsap.to(card, {
           scale: 1,
           boxShadow: '0 0 4px rgba(0,0,0,0.2)',
           duration: 0.3,
         })
-      card.addEventListener('mouseenter', onEnter)
-      card.addEventListener('mouseleave', onLeave)
+      card.addEventListener('mouseenter', enter)
+      card.addEventListener('mouseleave', leave)
       card.__cleanup = () => {
-        card.removeEventListener('mouseenter', onEnter)
-        card.removeEventListener('mouseleave', onLeave)
+        card.removeEventListener('mouseenter', enter)
+        card.removeEventListener('mouseleave', leave)
       }
     })
     return () => cards.forEach(c => c.__cleanup?.())
@@ -119,18 +119,18 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* Highlighted CTA Panel */}
+        {/* Highlighted CTA in cyan-teal */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.6, duration: 0.4, ease: 'backOut' }}
-          className="mt-8 inline-block bg-accent/20 backdrop-blur-sm rounded-lg p-1"
+          className="mt-8 inline-block bg-cyan-500/20 backdrop-blur-sm rounded-lg p-1"
         >
           <motion.button
             onClick={() =>
               document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="px-6 py-3 bg-accent text-white rounded-md font-medium"
+            className="px-6 py-3 bg-cyan-400 text-white rounded-md font-medium hover:bg-cyan-500 transition"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -181,7 +181,7 @@ export default function Home() {
                     className="mb-1 object-contain"
                   />
                 ) : (
-                  <item.Icon size={40} color="white" className="mb-1" />
+                  <item.Icon size={40} color={item.color || 'white'} className="mb-1" />
                 )}
                 <span className="text-white font-medium text-xs">{item.name}</span>
               </motion.div>
@@ -202,16 +202,15 @@ export default function Home() {
           Certifications
         </motion.h2>
 
-        {/* Highlighted Certificate Panel */}
         <motion.div
           variants={childVariants}
-          className="inline-block bg-accent/20 backdrop-blur-sm rounded-lg p-1"
+          className="inline-block bg-cyan-500/20 backdrop-blur-sm rounded-lg p-1"
         >
           <Link
             href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
             passHref
           >
-            <a className="px-6 py-3 bg-accent text-white rounded-md font-medium">
+            <a className="px-6 py-3 bg-cyan-400 text-white rounded-md font-medium hover:bg-cyan-500 transition">
               Google Data Analytics Professional Certificate
             </a>
           </Link>
@@ -231,7 +230,7 @@ export default function Home() {
         </motion.h2>
         <motion.div variants={childVariants}>
           <Link href="mailto:contact@sachiny.me" passHref>
-            <a className="relative group inline-block px-6 py-3 bg-accent text-white rounded-md font-medium transition">
+            <a className="relative group inline-block px-6 py-3 bg-cyan-400 text-white rounded-md font-medium transition hover:bg-cyan-500">
               Drop Me a Line
               <span className="absolute bottom-1 left-0 h-0.5 w-full bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             </a>
