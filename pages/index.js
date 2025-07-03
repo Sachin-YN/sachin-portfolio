@@ -18,12 +18,12 @@ import {
   SiNumpy,
   SiPlotly,
 } from 'react-icons/si'
-import { FaMicrosoft, FaChartLine } from 'react-icons/fa'
+import { FaMicrosoft } from 'react-icons/fa'
 
-// 1) Register the InertiaPlugin
+// Register the GSAP plugin
 gsap.registerPlugin(InertiaPlugin)
 
-// 2) Declare your dataStack at top-level so it's always in scope
+// Tech‐stack data
 const dataStack = [
   { name: 'MySQL',          useImg: true,  imgSrc: '/icons/mysql.png'     },
   { name: 'Snowflake',      Icon: SiSnowflake,  color: '#28A8E0'         },
@@ -43,16 +43,16 @@ const dataStack = [
 ]
 
 export default function Home() {
-  const stackRef = useRef(null)
+  const gridRef = useRef(null)
 
   useEffect(() => {
-    const root = stackRef.current
+    const root = gridRef.current
     if (!root) return
 
     let oldX = 0, oldY = 0, deltaX = 0, deltaY = 0
 
-    // Track mouse move deltas
-    const onMouseMove = (e) => {
+    // Track movement within grid
+    const onMouseMove = e => {
       deltaX = e.clientX - oldX
       deltaY = e.clientY - oldY
       oldX = e.clientX
@@ -60,20 +60,14 @@ export default function Home() {
     }
     root.addEventListener('mousemove', onMouseMove)
 
-    // Bind hover/inertia effect on each card
-    root.querySelectorAll('.tech-card').forEach((el) => {
+    // Apply inertia on hover
+    root.querySelectorAll('.tech-card').forEach(el => {
       el.addEventListener('mouseenter', () => {
         const media = el.querySelector('img, svg')
-        const tl = gsap.timeline({
-          onComplete: () => tl.kill(),
-        })
+        const tl = gsap.timeline({ onComplete: () => tl.kill() })
         tl.timeScale(1.2)
           .to(media, {
-            inertia: {
-              x: deltaX * 30,
-              y: deltaY * 30,
-              end: true,
-            },
+            inertia: { x: deltaX * 30, y: deltaY * 30, end: true },
           })
           .fromTo(
             media,
@@ -90,9 +84,7 @@ export default function Home() {
       })
     })
 
-    return () => {
-      root.removeEventListener('mousemove', onMouseMove)
-    }
+    return () => root.removeEventListener('mousemove', onMouseMove)
   }, [])
 
   return (
@@ -121,14 +113,15 @@ export default function Home() {
             Turning complex metrics into clear stories
           </span>
           <span className="block">
-            Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
+            Transforming ERP, CRM & cloud data into actionable dashboards for
+            strategic insights.
           </span>
         </p>
         <motion.button
           type="button"
           aria-label="Scroll to Tech Stack"
           onClick={() =>
-            document.getElementById('data-stack').scrollIntoView({ behavior: 'smooth' })
+            gridRef.current.scrollIntoView({ behavior: 'smooth' })
           }
           className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
           whileHover={{ scale: 1.05 }}
@@ -141,7 +134,6 @@ export default function Home() {
       {/* TECH STACK GRID */}
       <motion.section
         id="data-stack"
-        ref={stackRef}
         className="py-12 px-4 sm:px-6 md:px-8"
         aria-labelledby="data-stack-heading"
         initial={{ opacity: 0, y: 20 }}
@@ -155,11 +147,17 @@ export default function Home() {
         >
           Tech Stack
         </h2>
-        <div className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6">
-          {dataStack.map((item) => (
+
+        <div
+          ref={gridRef}
+          className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6
+                     h-[200px] overflow-hidden"
+        >
+          {dataStack.map(item => (
             <div
               key={item.name}
-              className="tech-card flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs rounded-lg hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-accent"
+              className="tech-card flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs
+                         rounded-lg hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {item.useImg ? (
                 <img
@@ -181,7 +179,55 @@ export default function Home() {
       </motion.section>
 
       {/* CERTIFICATIONS */}
-      {/* … */}
+      <motion.section
+        id="certifications"
+        className="py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
+        aria-labelledby="certifications-heading"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <h2
+          id="certifications-heading"
+          className="text-3xl font-semibold text-white mb-6"
+        >
+          Certifications
+        </h2>
+        <Link
+          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
+          passHref
+        >
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 bg-accent text-white font-medium rounded-md shadow hover:bg-accent-dark transition text-base"
+          >
+            Google Data Analytics Professional Certificate
+          </a>
+        </Link>
+      </motion.section>
+
+      {/* CONTACT CTA */}
+      <section
+        id="contact"
+        className="py-16 px-4 sm:px-6 md:px-8 text-center"
+        aria-labelledby="contact-heading"
+      >
+        <h2
+          id="contact-heading"
+          className="text-3xl font-semibold text-white mb-6"
+        >
+          Got an idea or just want to chat tech?
+        </h2>
+        <Link href="mailto:contact@sachiny.me" passHref>
+          <a
+            className="inline-block px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
+          >
+            Drop Me a Line
+          </a>
+        </Link>
+      </section>
     </Layout>
   )
 }
