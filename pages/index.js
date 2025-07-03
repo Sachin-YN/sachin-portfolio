@@ -81,10 +81,13 @@ export default function Home() {
   return (
     <Layout title="Home">
       {/* HERO */}
-      <section
-        id="hero"
-        className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
-      >
+     <section
+  id="hero"
+  className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6
+             bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 
+             bg-size-200 animate-gradient-x transition-all duration-1000 dark:from-blue-900 dark:via-indigo-900 dark:to-gray-900"
+>
+
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
