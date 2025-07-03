@@ -217,26 +217,54 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* CONTACT CTA */}
-      <motion.section
-        className="py-16 px-4 md:px-8 text-center"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
-      >
-        <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
-          Got an idea or just want to chat tech?
-        </motion.h2>
-        <motion.div variants={childVariants}>
-          <Link href="mailto:contact@sachiny.me" passHref>
-            <a className="relative group inline-block px-6 py-3 bg-cyan-400 text-white rounded-md font-medium transition hover:bg-cyan-500">
-              Drop Me a Line
-              <span className="absolute bottom-1 left-0 h-0.5 w-full bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-            </a>
-          </Link>
-        </motion.div>
-      </motion.section>
-    </Layout>
-  )
-}
+     {/* CONTACT FORM SECTION */}
+<motion.section
+  className="py-16 px-4 md:px-8 text-center"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  variants={sectionVariants}
+>
+  <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
+    Got an idea or just want to chat tech?
+  </motion.h2>
+
+  <motion.form
+    variants={childVariants}
+    className="max-w-xl mx-auto p-6 bg-white/5 backdrop-blur-md rounded-xl shadow-md space-y-4"
+    onSubmit={(e) => {
+      e.preventDefault()
+      alert('Form submitted! (Hook up backend later 😄)')
+    }}
+  >
+    <div className="flex flex-col sm:flex-row gap-4">
+      <input
+        type="text"
+        placeholder="Your Name"
+        required
+        className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+      />
+      <input
+        type="email"
+        placeholder="Your Email"
+        required
+        className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+      />
+    </div>
+
+    <textarea
+      rows={5}
+      placeholder="Your Message"
+      required
+      className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+    ></textarea>
+
+    <button
+      type="submit"
+      className="w-full py-3 bg-cyan-400 text-white font-medium rounded-md hover:bg-cyan-500 transition"
+    >
+      Send Message
+    </button>
+  </motion.form>
+</motion.section>
+
