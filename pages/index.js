@@ -1,7 +1,6 @@
 // pages/index.js
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-import InertiaPlugin from 'gsap/dist/InertiaPlugin'
 import Layout from '../components/Layout'
 import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
@@ -20,71 +19,59 @@ import {
 } from 'react-icons/si'
 import { FaMicrosoft } from 'react-icons/fa'
 
-// Register the GSAP plugin
-gsap.registerPlugin(InertiaPlugin)
-
 // Tech‐stack data
 const dataStack = [
-  { name: 'MySQL',          useImg: true,  imgSrc: '/icons/mysql.png'     },
-  { name: 'Snowflake',      Icon: SiSnowflake,  color: '#28A8E0'         },
-  { name: 'Oracle',         Icon: SiOracle,      color: '#FF0000'         },
-  { name: 'Python',         useImg: true,  imgSrc: '/icons/python.jpg'   },
-  { name: 'Pandas',         Icon: SiPandas,      color: '#150458'         },
-  { name: 'NumPy',          Icon: SiNumpy,       color: '#013243'         },
-  { name: 'SAP HANA',       Icon: SiSap,         color: '#1CABE2'         },
-  { name: 'SAP CRM',        Icon: SiSap,         color: '#1CABE2'         },
-  { name: 'Dynamics 365',   useImg: true,  imgSrc: '/icons/dynamics365.jpg' },
-  { name: 'Power Automate', useImg: true,  imgSrc: '/icons/power automate.png' },
-  { name: 'Power BI',       Icon: SiPowerbi,     color: '#F2C811'         },
-  { name: 'Tableau',        Icon: SiTableau,     color: '#E97627'         },
-  { name: 'Qlik',           Icon: SiQlik,        color: '#0066CC'         },
-  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346'     },
-  { name: 'Forecasting',    Icon: SiPlotly,      color: '#3F4C6B'         },
+  { name: 'MySQL',          useImg: true,       imgSrc: '/icons/mysql.png'     },
+  { name: 'Snowflake',      Icon: SiSnowflake,   color: '#28A8E0'               },
+  { name: 'Oracle',         Icon: SiOracle,      color: '#FF0000'               },
+  { name: 'Python',         useImg: true,       imgSrc: '/icons/python.jpg'    },
+  { name: 'Pandas',         Icon: SiPandas,      color: '#150458'               },
+  { name: 'NumPy',          Icon: SiNumpy,       color: '#013243'               },
+  { name: 'SAP HANA',       Icon: SiSap,         color: '#1CABE2'               },
+  { name: 'SAP CRM',        Icon: SiSap,         color: '#1CABE2'               },
+  { name: 'Dynamics 365',   useImg: true,       imgSrc: '/icons/dynamics365.jpg' },
+  { name: 'Power Automate', useImg: true,       imgSrc: '/icons/power automate.png' },
+  { name: 'Power BI',       Icon: SiPowerbi,     color: '#F2C811'               },
+  { name: 'Tableau',        Icon: SiTableau,     color: '#E97627'               },
+  { name: 'Qlik',           Icon: SiQlik,        color: '#0066CC'               },
+  { name: 'Excel',          Icon: SiMicrosoftexcel, color: '#217346'            },
+  { name: 'Forecasting',    Icon: SiPlotly,      color: '#3F4C6B'               },
 ]
 
 export default function Home() {
-  const gridRef = useRef(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const root = gridRef.current
-    if (!root) return
+    const cards = cardsRef.current?.querySelectorAll('.tech-card')
+    if (!cards) return
 
-    let oldX = 0, oldY = 0, deltaX = 0, deltaY = 0
-
-    // Track movement within grid
-    const onMouseMove = e => {
-      deltaX = e.clientX - oldX
-      deltaY = e.clientY - oldY
-      oldX = e.clientX
-      oldY = e.clientY
-    }
-    root.addEventListener('mousemove', onMouseMove)
-
-    // Apply inertia on hover
-    root.querySelectorAll('.tech-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        const media = el.querySelector('img, svg')
-        const tl = gsap.timeline({ onComplete: () => tl.kill() })
-        tl.timeScale(1.2)
-          .to(media, {
-            inertia: { x: deltaX * 30, y: deltaY * 30, end: true },
-          })
-          .fromTo(
-            media,
-            { rotate: 0 },
-            {
-              duration: 0.4,
-              rotate: (Math.random() - 0.5) * 30,
-              yoyo: true,
-              repeat: 1,
-              ease: 'power1.inOut',
-            },
-            '<'
-          )
+    cards.forEach((card) => {
+      // on hover in
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, {
+          scale: 1.05,
+          boxShadow: '0 0 12px rgba(16,185,129,0.6)',
+          duration: 0.3,
+          ease: 'power1.out',
+        })
+      })
+      // on hover out
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          scale: 1,
+          boxShadow: '0 0 4px rgba(0,0,0,0.2)',
+          duration: 0.3,
+          ease: 'power1.in',
+        })
       })
     })
 
-    return () => root.removeEventListener('mousemove', onMouseMove)
+    // cleanup
+    return () => {
+      cards.forEach((card) => {
+        card.replaceWith(card.cloneNode(true))
+      })
+    }
   }, [])
 
   return (
@@ -113,15 +100,14 @@ export default function Home() {
             Turning complex metrics into clear stories
           </span>
           <span className="block">
-            Transforming ERP, CRM & cloud data into actionable dashboards for
-            strategic insights.
+            Transforming ERP, CRM & cloud data into actionable dashboards for strategic insights.
           </span>
         </p>
         <motion.button
           type="button"
           aria-label="Scroll to Tech Stack"
           onClick={() =>
-            gridRef.current.scrollIntoView({ behavior: 'smooth' })
+            document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
           }
           className="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
           whileHover={{ scale: 1.05 }}
@@ -149,15 +135,13 @@ export default function Home() {
         </h2>
 
         <div
-          ref={gridRef}
-          className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6
-                     h-[200px] overflow-hidden"
+          ref={cardsRef}
+          className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6"
         >
-          {dataStack.map(item => (
+          {dataStack.map((item) => (
             <div
               key={item.name}
-              className="tech-card flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs
-                         rounded-lg hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-accent"
+              className="tech-card flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs rounded-lg transition-transform"
             >
               {item.useImg ? (
                 <img
