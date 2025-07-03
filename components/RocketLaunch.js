@@ -1,33 +1,69 @@
 // components/RocketLaunch.js
 
-import { FaRocket } from 'react-icons/fa'
-import { useState } from 'react'
+import { FaSpaceShuttle } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
 
 export default function RocketLaunch() {
   const [launched, setLaunched] = useState(false)
+  const [smokeTrail, setSmokeTrail] = useState([])
 
   const handleLaunch = () => {
     setLaunched(true)
-    setTimeout(() => setLaunched(false), 5000) // Reset after 5s
+
+    // Generate smoke puffs every 100ms
+    const smokeInterval = setInterval(() => {
+      setSmokeTrail(prev => [
+        ...prev,
+        {
+          id: Math.random(),
+          left: Math.random() * 40 + 10,
+          bottom: Math.random() * 20,
+        },
+      ])
+    }, 100)
+
+    // Stop everything after 5 seconds
+    setTimeout(() => {
+      setLaunched(false)
+      clearInterval(smokeInterval)
+      setSmokeTrail([])
+    }, 5000)
   }
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 w-12 h-12">
+    <div className="fixed bottom-6 left-6 z-50 w-16 h-16">
       <div
         className={`relative transition-transform duration-[3s] ease-in-out ${
           launched ? 'translate-x-[100vw]' : ''
         }`}
       >
         <button onClick={handleLaunch} className="relative flex flex-col items-center">
-          <FaRocket className="text-white text-3xl z-20 rotate-90" />
-          {launched && <div className="flame absolute left-3 top-7 z-10"></div>}
+          <FaSpaceShuttle className="text-white text-4xl z-20 rotate-90" />
+
+          {launched && (
+            <>
+              {/* Flame effect */}
+              <div className="flame absolute left-5 top-10 z-10 w-3 h-3" />
+              {/* Smoke puffs */}
+              {smokeTrail.map(puff => (
+                <div
+                  key={puff.id}
+                  className="absolute w-2 h-2 bg-gray-200 opacity-50 rounded-full animate-smoke"
+                  style={{
+                    left: `${puff.left}px`,
+                    bottom: `${puff.bottom}px`,
+                  }}
+                />
+              ))}
+            </>
+          )}
         </button>
       </div>
 
-      {/* Stars appear on launch */}
+      {/* Stars during launch */}
       {launched && (
         <div className="absolute inset-0 w-screen h-screen pointer-events-none overflow-hidden">
-          {[...Array(40)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
               className="star"
