@@ -19,17 +19,17 @@ import {
   SiPlotly,
 } from 'react-icons/si'
 
-// Framer Motion variants
+// Framer Motion section variants
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } },
 }
 const childVariants = {
   hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 }
 
-// Your tech stack
+// Your tech-stack data
 const dataStack = [
   { name: 'MySQL',          useImg: true, imgSrc: '/icons/mysql.png'      },
   { name: 'Snowflake',      Icon: SiSnowflake },
@@ -51,23 +51,31 @@ const dataStack = [
 export default function Home() {
   const cardsRef = useRef(null)
 
-  // Simple GSAP hover glow
+  // GSAP hover-glow on cards
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll('.tech-card')
     if (!cards) return
-    cards.forEach((card) => {
-      const enter = () =>
-        gsap.to(card, { scale: 1.05, boxShadow: '0 0 12px rgba(16,185,129,0.6)', duration: 0.3 })
-      const leave = () =>
-        gsap.to(card, { scale: 1, boxShadow: '0 0 4px rgba(0,0,0,0.2)', duration: 0.3 })
-      card.addEventListener('mouseenter', enter)
-      card.addEventListener('mouseleave', leave)
+    cards.forEach(card => {
+      const onEnter = () =>
+        gsap.to(card, {
+          scale: 1.05,
+          boxShadow: '0 0 12px rgba(16,185,129,0.6)',
+          duration: 0.3,
+        })
+      const onLeave = () =>
+        gsap.to(card, {
+          scale: 1,
+          boxShadow: '0 0 4px rgba(0,0,0,0.2)',
+          duration: 0.3,
+        })
+      card.addEventListener('mouseenter', onEnter)
+      card.addEventListener('mouseleave', onLeave)
       card.__cleanup = () => {
-        card.removeEventListener('mouseenter', enter)
-        card.removeEventListener('mouseleave', leave)
+        card.removeEventListener('mouseenter', onEnter)
+        card.removeEventListener('mouseleave', onLeave)
       }
     })
-    return () => cards.forEach(c => c.__cleanup && c.__cleanup())
+    return () => cards.forEach(c => c.__cleanup?.())
   }, [])
 
   return (
@@ -111,24 +119,30 @@ export default function Home() {
           />
         </motion.div>
 
-        <motion.button
+        {/* Highlighted CTA Panel */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.6, duration: 0.4, ease: 'backOut' }}
-          onClick={() =>
-            document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
-          }
-          className="group relative mt-8 inline-block px-6 py-3 bg-accent text-white rounded-md font-medium"
+          className="mt-8 inline-block bg-accent/20 backdrop-blur-sm rounded-lg p-1"
         >
-          Explore My Tech Stack
-          <span className="absolute bottom-1 left-0 h-0.5 w-full bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-        </motion.button>
+          <motion.button
+            onClick={() =>
+              document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
+            }
+            className="px-6 py-3 bg-accent text-white rounded-md font-medium"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Explore My Tech Stack
+          </motion.button>
+        </motion.div>
       </section>
 
       {/* TECH STACK */}
       <motion.section
         id="data-stack"
-        className="py-16 px-4 md:px-8 bg-black/30 backdrop-blur-sm"
+        className="py-16 px-4 md:px-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -145,7 +159,7 @@ export default function Home() {
           ref={cardsRef}
           className="mx-auto grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6 max-w-5xl"
         >
-          {dataStack.map((item) => (
+          {dataStack.map(item => (
             <Tilt
               key={item.name}
               glareEnable
@@ -156,7 +170,7 @@ export default function Home() {
             >
               <motion.div
                 variants={childVariants}
-                className="flex flex-col items-center p-3 bg-slate-900/50 rounded-lg"
+                className="flex flex-col items-center p-3 bg-slate-800/50 rounded-lg transition"
               >
                 {item.useImg ? (
                   <img
@@ -167,7 +181,7 @@ export default function Home() {
                     className="mb-1 object-contain"
                   />
                 ) : (
-                  <item.Icon size={40} color={item.color || 'white'} className="mb-1" />
+                  <item.Icon size={40} color="white" className="mb-1" />
                 )}
                 <span className="text-white font-medium text-xs">{item.name}</span>
               </motion.div>
@@ -178,7 +192,7 @@ export default function Home() {
 
       {/* CERTIFICATIONS */}
       <motion.section
-        className="py-16 px-4 md:px-8 bg-black/30 backdrop-blur-sm text-center"
+        className="py-16 px-4 md:px-8 text-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -187,12 +201,17 @@ export default function Home() {
         <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
           Certifications
         </motion.h2>
-        <motion.div variants={childVariants}>
+
+        {/* Highlighted Certificate Panel */}
+        <motion.div
+          variants={childVariants}
+          className="inline-block bg-accent/20 backdrop-blur-sm rounded-lg p-1"
+        >
           <Link
             href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
             passHref
           >
-            <a className="inline-block px-6 py-3 bg-accent text-white rounded-md shadow hover:bg-accent-dark transition">
+            <a className="px-6 py-3 bg-accent text-white rounded-md font-medium">
               Google Data Analytics Professional Certificate
             </a>
           </Link>
@@ -212,7 +231,7 @@ export default function Home() {
         </motion.h2>
         <motion.div variants={childVariants}>
           <Link href="mailto:contact@sachiny.me" passHref>
-            <a className="relative group inline-block px-6 py-3 bg-accent text-white rounded-md transition">
+            <a className="relative group inline-block px-6 py-3 bg-accent text-white rounded-md font-medium transition">
               Drop Me a Line
               <span className="absolute bottom-1 left-0 h-0.5 w-full bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             </a>
