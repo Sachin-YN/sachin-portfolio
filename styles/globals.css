@@ -4,12 +4,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base Layer */
 @layer base {
   html, body {
     margin: 0;
     min-height: 100vh;
     font-family: Inter, sans-serif;
-    color: #fff; /* text over video */
-    background: none; /* remove any solid bg */
+    color: #fff;
+    background: none;
   }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+}
+
+/* Custom Rocket Stars Animation */
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+@keyframes star {
+  0% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+}
+
+.animate-star {
+  animation: star 2s linear forwards;
 }
