@@ -267,4 +267,4 @@ export default function Home() {
     </button>
   </motion.form>
 </motion.section>
-
+</Layout>
