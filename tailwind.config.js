@@ -1,7 +1,7 @@
 // tailwind.config.js
 module.exports = {
   content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
-  darkMode: 'class', // ✅ Enable dark mode using class strategy
+  darkMode: 'class',
   theme: {
     extend: {
       backdropBlur: {
@@ -10,7 +10,18 @@ module.exports = {
         md: '8px',
         DEFAULT: '12px',
       },
-      // You can add more theming customizations here later
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+      },
+      animation: {
+        'gradient-x': 'gradient-x 15s ease infinite',
+      },
+      backgroundSize: {
+        'size-200': '200% 200%',
+      },
     },
   },
   plugins: [],
