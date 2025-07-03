@@ -1,4 +1,3 @@
-// pages/index.js
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { motion } from 'framer-motion'
@@ -217,54 +216,59 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-     {/* CONTACT FORM SECTION */}
-<motion.section
-  className="py-16 px-4 md:px-8 text-center"
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  variants={sectionVariants}
->
-  <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
-    Got an idea or just want to chat tech?
-  </motion.h2>
+      {/* CONTACT FORM SECTION */}
+      <motion.section
+        className="py-16 px-4 md:px-8 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+      >
+        <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
+          Got an idea or just want to chat tech?
+        </motion.h2>
 
-  <motion.form
-    variants={childVariants}
-    className="max-w-xl mx-auto p-6 bg-white/5 backdrop-blur-md rounded-xl shadow-md space-y-4"
-    onSubmit={(e) => {
-      e.preventDefault()
-      alert('Form submitted! (Hook up backend later 😄)')
-    }}
-  >
-    <div className="flex flex-col sm:flex-row gap-4">
-      <input
-        type="text"
-        placeholder="Your Name"
-        required
-        className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-      />
-      <input
-        type="email"
-        placeholder="Your Email"
-        required
-        className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-      />
-    </div>
+        <motion.form
+          variants={childVariants}
+          className="max-w-xl mx-auto p-6 bg-white/5 backdrop-blur-md rounded-xl shadow-md space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault()
+            alert('Form submitted! (Backend can be added later)')
+          }}
+        >
+          <div className="flex flex-col sm:flex-row gap-4">
+            <input
+              name="name"
+              type="text"
+              placeholder="Your Name"
+              required
+              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Your Email"
+              required
+              className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+          </div>
 
-    <textarea
-      rows={5}
-      placeholder="Your Message"
-      required
-      className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-    ></textarea>
+          <textarea
+            name="message"
+            rows={5}
+            placeholder="Your Message"
+            required
+            className="w-full px-4 py-3 rounded-md bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          ></textarea>
 
-    <button
-      type="submit"
-      className="w-full py-3 bg-cyan-400 text-white font-medium rounded-md hover:bg-cyan-500 transition"
-    >
-      Send Message
-    </button>
-  </motion.form>
-</motion.section>
-</Layout>
+          <button
+            type="submit"
+            className="w-full py-3 bg-cyan-400 text-white font-medium rounded-md hover:bg-cyan-500 transition"
+          >
+            Send Message
+          </button>
+        </motion.form>
+      </motion.section>
+    </Layout>
+  )
+}
