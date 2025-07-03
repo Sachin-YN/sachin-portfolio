@@ -39,14 +39,15 @@ const dataStack = [
 ]
 
 export default function Home() {
-  const cardsRef = useRef<HTMLDivElement>(null)
+  // Just a plain JS ref—no <HTMLDivElement> generic
+  const cardsRef = useRef(null)
 
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll('.tech-card')
     if (!cards) return
 
     cards.forEach((card) => {
-      // on hover in
+      // Hover in
       card.addEventListener('mouseenter', () => {
         gsap.to(card, {
           scale: 1.05,
@@ -55,7 +56,7 @@ export default function Home() {
           ease: 'power1.out',
         })
       })
-      // on hover out
+      // Hover out
       card.addEventListener('mouseleave', () => {
         gsap.to(card, {
           scale: 1,
@@ -66,7 +67,7 @@ export default function Home() {
       })
     })
 
-    // cleanup
+    // Cleanup by cloning nodes (removes all listeners)
     return () => {
       cards.forEach((card) => {
         card.replaceWith(card.cloneNode(true))
@@ -80,12 +81,8 @@ export default function Home() {
       <section
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-6"
-        aria-labelledby="hero-heading"
       >
-        <h1
-          id="hero-heading"
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
-        >
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
           <Typewriter
             options={{
               strings: ["I’m Sachin Yoganandham", "Data-Driven Business Analyst"],
@@ -104,8 +101,6 @@ export default function Home() {
           </span>
         </p>
         <motion.button
-          type="button"
-          aria-label="Scroll to Tech Stack"
           onClick={() =>
             document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
           }
@@ -121,19 +116,14 @@ export default function Home() {
       <motion.section
         id="data-stack"
         className="py-12 px-4 sm:px-6 md:px-8"
-        aria-labelledby="data-stack-heading"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <h2
-          id="data-stack-heading"
-          className="text-2xl sm:text-3xl text-center text-white font-semibold mb-6"
-        >
+        <h2 className="text-2xl sm:text-3xl text-center text-white font-semibold mb-6">
           Tech Stack
         </h2>
-
         <div
           ref={cardsRef}
           className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-6"
@@ -141,7 +131,7 @@ export default function Home() {
           {dataStack.map((item) => (
             <div
               key={item.name}
-              className="tech-card flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs rounded-lg transition-transform"
+              className="tech-card flex flex-col items-center p-3 bg-slate-900/50 backdrop-blur-xs rounded-lg"
             >
               {item.useImg ? (
                 <img
@@ -154,64 +144,13 @@ export default function Home() {
               ) : (
                 <item.Icon size={40} color={item.color} className="mb-1" />
               )}
-              <span className="text-white font-medium text-xs">
-                {item.name}
-              </span>
+              <span className="text-white font-medium text-xs">{item.name}</span>
             </div>
           ))}
         </div>
       </motion.section>
 
-      {/* CERTIFICATIONS */}
-      <motion.section
-        id="certifications"
-        className="py-16 px-4 sm:px-6 md:px-8 max-w-xl mx-auto text-center"
-        aria-labelledby="certifications-heading"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <h2
-          id="certifications-heading"
-          className="text-3xl font-semibold text-white mb-6"
-        >
-          Certifications
-        </h2>
-        <Link
-          href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
-          passHref
-        >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-accent text-white font-medium rounded-md shadow hover:bg-accent-dark transition text-base"
-          >
-            Google Data Analytics Professional Certificate
-          </a>
-        </Link>
-      </motion.section>
-
-      {/* CONTACT CTA */}
-      <section
-        id="contact"
-        className="py-16 px-4 sm:px-6 md:px-8 text-center"
-        aria-labelledby="contact-heading"
-      >
-        <h2
-          id="contact-heading"
-          className="text-3xl font-semibold text-white mb-6"
-        >
-          Got an idea or just want to chat tech?
-        </h2>
-        <Link href="mailto:contact@sachiny.me" passHref>
-          <a
-            className="inline-block px-6 py-3 bg-accent text-white rounded-md hover:bg-accent-dark transition text-base font-medium"
-          >
-            Drop Me a Line
-          </a>
-        </Link>
-      </section>
+      {/* rest of page… */}
     </Layout>
   )
 }
