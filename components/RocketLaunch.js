@@ -1,80 +1,62 @@
 // components/RocketLaunch.js
-
-import { FaSpaceShuttle } from 'react-icons/fa'
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { FaRocket } from 'react-icons/fa'
 
 export default function RocketLaunch() {
   const [launched, setLaunched] = useState(false)
-  const [smokeTrail, setSmokeTrail] = useState([])
+  const [countdown, setCountdown] = useState(null)
+  const rocketRef = useRef(null)
 
   const handleLaunch = () => {
-    setLaunched(true)
+    if (launched) return
 
-    // Generate smoke puffs every 100ms
-    const smokeInterval = setInterval(() => {
-      setSmokeTrail(prev => [
-        ...prev,
-        {
-          id: Math.random(),
-          left: Math.random() * 40 + 10,
-          bottom: Math.random() * 20,
-        },
-      ])
-    }, 100)
-
-    // Stop everything after 5 seconds
-    setTimeout(() => {
-      setLaunched(false)
-      clearInterval(smokeInterval)
-      setSmokeTrail([])
-    }, 5000)
+    setCountdown(3)
+    const interval = setInterval(() => {
+      setCountdown(prev => {
+        if (prev === 1) {
+          clearInterval(interval)
+          setCountdown(null)
+          setLaunched(true)
+          return null
+        }
+        return prev - 1
+      })
+    }, 1000)
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!launched) return
+
+      const star = document.createElement('div')
+      star.className = 'star'
+      star.style.top = Math.random() * 100 + 'vh'
+      star.style.left = '0px'
+      document.body.appendChild(star)
+
+      setTimeout(() => star.remove(), 4000)
+    }, 100)
+
+    return () => clearInterval(interval)
+  }, [launched])
+
   return (
-    <div className="fixed bottom-6 left-6 z-50 w-16 h-16">
-      <div
-        className={`relative transition-transform duration-[3s] ease-in-out ${
-          launched ? 'translate-x-[100vw]' : ''
-        }`}
-      >
-        <button onClick={handleLaunch} className="relative flex flex-col items-center">
-          <FaSpaceShuttle className="text-white text-4xl z-20 rotate-90" />
-
-          {launched && (
-            <>
-              {/* Flame effect */}
-              <div className="flame absolute left-5 top-10 z-10 w-3 h-3" />
-              {/* Smoke puffs */}
-              {smokeTrail.map(puff => (
-                <div
-                  key={puff.id}
-                  className="absolute w-2 h-2 bg-gray-200 opacity-50 rounded-full animate-smoke"
-                  style={{
-                    left: `${puff.left}px`,
-                    bottom: `${puff.bottom}px`,
-                  }}
-                />
-              ))}
-            </>
-          )}
-        </button>
-      </div>
-
-      {/* Stars during launch */}
-      {launched && (
-        <div className="absolute inset-0 w-screen h-screen pointer-events-none overflow-hidden">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="star"
-              style={{
-                top: `${Math.random() * 100}vh`,
-                left: `${Math.random() * 100}vw`,
-              }}
-            />
-          ))}
+    <div className="fixed bottom-6 left-6 z-50 hidden sm:block">
+      {countdown !== null && (
+        <div className="mb-2 text-white text-lg font-semibold animate-pulse">
+          Launching in {countdown}...
         </div>
       )}
+      <div
+        ref={rocketRef}
+        onClick={handleLaunch}
+        className={`cursor-pointer relative transition-transform duration-1000 ease-in-out ${
+          launched ? 'animate-rocket-fly' : ''
+        }`}
+      >
+        <FaRocket size={40} className="text-white drop-shadow-lg" />
+        {!launched && <div className="flame absolute left-3 top-10 z-10" />}
+      </div>
     </div>
   )
 }
