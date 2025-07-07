@@ -111,24 +111,29 @@ export default function Home() {
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
       >
-     <motion.h1
+    <motion.h1
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.6 }}
-  className="text-4xl sm:text-5xl md:text-6xl font-bold text-white flex flex-wrap justify-center gap-1"
+  className="text-3xl sm:text-4xl md:text-6xl font-bold text-white flex justify-center gap-1"
 >
+  {/* Static text */}
   {"I’m ".split("").map((char, i) => (
-    <span key={`i-${i}`}>{char}</span>
+    <span key={`intro-${i}`}>{char}</span>
   ))}
-  {"Sachin Yoganandham".split("").map((char, i) => (
-    <span
-      key={`l-${i}`}
-      className="inline-block text-cyan-300 font-semibold animate-drop-in"
-      style={{ animationDelay: `${i * 60}ms` }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </span>
-  ))}
+
+  {/* Name with no line break */}
+  <span className="whitespace-nowrap">
+    {"Sachin Yoganandham".split("").map((char, i) => (
+      <span
+        key={`name-${i}`}
+        className="inline-block text-cyan-300 font-semibold animate-drop-in"
+        style={{ animationDelay: `${i * 60}ms` }}
+      >
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ))}
+  </span>
 </motion.h1>
   
         <motion.p
