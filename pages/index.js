@@ -117,7 +117,8 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
         >
-          I’m Sachin Yoganandham
+          I’m <span className="text-white">Sachin</span>{' '}
+          <span className="text-cyan-300/80 font-semibold">Yoganandham</span>
         </motion.h1>
 
         <motion.p
@@ -216,32 +217,31 @@ export default function Home() {
       </motion.section>
 
       {/* CERTIFICATIONS */}
-<motion.section
-  className="py-16 px-4 md:px-8 text-center"
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  variants={sectionVariants}
->
-  <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
-    Certifications
-  </motion.h2>
+      <motion.section
+        className="py-16 px-4 md:px-8 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+      >
+        <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-6">
+          Certifications
+        </motion.h2>
 
-  <motion.div
-    variants={childVariants}
-    className="inline-block bg-cyan-500/20 backdrop-blur-sm rounded-lg p-1 w-full sm:w-auto max-w-xs sm:max-w-none"
-  >
-    <Link
-      href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
-      passHref
-    >
-      <a className="block px-6 py-3 bg-cyan-400 text-white text-sm sm:text-base rounded-md font-medium hover:bg-cyan-500 transition text-center whitespace-normal break-words">
-        Google Data Analytics Professional Certificate
-      </a>
-    </Link>
-  </motion.div>
-</motion.section>
-
+        <motion.div
+          variants={childVariants}
+          className="inline-block bg-cyan-500/20 backdrop-blur-sm rounded-lg p-1 w-full sm:w-auto max-w-xs sm:max-w-none"
+        >
+          <Link
+            href="https://www.coursera.org/account/accomplishments/professional-cert/VD5HGNFKPBA4"
+            passHref
+          >
+            <a className="block px-6 py-3 bg-cyan-400 text-white text-sm sm:text-base rounded-md font-medium hover:bg-cyan-500 transition text-center whitespace-normal break-words">
+              Google Data Analytics Professional Certificate
+            </a>
+          </Link>
+        </motion.div>
+      </motion.section>
 
       {/* CONTACT FORM */}
       <motion.section
