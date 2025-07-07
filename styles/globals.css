@@ -44,6 +44,8 @@
   }
 }
 
+/* ⬇️ Ensure final state is kept + avoid override conflicts */
 .animate-drop-in {
-  animation: dropIn 0.6s ease-out forwards;
+  animation: dropIn 0.8s ease-out forwards !important;
+  display: inline-block;
 }
