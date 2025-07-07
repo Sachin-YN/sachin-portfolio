@@ -112,14 +112,32 @@ export default function Home() {
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
       >
         <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
-        >
-          I’m <span className="text-white">Sachin</span>{' '}
-          <span className="text-cyan-300/80 font-semibold">Yoganandham</span>
-        </motion.h1>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.6 }}
+  className="text-4xl sm:text-5xl md:text-6xl font-bold text-white flex flex-wrap justify-center gap-1"
+>
+  {"I’m".split("").map((char, i) => (
+    <span key={i}>{char}</span>
+  ))}{" "}
+  {"Sachin Yoganandham".split("").map((char, i) => (
+    <motion.span
+      key={i}
+      className="inline-block text-cyan-300"
+      animate={{
+        y: [0, -5, 0],
+      }}
+      transition={{
+        delay: i * 0.05,
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      {char}
+    </motion.span>
+  ))}
+</motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -135,15 +153,15 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <Typewriter
-            options={{
-              strings: ['Data-Driven Business Analyst'],
-              autoStart: true,
-              loop: false,
-              cursor: '',
-              delay: 75,
-            }}
-          />
+         <motion.p
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 1.1, duration: 0.5 }}
+  className="text-white text-base sm:text-lg"
+>
+  Data-Driven Business Analyst
+</motion.p>
+
         </motion.div>
 
         <motion.div
