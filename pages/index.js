@@ -111,7 +111,7 @@ export default function Home() {
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
       >
-       <motion.h1
+     <motion.h1
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.6 }}
@@ -133,6 +133,7 @@ export default function Home() {
     </span>
   ))}
 </motion.h1>
+
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
