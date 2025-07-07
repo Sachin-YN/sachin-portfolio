@@ -130,9 +130,7 @@ export default function Home() {
     </span>
   ))}
 </motion.h1>
-
-
-
+  
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -176,6 +174,14 @@ export default function Home() {
           </motion.button>
         </motion.div>
       </section>
+<div style={{ padding: '2rem', background: '#222' }}>
+  <span
+    className="inline-block animate-drop-in text-cyan-400 font-bold"
+    style={{ animationDelay: '0ms' }}
+  >
+    TEST
+  </span>
+</div>
 
       {/* TECH STACK */}
       <motion.section
