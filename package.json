@@ -8,21 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
+    "autoprefixer": "^10.4.14",
+    "emailjs-com": "^3.2.0",
+    "framer-motion": "^10.12.16",
+    "gsap": "^3.12.2",
     "next": "latest",
+    "postcss": "^8.4.21",
     "react": "latest",
     "react-dom": "latest",
-    "tailwindcss": "^3.3.2",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.21",
-    "framer-motion": "^10.12.16",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
     "react-parallax-tilt": "^1.6.51",
-    "typewriter-effect": "^2.19.0",
     "react-tsparticles": "^2.7.2",
-    "tsparticles": "^2.7.2",
-    "gsap": "^3.12.2",
     "recharts": "^2.6.0",
-    "emailjs-com": "^3.2.0",
-    "react-hot-toast": "^2.4.1"
+    "tailwindcss": "^3.3.2",
+    "tsparticles": "^2.7.2",
+    "typewriter-effect": "^2.19.0"
   }
 }
