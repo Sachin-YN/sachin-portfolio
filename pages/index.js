@@ -117,22 +117,20 @@ export default function Home() {
   transition={{ duration: 0.6 }}
   className="text-4xl sm:text-5xl md:text-6xl font-bold text-white flex flex-wrap justify-center gap-1"
 >
-  {/* Static part: “I’m” */}
   {"I’m ".split("").map((char, i) => (
-    <span key={`intro-${i}`}>{char}</span>
+    <span key={`i-${i}`}>{char}</span>
   ))}
-
-  {/* Animated part: “Sachin Yoganandham” */}
   {"Sachin Yoganandham".split("").map((char, i) => (
     <span
-      key={`name-${i}`}
+      key={`l-${i}`}
       className="inline-block text-cyan-300 font-semibold animate-drop-in"
-      style={{ animationDelay: `${i * 80}ms` }}
+      style={{ animationDelay: `${i * 60}ms` }}
     >
       {char === " " ? "\u00A0" : char}
     </span>
   ))}
 </motion.h1>
+
 
 
         <motion.p
