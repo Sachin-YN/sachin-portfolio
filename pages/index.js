@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
+import anime from 'animejs'
 import { gsap } from 'gsap'
 import { motion } from 'framer-motion'
-import Typewriter from 'typewriter-effect'
 import Tilt from 'react-parallax-tilt'
 import Layout from '../components/Layout'
 import Link from 'next/link'
@@ -49,6 +49,7 @@ const dataStack = [
 
 export default function Home() {
   const cardsRef = useRef(null)
+  const nameRef = useRef(null)
 
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll('.tech-card')
@@ -74,6 +75,20 @@ export default function Home() {
       }
     })
     return () => cards.forEach(c => c.__cleanup?.())
+  }, [])
+
+  useEffect(() => {
+    if (nameRef.current) {
+      anime.timeline({ loop: false })
+        .add({
+          targets: '.letter',
+          translateY: [50, 0],
+          opacity: [0, 1],
+          easing: 'easeOutExpo',
+          duration: 750,
+          delay: (el, i) => 30 * i,
+        })
+    }
   }, [])
 
   const sendEmail = (e) => {
@@ -111,31 +126,23 @@ export default function Home() {
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
       >
-    <motion.h1
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 0.6 }}
-  className="text-3xl sm:text-4xl md:text-6xl font-bold text-white flex justify-center gap-1"
->
-  {/* Static text */}
-  {"I’m ".split("").map((char, i) => (
-    <span key={`intro-${i}`}>{char}</span>
-  ))}
+        <h1
+          ref={nameRef}
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center"
+        >
+          {"I'm ".split('').map((char, i) => (
+            <span key={`intro-${i}`}>{char}</span>
+          ))}
+          {"Sachin Yoganandham".split('').map((char, i) => (
+            <span
+              key={`char-${i}`}
+              className="letter inline-block text-cyan-400"
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          ))}
+        </h1>
 
-  {/* Name with no line break */}
-  <span className="whitespace-nowrap">
-    {"Sachin Yoganandham".split("").map((char, i) => (
-      <span
-        key={`name-${i}`}
-        className="inline-block text-cyan-300 font-semibold animate-drop-in"
-        style={{ animationDelay: `${i * 60}ms` }}
-      >
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ))}
-  </span>
-</motion.h1>
-  
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -150,15 +157,14 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-         <motion.p
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 1.1, duration: 0.5 }}
-  className="text-white text-base sm:text-lg"
->
-  Data-Driven Business Analyst
-</motion.p>
-
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
+            className="text-white text-base sm:text-lg"
+          >
+            Data-Driven Business Analyst
+          </motion.p>
         </motion.div>
 
         <motion.div
