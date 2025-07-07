@@ -18,11 +18,17 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-6px)' },
         },
+        dropIn: {
+          '0%': { transform: 'translateY(-30px) skewX(-15deg)', opacity: '0' },
+          '60%': { transform: 'translateY(10px) skewX(0deg)', opacity: '1' },
+          '100%': { transform: 'translateY(0) skewX(0deg)', opacity: '1' },
+        },
       },
       animation: {
         'pulse-star': 'pulseStar 1.5s infinite ease-in-out',
         'rocket-flame': 'rocketFlame 0.3s infinite ease-in-out',
         'wave': 'wave 1.5s infinite ease-in-out',
+        'drop-in': 'dropIn 0.6s ease-out forwards',
       },
       boxShadow: {
         'glow': '0 0 6px rgba(255, 255, 255, 0.7)',
