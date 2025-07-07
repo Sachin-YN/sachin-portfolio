@@ -19,9 +19,18 @@ module.exports = {
           '50%': { transform: 'translateY(-6px)' },
         },
         dropIn: {
-          '0%': { transform: 'translateY(-30px) skewX(-15deg)', opacity: '0' },
-          '60%': { transform: 'translateY(10px) skewX(0deg)', opacity: '1' },
-          '100%': { transform: 'translateY(0) skewX(0deg)', opacity: '1' },
+          '0%': {
+            transform: 'translateY(-30px) skewX(-15deg)',
+            opacity: '0',
+          },
+          '60%': {
+            transform: 'translateY(10px) skewX(-5deg)',
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'translateY(0) skewX(0deg)',
+            opacity: '1',
+          },
         },
       },
       animation: {
@@ -31,7 +40,7 @@ module.exports = {
         'drop-in': 'dropIn 0.6s ease-out forwards',
       },
       boxShadow: {
-        'glow': '0 0 6px rgba(255, 255, 255, 0.7)',
+        glow: '0 0 6px rgba(255, 255, 255, 0.7)',
       },
     },
   },
