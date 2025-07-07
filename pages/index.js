@@ -111,7 +111,7 @@ export default function Home() {
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
       >
-        <motion.h1
+       <motion.h1
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.6 }}
@@ -121,23 +121,16 @@ export default function Home() {
     <span key={i}>{char}</span>
   ))}{" "}
   {"Sachin Yoganandham".split("").map((char, i) => (
-    <motion.span
+    <span
       key={i}
-      className="inline-block text-cyan-300"
-      animate={{
-        y: [0, -5, 0],
-      }}
-      transition={{
-        delay: i * 0.05,
-        duration: 1.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
+      className={`inline-block text-cyan-300 font-semibold animate-drop-in`}
+      style={{ animationDelay: `${i * 50}ms` }}
     >
       {char}
-    </motion.span>
+    </span>
   ))}
 </motion.h1>
+
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
