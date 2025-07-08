@@ -126,22 +126,27 @@ export default function Home() {
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
       >
-        <h1
-          ref={nameRef}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center"
-        >
-          {"I'm ".split('').map((char, i) => (
-            <span key={`intro-${i}`}>{char}</span>
-          ))}
-          {"Sachin Yoganandham".split('').map((char, i) => (
-            <span
-              key={`char-${i}`}
-              className="letter inline-block text-cyan-400"
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
-        </h1>
+      <h1
+  ref={nameRef}
+  className="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center"
+>
+  {"I'm ".split('').map((char, i) => (
+    <span key={`intro-${i}`}>{char}</span>
+  ))}
+
+  {/* ✅ Force the name to stay on one line */}
+  <span className="whitespace-nowrap inline-block">
+    {"Sachin Yoganandham".split('').map((char, i) => (
+      <span
+        key={`char-${i}`}
+        className="letter inline-block text-cyan-400"
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ))}
+  </span>
+</h1>
+
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
