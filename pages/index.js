@@ -21,12 +21,28 @@ import {
 } from 'react-icons/si'
 
 const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } },
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      staggerChildren: 0.2,
+      ease: 'easeOut',
+      duration: 0.6,
+    }
+  },
 }
+
 const childVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  hidden: { opacity: 0, y: 15 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.5,
+      ease: 'easeOut',
+    }
+  },
 }
 
 const dataStack = [
@@ -126,27 +142,25 @@ export default function Home() {
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
       >
-      <h1
-  ref={nameRef}
-  className="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center"
->
-  {"I'm ".split('').map((char, i) => (
-    <span key={`intro-${i}`}>{char}</span>
-  ))}
+        <h1
+          ref={nameRef}
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center"
+        >
+          {"I'm ".split('').map((char, i) => (
+            <span key={`intro-${i}`}>{char}</span>
+          ))}
 
-  {/* ✅ Force the name to stay on one line */}
-  <span className="whitespace-nowrap inline-block">
-    {"Sachin Yoganandham".split('').map((char, i) => (
-      <span
-        key={`char-${i}`}
-        className="letter inline-block text-cyan-400"
-      >
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ))}
-  </span>
-</h1>
-
+          <span className="whitespace-nowrap inline-block">
+            {"Sachin Yoganandham".split('').map((char, i) => (
+              <span
+                key={`char-${i}`}
+                className="letter inline-block text-cyan-400"
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            ))}
+          </span>
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -185,6 +199,14 @@ export default function Home() {
             className="px-6 py-3 bg-cyan-400 text-white rounded-md font-medium hover:bg-cyan-500 transition"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            animate={{ 
+              scale: [1, 1.05, 1],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 4,
+              ease: 'easeInOut'
+            }}
           >
             Explore My Tech Stack
           </motion.button>
