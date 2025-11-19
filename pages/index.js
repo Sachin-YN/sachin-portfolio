@@ -124,13 +124,14 @@ export default function Home() {
         'service_rec6ze3',
         'template_0hk0x7m',
         templateParams,
-        '79r0FQ9nqNFXnqcw9'
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY // <--- UPDATED HERE
       )
       .then(() => {
         toast.success('Message sent successfully! 🚀')
         form.reset()
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error('EmailJS Error:', err); // Added logging to help debug
         toast.error('Something went wrong. Please try again later.')
       })
   }
