@@ -1,15 +1,10 @@
 import Head from 'next/head'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Navbar from './Navbar'
 import AuroraCircuitBackground from './AuroraCircuitBackground'
 import CustomCursor from './CustomCursor'
 import ScrollProgress from './ScrollProgress'
 
 export default function Layout({ children, title = 'Sachin Yoganandham' }) {
-  const [launched, setLaunched] = useState(false)
-  const [rocketKey, setRocketKey] = useState(0)
-
   const currentYear = new Date().getFullYear()
   const siteTitle = `${title} | Portfolio`
   const description = 'Portfolio of Sachin Yoganandham, Data-Driven Business Analyst'
@@ -38,35 +33,6 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
       <ScrollProgress />
       <CustomCursor />
       <AuroraCircuitBackground />
-
-      {/* Twinkling stars */}
-      <div className="fixed top-14 left-0 w-full flex justify-between px-10 z-10 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="w-[3px] h-[3px] bg-white rounded-full opacity-70 animate-pulse"
-            style={{ animationDelay: `${i * 0.1}s`, filter: 'drop-shadow(0 0 4px white)', marginTop: `${(i * 37) % 30}px` }}
-          />
-        ))}
-      </div>
-
-      {/* Click the rocket to launch it */}
-      <motion.div
-        key={rocketKey}
-        initial={{ x: 0 }}
-        animate={launched ? { x: '100vw' } : { x: 0 }}
-        transition={{ duration: 3, ease: 'easeInOut' }}
-        onAnimationComplete={() => { if (launched) { setLaunched(false); setRocketKey(k => k + 1) } }}
-        className="fixed top-16 left-2 z-20 cursor-pointer"
-        onClick={() => setLaunched(true)}
-        role="button"
-        aria-label="Launch rocket"
-      >
-        <div className="relative flex items-center space-x-1 -rotate-12">
-          <span className="text-2xl">🚀</span>
-          {launched && <div className="w-2 h-4 bg-orange-400 rounded-full animate-pulse blur-sm" />}
-        </div>
-      </motion.div>
 
       <Navbar />
 
