@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
 import Layout from '../components/Layout'
 import Marquee from '../components/Marquee'
+import DashboardCard from '../components/DashboardCard'
+import PipelineSection from '../components/PipelineSection'
+import NextLink from 'next/link'
 import emailjs from 'emailjs-com'
 import toast from 'react-hot-toast'
 import {
@@ -64,10 +67,10 @@ const dataStack = [
 ]
 
 const roles = [
-  'Data-Driven Business Analyst',
-  'Power BI · Tableau · Qlik',
-  'SQL · Python · Forecasting',
-  'Turning metrics into stories',
+  'Dashboards that drive decisions',
+  'Forecasting & automation',
+  'SQL · Python · Power BI',
+  'From raw data to clear next steps',
 ]
 
 function useTyping(words) {
@@ -189,77 +192,91 @@ export default function Home() {
       {/* HERO */}
       <section
         id="hero"
-        className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 space-y-6"
+        className="relative min-h-screen flex items-center px-4 md:px-10 py-24"
       >
-        <h1
-          ref={nameRef}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center"
-        >
-          {"I'm ".split('').map((char, i) => (
-            <span key={`intro-${i}`}>{char}</span>
-          ))}
-
-          <span className="whitespace-nowrap inline-block">
-            {"Sachin Yoganandham".split('').map((char, i) => (
-              <span
-                key={`char-${i}`}
-                className="letter inline-block gradient-text"
-              >
-                {char === ' ' ? '\u00A0' : char}
+        <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+          <div className="text-center lg:text-left space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/40 bg-cyan-400/10 text-cyan-200 text-xs font-mono"
+            >
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-300 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-300" />
               </span>
-            ))}
-          </span>
-        </h1>
+              Data-Driven Business Analyst
+            </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          className="max-w-2xl text-gray-300 text-lg"
-        >
-          Turning complex metrics into clear stories
-        </motion.p>
+            <h1
+              ref={nameRef}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
+            >
+              {"I'm ".split('').map((char, i) => (
+                <span key={`intro-${i}`}>{char}</span>
+              ))}
+              <span className="whitespace-nowrap inline-block">
+                {"Sachin Yoganandham".split('').map((char, i) => (
+                  <span key={`char-${i}`} className="letter inline-block gradient-text">
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))}
+              </span>
+            </h1>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
-          className="text-white text-base sm:text-xl font-mono h-8 caret"
-          aria-label="Data-Driven Business Analyst"
-        >
-          {role}
-        </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="max-w-xl mx-auto lg:mx-0 text-gray-200 text-lg sm:text-xl"
+            >
+              Turning complex metrics into clear stories
+            </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.6, duration: 0.4, ease: 'backOut' }}
-          className="mt-8 inline-block bg-cyan-500/20 backdrop-blur-sm rounded-lg p-1"
-        >
-          <motion.button
-            onClick={() =>
-              document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
-            }
-            className="px-6 py-3 bg-cyan-400 text-white rounded-md font-medium hover:bg-cyan-500 transition"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            animate={{ 
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 4,
-              ease: 'easeInOut'
-            }}
-          >
-            Explore My Tech Stack
-          </motion.button>
-        </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.5 }}
+              className="text-cyan-200 text-base sm:text-lg font-mono h-7 caret"
+              aria-label="Dashboards that drive decisions, forecasting and automation"
+            >
+              {role}
+            </motion.p>
 
-        <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition text-sm underline underline-offset-4">
-          or get in touch
-        </a>
-        <div className="absolute bottom-8 text-cyan-300 text-2xl animate-bounce-y" aria-hidden="true">↓</div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 0.5 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2"
+            >
+              <NextLink
+                href="/projects"
+                className="px-6 py-3 bg-cyan-400 text-slate-900 rounded-md font-semibold hover:bg-cyan-300 transition hover:-translate-y-0.5"
+              >
+                View projects
+              </NextLink>
+              <button
+                onClick={() =>
+                  document.getElementById('data-stack')?.scrollIntoView({ behavior: 'smooth' })
+                }
+                className="px-6 py-3 border border-white/30 text-white rounded-md font-medium hover:border-cyan-400 hover:text-cyan-300 transition hover:-translate-y-0.5"
+              >
+                Explore my tech stack
+              </button>
+              <a
+                href="#contact"
+                className="text-gray-300 hover:text-cyan-400 transition text-sm underline underline-offset-4 px-2"
+              >
+                or get in touch
+              </a>
+            </motion.div>
+          </div>
+
+          <DashboardCard />
+        </div>
+
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-cyan-300 text-2xl animate-bounce-y" aria-hidden="true">↓</div>
       </section>
 
       <Marquee items={dataStack.map(d => d.name)} />
@@ -273,7 +290,7 @@ export default function Home() {
         variants={sectionVariants}
       >
         <motion.h2 variants={childVariants} className="text-3xl text-white font-semibold mb-8">
-          Turning complex metrics into <span className="gradient-text">clear stories</span>
+          My toolkit <span className="gradient-text">at a glance</span>
         </motion.h2>
         <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
           {[
@@ -288,6 +305,8 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
+
+      <PipelineSection />
 
       {/* TECH STACK */}
       <motion.section
