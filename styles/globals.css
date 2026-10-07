@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@layer base {
+  html,
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, sans-serif;
+    color: #fff;
+    background: none;
+    overflow-x: hidden;
+  }
+}
+
+/* === Animations === */
+
+/* Rocket flame flicker */
+@keyframes rocketFlame {
+  0% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(1.5); opacity: 0.7; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+.animate-rocket-flame {
+  animation: rocketFlame 0.3s infinite;
+}
+
+/* Name drop-in animation */
+@keyframes dropIn {
+  0% {
+    transform: translateY(-30px) skewX(-15deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px) skewX(-5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) skewX(0deg);
+    opacity: 1;
+  }
+}
+
+/* ⬇️ Ensure final state is kept + avoid override conflicts */
+.animate-drop-in {
+  animation: dropIn 0.8s ease-out forwards !important;
+  display: inline-block;
+}
+
+/* === v2 additions === */
+::selection { background: #22d3ee; color: #000; }
+.gradient-text {
+  background: linear-gradient(90deg, #22d3ee, #818cf8, #22d3ee);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradFlow 6s linear infinite;
+}
+@keyframes gradFlow { to { background-position: 200% 0; } }
+.section-card {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+}
+.caret::after { content: '|'; margin-left: 2px; color: #22d3ee; animation: caretBlink 1s steps(1) infinite; }
+@keyframes caretBlink { 50% { opacity: 0; } }
+.cursor-ring {
+  position: fixed; top: 0; left: 0; width: 32px; height: 32px; z-index: 100;
+  border: 2px solid #22d3ee; border-radius: 9999px; pointer-events: none;
+  transition: scale .2s, background .2s, border-color .2s;
+}
+.cursor-ring.cursor-hover { scale: 1.8; background: rgba(34, 211, 238, .18); border-color: #fff; }
+@media (pointer: fine) { body { cursor: auto; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  video { display: none; }
+}
+html { scroll-behavior: smooth; }
