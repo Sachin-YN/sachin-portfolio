@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
 import Layout from '../components/Layout'
-import Marquee from '../components/Marquee'
+import PrincipleStrip from '../components/PrincipleStrip'
 import GlobeHero from '../components/GlobeHero'
 import ForecastCard from '../components/ForecastCard'
 import PipelineSection from '../components/PipelineSection'
@@ -280,7 +280,7 @@ export default function Home() {
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-cyan-300 text-2xl animate-bounce-y" aria-hidden="true">↓</div>
       </section>
 
-      <Marquee items={dataStack.map(d => d.name)} />
+      <PrincipleStrip />
 
       {/* AT A GLANCE (counts come from the stack list on this page) */}
       <motion.section
