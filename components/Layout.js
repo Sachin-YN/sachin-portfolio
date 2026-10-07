@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './Navbar'
 import ParticleBackground from './ParticleBackground'
+import TechBackground from './TechBackground'
 import CustomCursor from './CustomCursor'
 import ScrollProgress from './ScrollProgress'
 
@@ -38,18 +39,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
       <ScrollProgress />
       <CustomCursor />
 
-      {/* Fallback image shows instantly while the video loads */}
-      <div
-        className="fixed inset-0 -z-20 bg-cover bg-center"
-        style={{ backgroundImage: "url('/background.jpg')" }}
-      />
-      <video
-        autoPlay muted loop playsInline preload="metadata" poster="/background.jpg"
-        className="fixed inset-0 w-full h-full object-cover -z-10"
-      >
-        <source src="/videos/earth-from-space-moewalls-com.mp4" type="video/mp4" />
-      </video>
-      <div className="fixed inset-0 -z-[5] bg-gradient-to-b from-black/50 via-black/20 to-black/60" />
+      <TechBackground />
 
       <ParticleBackground />
 
