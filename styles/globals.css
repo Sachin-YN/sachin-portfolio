@@ -81,3 +81,24 @@
   video { display: none; }
 }
 html { scroll-behavior: smooth; }
+
+/* === Tech background === */
+.tb-blob { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: .55; will-change: transform; }
+.tb-a { width: 52vmax; height: 52vmax; left: -12vmax; top: -14vmax; background: #0891b2; animation: tbDriftA 26s ease-in-out infinite alternate; }
+.tb-b { width: 46vmax; height: 46vmax; right: -14vmax; top: 18vh; background: #4f46e5; animation: tbDriftB 32s ease-in-out infinite alternate; }
+.tb-c { width: 38vmax; height: 38vmax; left: 25vw; bottom: -18vmax; background: #7c3aed; opacity: .4; animation: tbDriftC 38s ease-in-out infinite alternate; }
+@keyframes tbDriftA { to { transform: translate(14vw, 12vh) scale(1.15); } }
+@keyframes tbDriftB { to { transform: translate(-12vw, -10vh) scale(0.9); } }
+@keyframes tbDriftC { to { transform: translate(-10vw, -14vh) scale(1.2); } }
+.tb-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 78%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 78%);
+  animation: tbGrid 30s linear infinite;
+}
+@keyframes tbGrid { to { background-position: 0 48px, 48px 0; } }
+.tb-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 40%, rgba(2,6,23,.75) 100%); }
