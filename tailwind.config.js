@@ -5,6 +5,8 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
+        marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+        bounceY: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(8px)' } },
         pulseStar: {
           '0%, 100%': { opacity: '0.6' },
           '50%': { opacity: '1' },
@@ -34,6 +36,8 @@ module.exports = {
         },
       },
       animation: {
+        marquee: 'marquee 35s linear infinite',
+        'bounce-y': 'bounceY 1.6s infinite ease-in-out',
         'pulse-star': 'pulseStar 1.5s infinite ease-in-out',
         'rocket-flame': 'rocketFlame 0.3s infinite ease-in-out',
         'wave': 'wave 1.5s infinite ease-in-out',
