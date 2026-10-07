@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
 import Layout from '../components/Layout'
 import Marquee from '../components/Marquee'
+import GlobeHero from '../components/GlobeHero'
 import ForecastCard from '../components/ForecastCard'
 import PipelineSection from '../components/PipelineSection'
 import NextLink from 'next/link'
@@ -273,7 +274,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <ForecastCard />
+          <GlobeHero />
         </div>
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-cyan-300 text-2xl animate-bounce-y" aria-hidden="true">↓</div>
@@ -307,6 +308,33 @@ export default function Home() {
       </motion.section>
 
       <PipelineSection />
+
+      {/* DATA STORY: forecasting worked example on real public data */}
+      <motion.section
+        id="data-story"
+        className="py-16 px-4 md:px-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+          <div className="text-center lg:text-left">
+            <motion.p variants={childVariants} className="font-mono text-cyan-300 text-sm mb-2">data story</motion.p>
+            <motion.h2 variants={childVariants} className="text-3xl font-semibold text-white mb-4">
+              How a <span className="gradient-text">forecast</span> is built
+            </motion.h2>
+            <motion.p variants={childVariants} className="text-gray-300 max-w-md mx-auto lg:mx-0">
+              A worked example on a classic public dataset: separate the trend, find the seasonality,
+              then project forward with an honest uncertainty range. It is the same approach I use
+              when forecasting business metrics.
+            </motion.p>
+          </div>
+          <motion.div variants={childVariants}>
+            <ForecastCard />
+          </motion.div>
+        </div>
+      </motion.section>
 
       {/* TECH STACK */}
       <motion.section
