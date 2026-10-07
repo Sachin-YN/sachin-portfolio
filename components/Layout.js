@@ -2,8 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './Navbar'
-import ParticleBackground from './ParticleBackground'
-import TechBackground from './TechBackground'
+import AuroraCircuitBackground from './AuroraCircuitBackground'
 import CustomCursor from './CustomCursor'
 import ScrollProgress from './ScrollProgress'
 
@@ -38,10 +37,7 @@ export default function Layout({ children, title = 'Sachin Yoganandham' }) {
 
       <ScrollProgress />
       <CustomCursor />
-
-      <TechBackground />
-
-      <ParticleBackground />
+      <AuroraCircuitBackground />
 
       {/* Twinkling stars */}
       <div className="fixed top-14 left-0 w-full flex justify-between px-10 z-10 pointer-events-none">
