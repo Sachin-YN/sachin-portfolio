@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
 import Layout from '../components/Layout'
 import Marquee from '../components/Marquee'
-import DashboardCard from '../components/DashboardCard'
+import ForecastCard from '../components/ForecastCard'
 import PipelineSection from '../components/PipelineSection'
 import NextLink from 'next/link'
 import emailjs from 'emailjs-com'
@@ -273,7 +273,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <DashboardCard />
+          <ForecastCard />
         </div>
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-cyan-300 text-2xl animate-bounce-y" aria-hidden="true">↓</div>
